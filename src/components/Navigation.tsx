@@ -2,16 +2,15 @@
 
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
+import Image from 'next/image';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Services', href: '#services', hasDropdown: true },
-    { label: 'Locations', href: '#locations', hasDropdown: false },
-    { label: 'Parent Resources', href: '#resources', hasDropdown: true },
-    { label: 'About', href: '#about', hasDropdown: false },
-    { label: 'Careers', href: '#careers', hasDropdown: false },
+    { label: 'About', href: '#about', hasDropdown: true },
+    { label: 'Our Program', href: '#program', hasDropdown: false },
+    { label: 'Learning Center', href: '#learning-center', hasDropdown: false },
   ];
 
   return (
@@ -22,23 +21,15 @@ export default function Navigation() {
         height: 'var(--header-height)',
       }}
     >
-      <div className="container-max h-full flex items-center justify-between">
-        {/* Logo */}
-        <a 
-          href="/" 
-          className="font-primary text-2xl font-semibold text-primary tracking-tight"
-        >
-          Dakota Autism Center
-        </a>
-
-        {/* Desktop Navigation */}
+      <div className="container-max h-full flex items-center justify-between relative">
+        
+        {/* Left: Navigation Links (Desktop) */}
         <div className="hidden lg:flex items-center gap-8">
-          <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link text-[15px] flex items-center gap-1 group/nav"
+                className="nav-link text-[15px] font-bold text-dark flex items-center gap-1 group/nav"
               >
                 {link.label}
                 {link.hasDropdown && (
@@ -46,23 +37,36 @@ export default function Navigation() {
                     icon="solar:alt-arrow-down-bold" 
                     className="w-4 h-4 opacity-60 transition-colors"
                     style={{ color: 'var(--color-text-muted)' }}
-                    onMouseEnter={(e) => {
-                      const parent = e.currentTarget.closest('a');
-                      if (parent?.matches(':hover')) {
-                        e.currentTarget.style.color = 'var(--color-tertiary)';
-                        e.currentTarget.style.opacity = '1';
-                      }
-                    }}
                   />
                 )}
               </a>
             ))}
-          </div>
+        </div>
 
-          {/* CTA Button */}
-          <a href="#contact" className="btn btn-primary group">
-            Find Care
-            <Icon icon="solar:arrow-right-broken" className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+        {/* Center: Logo */}
+        <a 
+          href="/" 
+          className="relative flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+        >
+          <Image
+            src="/logo-mark.svg"
+            alt="Dakota Autism Center"
+            width={60}
+            height={68}
+            className="h-14 w-auto lg:h-16"
+            priority
+          />
+        </a>
+
+        {/* Right: Actions (Desktop) */}
+        <div className="hidden lg:flex items-center gap-6">
+          <a href="tel:612-284-5382" className="flex items-center gap-2 font-bold text-lg text-dark hover:text-primary transition-colors">
+            <Icon icon="solar:phone-linear" className="w-6 h-6 text-primary" />
+            (612) 284-5382
+          </a>
+          <a href="#contact" className="btn-contact">
+            <Icon icon="solar:letter-bold-duotone" className="w-7 h-7" />
+            Contact Us
           </a>
         </div>
 
@@ -110,10 +114,11 @@ export default function Navigation() {
               <div className="pt-4 mt-2 border-t border-border-light">
                 <a 
                   href="#contact" 
-                  className="btn btn-primary w-full"
+                  className="btn-contact w-full"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Find Care
+                  <Icon icon="solar:phone-broken" className="w-7 h-7" />
+                  Contact Us
                 </a>
               </div>
             </div>

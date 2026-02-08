@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 export default function Hero() {
   return (
     <section 
-      className="relative w-full flex flex-col lg:block min-h-[calc(100vh-80px)] bg-white overflow-hidden"
+      className="relative w-full flex flex-col lg:block min-h-[calc(100vh-150px)] bg-white overflow-hidden border-b border-border-light"
       aria-labelledby="hero-heading"
     >
       {/* Desktop Image (Absolute Right 50%) */}
@@ -35,7 +35,7 @@ export default function Hero() {
       </div>
 
       {/* Content Container */}
-      <div className="container-max relative z-10 h-full flex flex-col justify-center flex-1 order-2 lg:order-0 py-12 lg:py-0 lg:min-h-[calc(100vh-80px)]">
+      <div className="container-max relative z-10 h-full flex flex-col justify-end flex-1 order-2 lg:order-0 py-12 lg:pb-16 lg:min-h-[calc(100vh-150px)]">
           <div className="w-full lg:w-[50%] lg:pr-12 text-center lg:text-left">
             <div className="animate-fade-in-up">
               
@@ -58,13 +58,14 @@ export default function Hero() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 mb-12 stagger-3">
-                <a href="#contact" className="btn btn-primary btn-large w-full sm:w-auto group rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300">
-                  Find a Center
-                  <Icon icon="solar:arrow-right-linear" className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <a href="#contact" className="btn-find-center w-full sm:w-auto group" style={{ backgroundColor: 'var(--color-accent)' }}>
+                  Connect with Our Team
+                  <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/20">
+                    <Icon icon="solar:phone-bold" className="w-6 h-6" />
+                  </span>
                 </a>
-                <a href="#services" className="btn btn-tertiary btn-large w-full sm:w-auto group rounded-full border-2 hover:bg-primary/5">
+                <a href="#services" className="nav-link font-semibold text-lg ml-4">
                   Our Services
-                  <Icon icon="solar:arrow-right-linear" className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
 

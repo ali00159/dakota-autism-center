@@ -141,7 +141,7 @@
   --container-narrow: 640px;
   
   /* Component Heights */
-  --header-height: 80px;
+  --header-height: 100px;
   --button-height: 44px;
   --button-height-lg: 52px;
   --button-height-sm: 36px;
@@ -514,6 +514,72 @@ p, .body-text {
 
 .btn-ghost:hover:not(:disabled) {
   background-color: var(--color-primary-light);
+}
+
+/* Contact / CTA Button */
+.btn-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.05em;
+  color: var(--color-text-inverse);
+  background-color: var(--color-secondary);
+  padding: var(--space-md) 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn-contact:hover {
+  background-color: var(--color-secondary-hover);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.btn-contact:active {
+  background-color: var(--color-secondary-active);
+  transform: translateY(0);
+}
+
+/* Find Center / Primary CTA Button */
+.btn-find-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.05em;
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  padding: var(--space-md) 24px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn-find-center:hover {
+  filter: brightness(1.1);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.btn-find-center:active {
+  filter: brightness(0.95);
+  transform: translateY(0);
 }
 
 /* Button Sizes */
