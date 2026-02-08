@@ -11,7 +11,7 @@ export default function Hero() {
       {/* Desktop Image (Absolute Right 50%) */}
       <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
          <Image 
-           src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg"
+           src="/hero-image.png"
            alt="Therapist working with a child in a supportive environment"
            fill
            className="object-cover"
@@ -24,7 +24,7 @@ export default function Hero() {
       {/* Mobile Image (Stacked Top) */}
        <div className="block lg:hidden relative w-full h-[40vh] min-h-[300px] z-0 order-1">
          <Image 
-           src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg"
+           src="/hero-image.png"
            alt="Therapist working with a child in a supportive environment"
            fill
            className="object-cover"

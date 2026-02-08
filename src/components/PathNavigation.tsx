@@ -21,8 +21,6 @@ interface TabContent {
   accent: string
   /** Hex value for inline styles */
   accentHex: string
-  /** Icon container background */
-  iconBg: string
   /** Primary button classes */
   btnClass: string
   /** Outline button classes */
@@ -42,7 +40,6 @@ const tabs: TabContent[] = [
     secondaryHref: "/about",
     accent: "bg-[#115C47]",
     accentHex: "#115C47",
-    iconBg: "bg-[#E8F4F0]",
     btnClass: "bg-[#115C47] hover:bg-[#0E4A38] active:bg-[#0A3829] text-white",
     outlineClass: "border-[#115C47] text-[#115C47] hover:bg-[#E8F4F0]",
   },
@@ -58,7 +55,6 @@ const tabs: TabContent[] = [
     secondaryHref: "/insurance",
     accent: "bg-[#42AEEB]",
     accentHex: "#42AEEB",
-    iconBg: "bg-[#EAF6FD]",
     btnClass: "bg-[#42AEEB] hover:bg-[#2B9ADB] active:bg-[#1F8BCC] text-white",
     outlineClass: "border-[#42AEEB] text-[#42AEEB] hover:bg-[#EAF6FD]",
   },
@@ -74,7 +70,6 @@ const tabs: TabContent[] = [
     secondaryHref: "/contact",
     accent: "bg-[#FB9A31]",
     accentHex: "#FB9A31",
-    iconBg: "bg-[#FEF3E8]",
     btnClass: "bg-[#FB9A31] hover:bg-[#E8882B] active:bg-[#D47725] text-white",
     outlineClass: "border-[#FB9A31] text-[#FB9A31] hover:bg-[#FEF3E8]",
   },
