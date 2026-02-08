@@ -81,20 +81,25 @@ export default function PathNavigation() {
   const activeContent = tabs.find((tab) => tab.id === activeTab) || tabs[0]
 
   return (
-    <section className="relative w-full py-16 lg:py-24 bg-white overflow-hidden">
+    <section className="section relative w-full bg-white overflow-hidden">
       {/* Section Label */}
-      <div className="container-max text-center mb-8 lg:mb-10 relative z-10 px-6">
+      <div className="container-max section-header relative z-10">
         <span className="badge badge-primary mb-4 inline-block px-4 py-1.5 text-xs tracking-wider uppercase font-semibold">
           Path Navigation
         </span>
-        <h2 className="text-3xl lg:text-4xl font-bold text-primary leading-[1.15] tracking-tight">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary leading-[1.15] tracking-tight">
           Where Would You Like to Start?
         </h2>
       </div>
 
-      {/* Navigation Bar - Pill tabs with icons */}
-      <div className="flex justify-center mb-12 lg:mb-16 relative z-10 px-4">
-        <div className="relative inline-flex flex-wrap justify-center items-center gap-1 p-2 bg-white rounded-full border-2 border-[#474044]/15 shadow-sm">
+      {/* Navigation Bar - Stacked on mobile, pill tabs on md+ */}
+      <div className="flex justify-center mb-8 md:mb-12 lg:mb-16 relative z-10">
+        <div
+          className={cn(
+            "relative flex flex-col w-full max-w-sm gap-2 p-2 bg-white rounded-2xl border-2 border-[#474044]/15 shadow-sm",
+            "md:inline-flex md:flex-row md:flex-wrap md:justify-center md:items-center md:w-auto md:max-w-none md:gap-1 md:rounded-full"
+          )}
+        >
           {tabs.map((tab) => {
             const TabIcon = tab.icon
             return (
@@ -102,7 +107,7 @@ export default function PathNavigation() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
-                  "relative flex items-center gap-2.5 px-6 py-3.5 lg:px-8 lg:py-4 rounded-full text-base lg:text-lg font-medium transition-colors duration-300 z-10",
+                  "relative flex items-center gap-2.5 px-4 py-3 md:px-6 md:py-3.5 lg:px-8 lg:py-4 rounded-xl md:rounded-full text-sm md:text-base lg:text-lg font-medium transition-colors duration-300 z-10 w-full md:w-auto justify-start md:justify-center",
                   activeTab === tab.id
                     ? "text-white"
                     : "text-[#474044] hover:text-[#115C47]"
@@ -112,7 +117,7 @@ export default function PathNavigation() {
                   <motion.div
                     layoutId="active-pill"
                     className={cn(
-                      "absolute inset-0 rounded-full -z-10 shadow-md",
+                      "absolute inset-0 rounded-xl md:rounded-full -z-10 shadow-md",
                       tab.accent
                     )}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -127,7 +132,7 @@ export default function PathNavigation() {
       </div>
 
       {/* Main Content */}
-      <div className="container-max flex flex-col items-center text-center relative z-10 min-h-[320px] px-6">
+      <div className="container-max flex flex-col items-center text-center relative z-10 min-h-0 md:min-h-[320px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -139,19 +144,19 @@ export default function PathNavigation() {
           >
             {/* Headline */}
             <h3
-              className="text-3xl lg:text-5xl font-bold mb-6 leading-[1.15] tracking-tight"
+              className="text-2xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.15] tracking-tight"
               style={{ color: activeContent.accentHex }}
             >
               {activeContent.headline}
             </h3>
 
             {/* Body Copy */}
-            <p className="text-lg lg:text-xl text-gray-500 mb-10 max-w-2xl leading-relaxed font-light">
+            <p className="text-base md:text-lg lg:text-xl text-gray-500 mb-6 md:mb-10 max-w-2xl leading-relaxed font-light">
               {activeContent.body}
             </p>
 
             {/* Button Group */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mt-2">
+            <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto mt-1 md:mt-2">
               <Button
                 size="lg"
                 className={cn("w-full sm:w-auto", activeContent.btnClass)}
@@ -175,8 +180,8 @@ export default function PathNavigation() {
 
       {/* Decorative Background Elements (Subtle) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[20%] w-[400px] h-[400px] bg-primary/3 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-[10%] right-[20%] w-[300px] h-[300px] bg-secondary/3 rounded-full blur-3xl opacity-60" />
+        <div className="absolute top-[10%] left-[20%] w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-primary/3 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-[10%] right-[20%] w-[150px] h-[150px] md:w-[300px] md:h-[300px] bg-secondary/3 rounded-full blur-3xl opacity-60" />
       </div>
     </section>
   )

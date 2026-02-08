@@ -15,11 +15,7 @@ export default function Navigation() {
 
   return (
     <nav 
-      className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border-light"
-      style={{ 
-        zIndex: 'var(--z-sticky)',
-        height: 'var(--header-height)',
-      }}
+      className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border-light z-sticky h-(--header-height)"
     >
       <div className="container-max h-full flex items-center justify-between relative">
         
@@ -35,8 +31,7 @@ export default function Navigation() {
                 {link.hasDropdown && (
                   <Icon 
                     icon="solar:alt-arrow-down-bold" 
-                    className="w-4 h-4 opacity-60 transition-colors"
-                    style={{ color: 'var(--color-text-muted)' }}
+                    className="w-4 h-4 opacity-60 transition-colors text-text-muted"
                   />
                 )}
               </a>
@@ -87,8 +82,7 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div 
-          className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-border-medium shadow-lg animate-fade-in"
-          style={{ zIndex: 'var(--z-dropdown)' }}
+          className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-border-medium shadow-lg animate-fade-in z-dropdown"
         >
           <div className="container-max py-4">
             <div className="flex flex-col gap-2">
@@ -103,8 +97,7 @@ export default function Navigation() {
                   {link.hasDropdown && (
                     <Icon 
                       icon="solar:alt-arrow-right-bold" 
-                      className="w-4 h-4 transition-colors group-hover:text-tertiary"
-                      style={{ color: 'var(--color-text-muted)' }}
+                      className="w-4 h-4 transition-colors group-hover:text-tertiary text-text-muted"
                     />
                   )}
                 </a>

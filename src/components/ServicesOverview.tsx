@@ -110,18 +110,16 @@ const cardVariants = {
 export default function ServicesOverview() {
   return (
     <section
-      className="relative w-full py-12 lg:py-16 overflow-hidden rounded-tl-[80px] md:rounded-tl-[120px]"
-      style={{ backgroundColor: "#F0F8FF" }}
+      className="section relative w-full overflow-hidden rounded-tl-[80px] md:rounded-tl-[120px] bg-bg-services"
       aria-labelledby="services-heading"
     >
       {/* Header */}
-      <div className="container-max text-center mb-8 lg:mb-12 px-6 relative z-10">
+      <div className="container-max section-header relative z-10">
         <h2
           id="services-heading"
-          className="text-3xl md:text-4xl lg:text-[40px] font-bold leading-[1.1] tracking-tight mb-4"
-          style={{ color: "var(--color-dark)" }}
+          className="text-3xl md:text-4xl lg:text-[40px] font-bold leading-[1.1] tracking-tight mb-4 text-dark"
         >
-          <span style={{ color: "#42AEEB" }}>Flexible ABA Therapy</span>{" "}
+          <span className="text-tertiary">Flexible ABA Therapy</span>{" "}
           That Fits Your Family
         </h2>
         <p
@@ -135,7 +133,7 @@ export default function ServicesOverview() {
 
       {/* Card Grid */}
       <motion.div
-        className="container-max grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 px-4 sm:px-6 relative z-10"
+        className="container-max grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 relative z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -214,12 +212,12 @@ export default function ServicesOverview() {
       </motion.div>
 
       {/* CTA */}
-      <div className="container-max text-center mt-10 lg:mt-14 px-6 relative z-10">
+      <div className="container-max text-center mt-10 lg:mt-14 relative z-10">
         <Button
           variant="primary"
           size="lg"
           icon="solar:arrow-right-broken"
-          className="shadow-lg hover:shadow-xl !bg-[#474044] !text-white hover:!bg-[#2d292b] hover:-translate-y-1 transition-all duration-300"
+          className="shadow-lg hover:shadow-xl bg-[#474044]! text-white! hover:bg-[#2d292b]! hover:-translate-y-1 transition-all duration-300"
         >
           Learn About All Our Services
         </Button>

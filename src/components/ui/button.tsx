@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { arrowRightBroken } from "@/lib/solar-icons"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-['Poppins'] font-medium text-[18px] leading-[24px] tracking-[-0.02em] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-['Poppins'] font-medium text-base md:text-lg tracking-[-0.02em] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -19,11 +19,10 @@ const buttonVariants = cva(
         accent: "bg-[#EA3D6A] text-[#474044] hover:bg-[#d73760] active:bg-[#c52f56] rounded-[45px] border-[1.5px] border-transparent",
       },
       size: {
-        // Back to original dimensions, with tighter padding so text takes more space
-        default: "h-12 px-[16px] min-w-[136px]",
-        sm: "h-9 px-[14px] text-[16px] leading-[22px] min-w-[100px]",
-        lg: "h-14 px-[22px] text-[20px] leading-[26px] min-w-[160px]",
-        icon: "h-12 w-12",
+        default: "h-11 md:h-12 px-4 md:px-5",
+        sm: "h-9 px-3.5 text-sm md:text-base",
+        lg: "h-12 md:h-14 px-5 md:px-6 text-lg md:text-xl",
+        icon: "h-11 w-11 md:h-12 md:w-12",
       },
     },
     defaultVariants: {

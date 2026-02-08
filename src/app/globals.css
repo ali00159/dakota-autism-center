@@ -68,6 +68,7 @@
   --color-bg-tertiary: #EBEBEB;
   --color-bg-highlight: #D4EAFC;
   --color-bg-hero: #E8F4F0;
+  --color-bg-services: #F0F8FF;
   
   /* Border Colors */
   --color-border-light: #EBEBEB;
@@ -80,29 +81,29 @@
   --font-primary: var(--font-poppins), 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-secondary: var(--font-work-sans), 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   
-  /* Font Sizes - Desktop */
-  --font-size-h0: 60px;
-  --font-size-h1: 48px;
-  --font-size-h2: 38px;
-  --font-size-h3: 30px;
-  --font-size-h4: 24px;
-  --font-size-h5: 20px;
-  --font-size-h6: 18px;
-  --font-size-body-lg: 18px;
+  /* Font Sizes - Mobile-first defaults */
+  --font-size-h0: 40px;
+  --font-size-h1: 36px;
+  --font-size-h2: 30px;
+  --font-size-h3: 24px;
+  --font-size-h4: 20px;
+  --font-size-h5: 18px;
+  --font-size-h6: 16px;
+  --font-size-body-lg: 17px;
   --font-size-body: 16px;
   --font-size-body-sm: 14px;
   --font-size-caption: 13px;
   --font-size-label: 12px;
   
-  /* Line Heights */
-  --line-height-h0: 66px;
-  --line-height-h1: 56px;
-  --line-height-h2: 46px;
-  --line-height-h3: 38px;
-  --line-height-h4: 32px;
-  --line-height-h5: 28px;
-  --line-height-h6: 26px;
-  --line-height-body-lg: 28px;
+  /* Line Heights - Mobile-first defaults */
+  --line-height-h0: 48px;
+  --line-height-h1: 44px;
+  --line-height-h2: 38px;
+  --line-height-h3: 32px;
+  --line-height-h4: 28px;
+  --line-height-h5: 26px;
+  --line-height-h6: 24px;
+  --line-height-body-lg: 27px;
   --line-height-body: 26px;
   --line-height-body-sm: 22px;
   --line-height-caption: 20px;
@@ -129,8 +130,8 @@
   --space-lg: 24px;
   --space-xl: 32px;
   --space-2xl: 48px;
-  --space-3xl: 64px;
-  --space-4xl: 96px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
   --space-5xl: 128px;
   
   /* ========== SIZING ========== */
@@ -141,7 +142,7 @@
   --container-narrow: 640px;
   
   /* Component Heights */
-  --header-height: 100px;
+  --header-height: 80px;
   --button-height: 44px;
   --button-height-lg: 52px;
   --button-height-sm: 36px;
@@ -203,30 +204,53 @@
   --opacity-subtle: 0.1;
 }
 
-/* ========== MOBILE OVERRIDES ========== */
+/* ========== TABLET OVERRIDES (768px+) ========== */
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   :root {
-    --font-size-h0: 40px;
-    --font-size-h1: 36px;
-    --font-size-h2: 30px;
-    --font-size-h3: 24px;
-    --font-size-h4: 20px;
-    --font-size-h5: 18px;
-    --font-size-h6: 16px;
-    --font-size-body-lg: 17px;
+    --font-size-h0: 48px;
+    --font-size-h1: 40px;
+    --font-size-h2: 34px;
+    --font-size-h3: 26px;
+    --font-size-h4: 22px;
     
-    --line-height-h0: 48px;
-    --line-height-h1: 44px;
-    --line-height-h2: 38px;
-    --line-height-h3: 32px;
-    --line-height-h4: 28px;
-    --line-height-h5: 26px;
-    --line-height-h6: 24px;
-    --line-height-body-lg: 27px;
+    --line-height-h0: 56px;
+    --line-height-h1: 48px;
+    --line-height-h2: 42px;
+    --line-height-h3: 34px;
+    --line-height-h4: 30px;
     
-    --space-3xl: 48px;
-    --space-4xl: 64px;
+    --header-height: 90px;
+    --space-3xl: 56px;
+    --space-4xl: 80px;
+  }
+}
+
+/* ========== DESKTOP OVERRIDES (1024px+) ========== */
+
+@media (min-width: 1024px) {
+  :root {
+    --font-size-h0: 60px;
+    --font-size-h1: 48px;
+    --font-size-h2: 38px;
+    --font-size-h3: 30px;
+    --font-size-h4: 24px;
+    --font-size-h5: 20px;
+    --font-size-h6: 18px;
+    --font-size-body-lg: 18px;
+    
+    --line-height-h0: 66px;
+    --line-height-h1: 56px;
+    --line-height-h2: 46px;
+    --line-height-h3: 38px;
+    --line-height-h4: 32px;
+    --line-height-h5: 28px;
+    --line-height-h6: 26px;
+    --line-height-body-lg: 28px;
+    
+    --header-height: 100px;
+    --space-3xl: 64px;
+    --space-4xl: 96px;
   }
 }
 
@@ -560,7 +584,7 @@ p, .body-text {
   font-weight: var(--font-weight-semibold);
   letter-spacing: -0.05em;
   color: var(--color-text-inverse);
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   padding: var(--space-md) 24px;
   border-radius: var(--radius-full);
   border: none;
@@ -810,24 +834,76 @@ p, .body-text {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
 }
 
 .container-reading {
   max-width: var(--container-reading);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
 }
 
 .container-narrow {
   max-width: var(--container-narrow);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container-max,
+  .container-reading,
+  .container-narrow {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-max,
+  .container-reading,
+  .container-narrow {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+/* Responsive section vertical padding (mobile -> tablet -> desktop) */
+.section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+@media (min-width: 768px) {
+  .section {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-4xl);
+    padding-bottom: var(--space-4xl);
+  }
+}
+
+/* Responsive section header bottom margin */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+@media (min-width: 768px) {
+  .section-header {
+    margin-bottom: var(--space-2xl);
+  }
+}
+@media (min-width: 1024px) {
+  .section-header {
+    margin-bottom: var(--space-3xl);
+  }
 }
 
 .section-padding {
