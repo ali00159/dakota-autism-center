@@ -151,7 +151,7 @@ export default function PathNavigation() {
             </p>
 
             {/* Button Group */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mt-2">
               <Button
                 size="lg"
                 className={cn("w-full sm:w-auto", activeContent.btnClass)}
