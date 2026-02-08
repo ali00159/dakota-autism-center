@@ -96,21 +96,21 @@ const containerVariants = {
       staggerChildren: 0.1,
     },
   },
-}
+} as const
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" as const },
   },
-}
+} as const
 
 export default function ServicesOverview() {
   return (
     <section
-      className="section relative w-full overflow-hidden rounded-tl-[80px] md:rounded-tl-[120px] bg-bg-services"
+      className="section relative w-full overflow-hidden rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px] bg-bg-services"
       aria-labelledby="services-heading"
     >
       {/* Header */}
@@ -144,7 +144,7 @@ export default function ServicesOverview() {
             key={service.id}
             variants={cardVariants}
             whileHover={{ y: -4, boxShadow: "0 8px 32px rgba(71, 64, 68, 0.16)" }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
             className="group relative rounded-2xl overflow-hidden shadow-md flex flex-col h-full will-change-transform"
             style={{ backgroundColor: service.accentHex }}
           >
