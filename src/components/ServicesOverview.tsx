@@ -3,7 +3,6 @@
 import * as React from "react"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 
 interface ServiceItem {
   id: string
@@ -213,14 +212,10 @@ export default function ServicesOverview() {
 
       {/* CTA */}
       <div className="container-max text-center mt-10 lg:mt-14 relative z-10">
-        <Button
-          variant="primary"
-          size="lg"
-          icon="solar:arrow-right-broken"
-          className="shadow-lg hover:shadow-xl bg-[#474044]! text-white! hover:bg-[#2d292b]! hover:-translate-y-1 transition-all duration-300"
-        >
+        <button className="btn btn-primary btn-large rounded-full shadow-lg hover:shadow-xl bg-[#474044]! text-white! hover:bg-[#2d292b]! hover:-translate-y-1 transition-all duration-300">
           Learn About All Our Services
-        </Button>
+          <Icon icon="solar:arrow-right-broken" width={18} height={18} className="shrink-0" />
+        </button>
       </div>
     </section>
   )

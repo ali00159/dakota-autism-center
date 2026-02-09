@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
+import { Icon } from "@iconify/react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { Compass, GitCompareArrows, CalendarCheck } from "lucide-react"
@@ -157,22 +157,20 @@ export default function PathNavigation() {
 
             {/* Button Group */}
             <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto mt-1 md:mt-2">
-              <Button
-                size="lg"
-                className={cn("w-full sm:w-auto", activeContent.btnClass)}
-                icon="solar:arrow-right-broken"
+              <button
+                className={cn("btn btn-large rounded-full w-full sm:w-auto", activeContent.btnClass)}
               >
                 {activeContent.primaryBtn}
-              </Button>
-              <Button
-                size="lg"
+                <Icon icon="solar:arrow-right-broken" width={18} height={18} className="shrink-0" />
+              </button>
+              <button
                 className={cn(
-                  "w-full sm:w-auto bg-transparent border-[1.5px] rounded-[45px]",
+                  "btn btn-large rounded-full w-full sm:w-auto bg-transparent border-[1.5px]",
                   activeContent.outlineClass
                 )}
               >
                 {activeContent.secondaryBtn}
-              </Button>
+              </button>
             </div>
           </motion.div>
         </AnimatePresence>

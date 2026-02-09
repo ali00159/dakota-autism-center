@@ -619,6 +619,24 @@ p, .body-text {
   border-radius: 6px;
 }
 
+/* Accent Button (Pink) */
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  box-shadow: 0 2px 4px rgba(234, 61, 106, 0.2);
+}
+
+.btn-accent:hover:not(:disabled) {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(234, 61, 106, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-accent:active:not(:disabled) {
+  filter: brightness(0.95);
+  transform: translateY(0);
+}
+
 /* Button Loading State */
 .btn-loading {
   position: relative;
