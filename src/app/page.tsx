@@ -2,6 +2,8 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import PathNavigation from '@/components/PathNavigation';
 import ServicesOverview from '@/components/ServicesOverview';
+import AboutSection from '@/components/AboutSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
         <Hero />
         <PathNavigation />
         <ServicesOverview />
+        <AboutSection />
+        <TestimonialsSection />
       </main>
     </>
   );

@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "Personalized autism services designed for clarity and growth. We foster safe, trusting environments where your child can navigate the world with confidence.",
 };
 
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${workSans.variable} antialiased`}
+        className={`${poppins.variable} ${workSans.variable} antialiased flex flex-col min-h-screen`}
         style={{
           fontFamily: "var(--font-work-sans), var(--font-secondary)",
         }}
@@ -38,7 +40,10 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

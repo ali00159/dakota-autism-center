@@ -68,7 +68,7 @@
   --color-bg-tertiary: #EBEBEB;
   --color-bg-highlight: #D4EAFC;
   --color-bg-hero: #E8F4F0;
-  --color-bg-services: #F0F8FF;
+  --color-bg-services: #D4EAFC;
   
   /* Border Colors */
   --color-border-light: #EBEBEB;
@@ -991,6 +991,34 @@ p, .body-text {
   width: 100%;
 }
 
+/* Footer Link */
+.footer-link {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color var(--duration-fast) var(--ease-out);
+  display: inline-block; /* Ensure width calculation works for underline */
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-supporting);
+  transition: width var(--duration-normal) var(--ease-smooth);
+}
+
+.footer-link:hover {
+  color: var(--color-white);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
 /* ========== ACCESSIBILITY ========== */
 
 /* Focus States */
@@ -1062,6 +1090,8 @@ p, .body-text {
 /* Text Colors */
 .text-primary { color: var(--color-primary); }
 .text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-tertiary); }
+.text-supporting { color: var(--color-supporting); }
 .text-muted { color: var(--color-text-muted); }
 .text-inverse { color: var(--color-text-inverse); }
 .text-dark { color: var(--color-dark); }
