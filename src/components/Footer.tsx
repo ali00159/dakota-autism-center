@@ -20,7 +20,7 @@ export default function Footer() {
       { label: 'Learning Center', href: '#learning-center' },
     ],
     locations: [
-      { label: 'St. Louis Region', href: '#locations' },
+      { label: 'Minneapolis, MN (HQ)', href: '#locations' },
       { label: 'View All Locations', href: '#locations' },
     ]
   };
@@ -122,10 +122,10 @@ export default function Footer() {
           <div className="flex items-start gap-3">
             <MapPin className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
             <div>
-              <span className="font-bold text-lg">Location</span>
+              <span className="font-bold text-lg">Headquarters</span>
               <p className="text-white/80 leading-relaxed">
-                St. Louis Region<br />
-                (Address to be updated)
+                331 2nd Ave S,<br />
+                Suite 436 Minneapolis, MN 55401
               </p>
             </div>
           </div>
@@ -146,9 +146,9 @@ export default function Footer() {
             <Printer className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
             <div>
               <span className="font-bold text-lg">Fax</span>
-              <p className="text-white/80">
-                (Fax Number)
-              </p>
+              <a href="fax:612-284-5080" className="block text-white/80 hover:text-white transition-colors">
+                (612) 284-5080
+              </a>
             </div>
           </div>
 
