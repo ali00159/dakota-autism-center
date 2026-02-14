@@ -35,11 +35,14 @@ export interface NavLink {
   hasDropdown?: boolean;
 }
 
+export interface FooterLink {
+  label: string;
+  href: string;
+  isNew?: boolean;
+}
+
 export interface FooterSection {
   id: string;
   title: string;
-  links: {
-    label: string;
-    href: string;
-  }[];
+  links: FooterLink[];
 }

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { Facebook, Instagram, Linkedin, Phone, Mail, MapPin, Printer } from 'lucide-react';
+import { FooterLink } from '@/types';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
+  const footerLinks: Record<string, FooterLink[]> = {
     company: [
       { label: 'Home', href: '/' },
       { label: 'About Us', href: '#about' },
@@ -118,48 +119,48 @@ export default function Footer() {
         {/* Contact Details Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8 pb-4">
           {/* Location */}
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-[#D4EAFC]" />
+          <div className="flex items-start gap-3">
+            <MapPin className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
+            <div>
               <span className="font-bold text-lg">Location</span>
+              <p className="text-white/80 leading-relaxed">
+                St. Louis Region<br />
+                (Address to be updated)
+              </p>
             </div>
-            <p className="text-white/80 leading-relaxed pl-8">
-              St. Louis Region<br />
-              (Address to be updated)
-            </p>
           </div>
 
           {/* Phone */}
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-[#D4EAFC]" />
+          <div className="flex items-start gap-3">
+            <Phone className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
+            <div>
               <span className="font-bold text-lg">Phone</span>
+              <a href="tel:612-284-5382" className="block text-white/80 hover:text-white transition-colors">
+                (612) 284-5382
+              </a>
             </div>
-            <a href="tel:612-284-5382" className="text-white/80 hover:text-white transition-colors pl-8">
-              (612) 284-5382
-            </a>
           </div>
 
           {/* Fax */}
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-3">
-              <Printer className="w-5 h-5 text-[#D4EAFC]" />
+          <div className="flex items-start gap-3">
+            <Printer className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
+            <div>
               <span className="font-bold text-lg">Fax</span>
+              <p className="text-white/80">
+                (Fax Number)
+              </p>
             </div>
-            <p className="text-white/80 pl-8">
-              (Fax Number)
-            </p>
           </div>
 
           {/* Email */}
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-[#D4EAFC]" />
+          <div className="flex items-start gap-3">
+            <Mail className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />
+            <div>
               <span className="font-bold text-lg">Email</span>
+              <a href="mailto:info@dakotaautismcenter.com" className="block text-white/80 hover:text-white transition-colors">
+                info@dakotaautismcenter.com
+              </a>
             </div>
-            <a href="mailto:info@dakotaautismcenter.com" className="text-white/80 hover:text-white transition-colors pl-8">
-              info@dakotaautismcenter.com
-            </a>
           </div>
         </div>
 

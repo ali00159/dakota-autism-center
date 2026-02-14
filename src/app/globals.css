@@ -997,7 +997,9 @@ p, .body-text {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
   transition: color var(--duration-fast) var(--ease-out);
-  display: inline-block; /* Ensure width calculation works for underline */
+  display: inline-flex; /* Ensure width calculation works for underline while allowing flex layout */
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .footer-link::after {
