@@ -15,7 +15,7 @@ export default function Navigation() {
 
   return (
     <nav 
-      className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border-light z-sticky h-(--header-height)"
+      className="relative bg-white border-b border-border-light z-sticky h-(--header-height)"
     >
       <div className="container-max h-full flex items-center justify-between relative">
         

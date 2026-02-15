@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     "Personalized autism services designed for clarity and growth. We foster safe, trusting environments where your child can navigate the world with confidence.",
 };
 
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export default function RootLayout({
@@ -40,6 +41,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <Navigation />
         <div className="flex-grow">
           {children}
         </div>

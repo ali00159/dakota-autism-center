@@ -32,17 +32,17 @@ export default function TestimonialsSection() {
   const marqueeTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
   return (
-    <section className="section relative w-full overflow-hidden bg-[#F5F5F5] py-12 lg:py-16">
+    <section className="relative w-full overflow-hidden bg-[#FB9A31] pt-4 pb-12 lg:pt-6 lg:pb-16">
       <div className="container-max relative z-10 px-4 md:px-8">
         
         {/* 1. Header Row */}
         <div className="flex flex-col lg:flex-row justify-between items-end mb-8 lg:mb-10 gap-4 lg:gap-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-[#474044] leading-tight max-w-xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary !text-white leading-tight max-w-xl">
             See what everyday <br className="hidden lg:block" />
-            <span className="text-[#474044]">joy looks like</span>
+            <span className="text-white">joy looks like</span>
           </h2>
-          <p className="text-[#6B6569] text-lg leading-snug font-secondary max-w-lg mb-1">
-            Step inside a day at Dakota Autism Center – where calm curiosity meets spontaneous joy. Watch how our teachers guide, listen, and laugh alongside the little ones.
+          <p className="text-white/90 text-lg leading-snug font-secondary max-w-lg mb-1">
+            Step inside a day at Dakota Autism Center – where calm curiosity meets spontaneous joy. Watch how our teachers guide, listen, and laugh alongside the little ones, creating an environment where every child feels understood, supported, and free to grow at their own pace.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative w-full aspect-21/9 rounded-3xl overflow-hidden shadow-xl mb-10 bg-[#D7D6D6] group"
+          className="relative w-full aspect-21/9 rounded-3xl overflow-hidden shadow-xl mb-10 bg-white/20 group"
         >
           <Image
             src="/placeholder.svg"
@@ -80,8 +80,8 @@ export default function TestimonialsSection() {
         {/* 3. Testimonials Marquee */}
         <div className="relative w-full overflow-hidden -mx-4 md:-mx-8 px-4 md:px-8">
           {/* Alpha Mask for Fading Edges */}
-          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-linear-to-r from-[#F5F5F5] to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-linear-to-l from-[#F5F5F5] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-linear-to-r from-[#FB9A31] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-linear-to-l from-[#FB9A31] to-transparent z-20 pointer-events-none"></div>
 
           <motion.div 
             className="flex gap-6 lg:gap-8 w-max"
