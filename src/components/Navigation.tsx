@@ -10,6 +10,7 @@ export default function Navigation() {
   const navLinks = [
     { label: 'About', href: '#about', hasDropdown: true },
     { label: 'Center Based', href: '/center-based-aba-therapy', hasDropdown: false },
+    { label: 'EIDBI Services', href: '/eidbi', hasDropdown: false },
   ];
 
   return (

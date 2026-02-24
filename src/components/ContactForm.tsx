@@ -1,6 +1,26 @@
+'use client';
+
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 
 export default function ContactForm() {
+  const [settingHome, setSettingHome] = useState(false);
+  const [settingCenter, setSettingCenter] = useState(false);
+  const [settingNotSure, setSettingNotSure] = useState(false);
+
+  const handleSettingChange = (type: 'home' | 'center' | 'notSure', checked: boolean) => {
+    if (type === 'notSure') {
+      setSettingNotSure(checked);
+      if (checked) {
+        setSettingHome(false);
+        setSettingCenter(false);
+      }
+    } else {
+      if (type === 'home') setSettingHome(checked);
+      else setSettingCenter(checked);
+      if (checked) setSettingNotSure(false);
+    }
+  };
   return (
     <section className="section bg-white relative overflow-hidden" id="contact">
       {/* Decorative Background Elements */}
@@ -117,18 +137,56 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                {/* Preferred Setting */}
-                <div className="space-y-3">
-                  <label className="form-label form-label-required">Preferred Setting</label>
-                  <div className="flex flex-col gap-3">
-                    <label className="checkbox-wrapper">
-                      <input type="checkbox" className="checkbox" />
-                      <span className="text-text-primary">In-Home Therapy</span>
-                    </label>
-                    <label className="checkbox-wrapper">
-                      <input type="checkbox" className="checkbox" />
-                      <span className="text-text-primary">Center-Based Therapy</span>
-                    </label>
+                {/* Preferred Setting & Preferred Enrollment Type — side by side */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <label className="form-label form-label-required">Preferred Setting</label>
+                    <div className="flex flex-col gap-3">
+                      <label className="checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          checked={settingHome}
+                          onChange={(e) => handleSettingChange('home', e.target.checked)}
+                        />
+                        <span className="text-text-primary">In-Home Therapy</span>
+                      </label>
+                      <label className="checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          checked={settingCenter}
+                          onChange={(e) => handleSettingChange('center', e.target.checked)}
+                        />
+                        <span className="text-text-primary">Center-Based Therapy</span>
+                      </label>
+                      <label className="checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          checked={settingNotSure}
+                          onChange={(e) => handleSettingChange('notSure', e.target.checked)}
+                        />
+                        <span className="text-text-primary">Not sure</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <label className="form-label">Preferred Enrollment Type</label>
+                    <div className="flex flex-col gap-3" role="radiogroup" aria-label="Preferred enrollment type">
+                      <label className="radio-wrapper">
+                        <input type="radio" name="enrollmentType" value="part-time" className="radio" />
+                        <span className="text-text-primary">Part-time</span>
+                      </label>
+                      <label className="radio-wrapper">
+                        <input type="radio" name="enrollmentType" value="full-time" className="radio" />
+                        <span className="text-text-primary">Full-time</span>
+                      </label>
+                      <label className="radio-wrapper">
+                        <input type="radio" name="enrollmentType" value="not-sure" className="radio" />
+                        <span className="text-text-primary">Not sure</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
 
