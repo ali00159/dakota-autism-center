@@ -9,8 +9,7 @@ export default function Navigation() {
 
   const navLinks = [
     { label: 'About', href: '#about', hasDropdown: true },
-    { label: 'Our Program', href: '#program', hasDropdown: false },
-    { label: 'Learning Center', href: '#learning-center', hasDropdown: false },
+    { label: 'Center Based', href: '/center-based-aba-therapy', hasDropdown: false },
   ];
 
   return (
