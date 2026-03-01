@@ -65,7 +65,7 @@ export default function Navigation() {
                     className="group/item flex flex-col gap-3 rounded-xl p-4 transition-all hover:bg-primary-light/30 focus-visible:bg-primary-light/30"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-light text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors duration-300">
+                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-light text-primary transition-colors duration-300">
                         <Icon icon={link.icon} className="w-6 h-6" />
                       </span>
                       <span className="font-bold text-dark group-hover/item:text-primary transition-colors">{link.label}</span>

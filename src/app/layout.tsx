@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -41,6 +42,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <SmoothScroll />
         <Navigation />
         <div className="flex-grow">
           {children}

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // React strict mode is enabled for development
   reactStrictMode: true,
   poweredByHeader: false,
   images: {

@@ -1,7 +1,9 @@
+// Force rebuild
 'use client';
 
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
 
 const parentOutcomes = [
@@ -51,43 +53,104 @@ const parentOutcomes = [
   },
 ];
 
-const sessionFlow = [
+const sessionTimeline = [
   {
     step: '01',
-    title: 'Warm-Up & Connection',
-    duration: '10–15 min',
-    description: 'Your child\'s therapist arrives and eases into the session with preferred activities and rapport building, creating a calm transition into learning.',
-    icon: 'solar:hand-heart-bold-duotone',
-    color: 'border-primary',
-    dotColor: 'bg-primary',
+    time: 'Before we start',
+    title: 'Comprehensive Evaluation',
+    description: 'A BCBA visits your home to understand your child’s unique strengths and needs, creating a personalized roadmap for their growth.',
+    icon: 'solar:clipboard-check-bold-duotone',
+    color: 'text-[#115C47]',
+    bgColor: 'bg-[#115C47]/10',
+    borderColor: 'border-[#115C47]',
+    quote: "Understanding the 'why' behind every behavior."
   },
   {
     step: '02',
-    title: 'Structured Skill Building',
-    duration: '45–60 min',
-    description: 'Focused 1:1 teaching targeting personalized goals — communication, self-help skills, and social behaviors woven into natural activities around your home.',
-    icon: 'solar:lightbulb-bolt-bold-duotone',
-    color: 'border-[#FB9A31]',
-    dotColor: 'bg-[#FB9A31]',
+    time: 'First 15 mins',
+    title: 'Warm-Up & Connection',
+    description: 'We start with joy. Your therapist arrives and engages in your child\'s favorite activities to build trust and readiness to learn.',
+    icon: 'solar:hand-heart-bold-duotone',
+    color: 'text-primary',
+    bgColor: 'bg-primary/10',
+    borderColor: 'border-primary',
+    quote: "It doesn't look like therapy yet—it looks like fun."
   },
   {
     step: '03',
-    title: 'Natural Environment Practice',
-    duration: '30–45 min',
-    description: 'Skills transfer to real-life moments — practicing requests during snack time, following instructions during play, and engaging socially with family members.',
-    icon: 'solar:leaf-bold-duotone',
-    color: 'border-[#42AEEB]',
-    dotColor: 'bg-[#42AEEB]',
+    time: '45–60 mins',
+    title: 'Skill Building (DTT)',
+    description: 'Focused, 1:1 learning moments. We break big goals into small, achievable steps, celebrating every win along the way.',
+    icon: 'solar:lightbulb-bolt-bold-duotone',
+    color: 'text-[#FB9A31]',
+    bgColor: 'bg-[#FB9A31]/10',
+    borderColor: 'border-[#FB9A31]',
+    quote: "Learning new words, matching colors, or practicing patience."
   },
   {
     step: '04',
-    title: 'Parent Coaching & Debrief',
-    duration: '10–15 min',
-    description: 'Your therapist shares progress updates, demonstrates strategies you can use between sessions, and answers questions — empowering you as your child\'s greatest advocate.',
-    icon: 'solar:people-nearby-bold-duotone',
-    color: 'border-[#EA3D6A]',
-    dotColor: 'bg-[#EA3D6A]',
+    time: 'Break & Transition',
+    title: 'Movement & Regulation',
+    description: 'Kids need to move! We incorporate sensory breaks, gross motor play, or a snack to keep energy high and regulation balanced.',
+    icon: 'solar:music-note-slider-bold-duotone',
+    color: 'text-[#8B5CF6]',
+    bgColor: 'bg-[#8B5CF6]/10',
+    borderColor: 'border-[#8B5CF6]',
+    quote: "Regulating bodies to ready minds."
   },
+  {
+    step: '05',
+    time: '30–45 mins',
+    title: 'Natural Environment (NET)',
+    description: 'Moving learning into real life. We practice skills during snack time, play, or daily routines where they matter most.',
+    icon: 'solar:leaf-bold-duotone',
+    color: 'text-[#42AEEB]',
+    bgColor: 'bg-[#42AEEB]/10',
+    borderColor: 'border-[#42AEEB]',
+    quote: "Asking for a snack, washing hands, or playing with a sibling."
+  },
+  {
+    step: '06',
+    time: 'Last 15 mins',
+    title: 'Parent Partnership',
+    description: 'We don\'t just leave—we empower. We share what worked, what to practice, and celebrate the day\'s progress with you.',
+    icon: 'solar:users-group-rounded-bold-duotone',
+    color: 'text-[#EA3D6A]',
+    bgColor: 'bg-[#EA3D6A]/10',
+    borderColor: 'border-[#EA3D6A]',
+    quote: "You're the expert on your child; we're the experts on the strategy."
+  }
+];
+
+const realWorldImpact = [
+  {
+    clinical: 'Mand Training',
+    realWorld: 'Asking for juice instead of crying',
+    icon: 'solar:cup-bold-duotone',
+    color: 'text-primary',
+    bg: 'bg-primary/10'
+  },
+  {
+    clinical: 'Tact Training',
+    realWorld: 'Pointing at a plane and saying "Look!"',
+    icon: 'solar:plane-bold-duotone',
+    color: 'text-[#FB9A31]',
+    bg: 'bg-[#FB9A31]/10'
+  },
+  {
+    clinical: 'Social Skills',
+    realWorld: 'Taking turns with a sibling',
+    icon: 'solar:users-group-rounded-bold-duotone',
+    color: 'text-[#42AEEB]',
+    bg: 'bg-[#42AEEB]/10'
+  },
+  {
+    clinical: 'Daily Living',
+    realWorld: 'Brushing teeth without a struggle',
+    icon: 'solar:bath-bold-duotone',
+    color: 'text-[#EA3D6A]',
+    bg: 'bg-[#EA3D6A]/10'
+  }
 ];
 
 const comparisonData = [
@@ -132,7 +195,7 @@ const idealCandidates = [
   {
     title: 'Young Learners',
     description: 'Children under 5 who benefit from early intervention in a comfortable, familiar environment.',
-    icon: 'solar:baby-bottle-bold-duotone',
+    icon: 'solar:star-bold-duotone',
   },
   {
     title: 'Sensory-Sensitive Children',
@@ -255,11 +318,14 @@ const faqItems = [
 ];
 
 export default function InHomeAbaContent() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
+
   return (
     <main id="main-content" className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
+        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
           <Image
             src="/hero-image.png"
             alt="Therapist working with a child in a comfortable home setting"
@@ -269,7 +335,7 @@ export default function InHomeAbaContent() {
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </div>
+        </motion.div>
 
         <div className="container-max relative z-10 py-10 md:py-12 lg:py-14">
           <div className="w-full lg:w-1/2 lg:pr-12 animate-fade-in-up">
@@ -309,85 +375,94 @@ export default function InHomeAbaContent() {
         </div>
       </section>
 
-      {/* Trust Stats Bar */}
-      <section className="bg-primary text-white py-6 md:py-8">
-        <div className="container-max">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {[
-              { stat: 'Evidence-Based', label: 'Endorsed by the U.S. Surgeon General', icon: 'solar:verified-check-bold-duotone' },
-              { stat: '1:1 Therapy', label: 'Dedicated therapist for your child', icon: 'solar:user-check-bold-duotone' },
-              { stat: 'BCBA Supervised', label: 'Master\'s-level clinical oversight', icon: 'solar:diploma-verified-bold-duotone' },
-              { stat: 'Insurance Accepted', label: 'Most plans & Medicaid covered', icon: 'solar:shield-check-bold-duotone' },
-            ].map((item) => (
-              <div key={item.stat} className="flex items-start gap-3">
-                <div className="shrink-0 w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                  <Icon icon={item.icon} className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="font-primary font-semibold text-base md:text-lg leading-tight mb-0.5">{item.stat}</p>
-                  <p className="text-white/70 text-xs md:text-sm leading-snug mb-0">{item.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* What Is In-Home ABA */}
-      <section className="section bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
+      <section className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
+        <div className="container-max relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative h-full"
+            >
+              <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full h-full min-h-[500px]">
                 <Image
                   src="/homepage-about-us-image.jpeg"
                   alt="Child learning through play in their home environment"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-4 md:-right-8 bg-white rounded-2xl shadow-lg p-4 md:p-5 border border-border-light max-w-[220px]">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center">
-                    <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="text-sm font-semibold text-dark">Real-Life Learning</span>
-                </div>
-                <p className="text-xs text-text-secondary mb-0 leading-relaxed">Skills taught where they&apos;ll actually be used — at home.</p>
-              </div>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-7">
-              <span className="badge badge-info mb-4">What Is In-Home ABA?</span>
-              <h2 className="text-dark mb-6">
-                Therapy that fits your family&apos;s life — not the other way around
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="flex flex-col items-start py-8 lg:py-12"
+            >
+              <span className="badge badge-primary mb-8 shadow-sm">
+                What Is In-Home ABA?
+              </span>
+
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-[#474044] leading-[1.1] mb-8 tracking-tight">
+                Therapy that fits your family&apos;s life —{' '}
+                <span className="text-[#115C47]">not the other way around</span>
               </h2>
-              <p className="body-large text-text-secondary mb-6">
-                In-Home ABA (Applied Behavior Analysis) therapy delivers the same gold-standard treatment 
-                used in clinical settings, but within the comfort and familiarity of your own home. A 
-                dedicated therapist works 1:1 with your child, using positive reinforcement and play-based 
-                strategies to build meaningful skills.
-              </p>
-              <p className="text-text-secondary mb-8">
-                Because learning happens where your child lives, eats, and plays, skills generalize faster 
-                and more naturally. Parents become active participants — learning techniques that extend 
-                therapy&apos;s impact into every moment of your family&apos;s day.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <div className="space-y-6 mb-10">
+                <p className="text-lg text-[#6B6569] leading-relaxed font-secondary">
+                  In-Home ABA therapy delivers the same gold-standard treatment
+                  used in clinical settings, but within the comfort and
+                  familiarity of your own home. We bring the support to you,
+                  using positive reinforcement and play-based strategies to build
+                  meaningful skills.
+                </p>
+
+                <p className="text-lg text-[#6B6569] leading-relaxed font-secondary">
+                  Because learning happens where your child lives, eats, and
+                  plays, skills generalize faster and more naturally. Parents
+                  become active participants — learning techniques that extend
+                  therapy&apos;s impact into every moment of your family&apos;s
+                  day.
+                </p>
+              </div>
+
+              <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 w-full">
                 {[
-                  { label: 'Personalized to your child\'s unique goals', icon: 'solar:star-bold-duotone' },
-                  { label: 'No commute — therapy comes to you', icon: 'solar:home-2-bold-duotone' },
-                  { label: 'Siblings and family can participate', icon: 'solar:users-group-rounded-bold-duotone' },
-                  { label: 'Flexible scheduling around your routine', icon: 'solar:clock-circle-bold-duotone' },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <Icon icon={item.icon} className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm text-text-primary font-medium">{item.label}</span>
+                  { text: 'Personalized Goals', color: '#115C47' },
+                  { text: 'No Commute', color: '#FB9A31' },
+                  { text: 'Family Participation', color: '#42AEEB' },
+                  { text: 'Flexible Scheduling', color: '#EA3D6A' },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div
+                      className="w-3 h-3 rounded-full shadow-sm"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <span className="font-medium text-lg text-[#474044]">
+                      {item.text}
+                    </span>
                   </div>
                 ))}
               </div>
-            </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#contact" className="btn-contact group">
+                  Start Your Journey
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
+                    <Icon
+                      icon="solar:arrow-right-broken"
+                      className="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
+                    />
+                  </span>
+                </a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -451,29 +526,71 @@ export default function InHomeAbaContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sessionFlow.map((step, index) => (
-              <article key={step.step} className={`relative bg-white rounded-2xl p-6 border-t-4 ${step.color} border-x border-b border-border-light hover:shadow-lg transition-all duration-300 group`}>
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-4xl font-bold text-gray-200 font-primary">{step.step}</span>
-                  <span className="text-xs font-semibold text-text-muted bg-gray-50 px-3 py-1 rounded-full">{step.duration}</span>
-                </div>
-                
-                <div className={`w-11 h-11 rounded-xl ${step.dotColor}/10 flex items-center justify-center mb-4`}>
-                  <Icon icon={step.icon} className={`w-6 h-6 ${step.dotColor === 'bg-primary' ? 'text-primary' : step.dotColor === 'bg-[#FB9A31]' ? 'text-[#FB9A31]' : step.dotColor === 'bg-[#42AEEB]' ? 'text-tertiary' : 'text-[#EA3D6A]'}`} />
-                </div>
+          <div className="relative max-w-4xl mx-auto mb-20">
+            {/* Vertical Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border-light -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-border-light md:hidden" />
 
-                <h3 className="text-dark text-lg font-semibold mb-3 group-hover:text-primary transition-colors">{step.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed mb-0">{step.description}</p>
-
-                {index < sessionFlow.length - 1 && (
-                  <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                    <Icon icon="solar:arrow-right-bold" className="w-5 h-5 text-gray-300" />
+            <div className="space-y-12 md:space-y-24">
+              {sessionTimeline.map((step, index) => (
+                <div key={step.step} className={`relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  
+                  {/* Content Side */}
+                  <div className="flex-1 md:w-1/2 pl-16 md:px-12">
+                    <div className={`bg-white p-6 rounded-2xl border border-border-light shadow-sm hover:shadow-md transition-all duration-300 relative group`}>
+                      <div className={`absolute top-0 left-0 w-1.5 h-full rounded-l-2xl ${step.bgColor.replace('/10', '')}`} />
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${step.bgColor} ${step.color}`}>
+                        {step.time}
+                      </span>
+                      <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-primary transition-colors">
+                        {step.title}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                        {step.description}
+                      </p>
+                      <div className="flex items-start gap-2 text-xs font-medium text-text-muted italic bg-gray-50 p-3 rounded-lg border border-border-light">
+                        <Icon icon="solar:quote-up-square-bold-duotone" className={`w-4 h-4 shrink-0 ${step.color}`} />
+                        {step.quote}
+                      </div>
+                    </div>
                   </div>
-                )}
-              </article>
-            ))}
+
+                  {/* Center Node */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-8 md:top-1/2 md:-translate-y-1/2 w-12 h-12 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center z-10">
+                    <div className={`w-8 h-8 rounded-full ${step.bgColor} flex items-center justify-center`}>
+                      <span className={`text-xs font-bold ${step.color}`}>{step.step}</span>
+                    </div>
+                  </div>
+
+                  {/* Empty Side for Balance */}
+                  <div className="hidden md:block flex-1 md:w-1/2" />
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Real World Impact */}
+          <div className="bg-[#F7FBF9] rounded-3xl p-8 md:p-12">
+            <div className="text-center mb-10">
+              <h3 className="text-2xl font-bold text-dark mb-3">Translating &quot;Therapy Speak&quot; to Real Life</h3>
+              <p className="text-text-secondary">We focus on skills that make your daily life easier.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {realWorldImpact.map((item) => (
+                <div key={item.clinical} className="bg-white p-6 rounded-2xl border border-border-light text-center hover:-translate-y-1 transition-transform duration-300">
+                  <div className={`w-12 h-12 mx-auto rounded-xl ${item.bg} ${item.color} flex items-center justify-center mb-4`}>
+                    <Icon icon={item.icon} className="w-6 h-6" />
+                  </div>
+                  <p className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Clinical Goal</p>
+                  <h4 className="text-dark font-semibold mb-4 pb-4 border-b border-border-light">{item.clinical}</h4>
+                  <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Real World Result</p>
+                  <p className="text-text-secondary text-sm font-medium">{item.realWorld}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -529,26 +646,26 @@ export default function InHomeAbaContent() {
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-0 rounded-2xl overflow-hidden border border-border-light shadow-sm">
               <div className="bg-primary text-white p-5 md:p-6 flex items-center gap-3">
                 <Icon icon="solar:home-2-bold-duotone" className="w-6 h-6 shrink-0" />
-                <h3 className="!text-white text-lg font-semibold !mb-0">In-Home ABA</h3>
+                <h3 className="text-white! text-lg font-semibold mb-0!">In-Home ABA</h3>
               </div>
               <div className="bg-tertiary text-white p-5 md:p-6 flex items-center gap-3">
                 <Icon icon="solar:buildings-2-bold-duotone" className="w-6 h-6 shrink-0" />
-                <h3 className="!text-white text-lg font-semibold !mb-0">Center-Based ABA</h3>
+                <h3 className="text-white! text-lg font-semibold mb-0!">Center-Based ABA</h3>
               </div>
 
-              {comparisonData.map((row) => (
-                <div key={row.factor} className="col-span-full grid grid-cols-1 md:grid-cols-[1fr_1fr] contents">
-                  <div className="col-span-full bg-gray-50 px-5 md:px-6 py-2.5 border-t border-border-light">
-                    <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">{row.factor}</span>
-                  </div>
-                  <div className="p-5 md:p-6 bg-primary/[0.03] border-t border-r border-border-light">
-                    <p className="text-sm text-text-primary leading-relaxed mb-0">{row.home}</p>
-                  </div>
-                  <div className="p-5 md:p-6 bg-white border-t border-border-light">
-                    <p className="text-sm text-text-secondary leading-relaxed mb-0">{row.center}</p>
-                  </div>
+            {comparisonData.map((row) => (
+              <div key={row.factor} className="contents">
+                <div className="col-span-full bg-gray-50 px-5 md:px-6 py-2.5 border-t border-border-light">
+                  <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">{row.factor}</span>
                 </div>
-              ))}
+                <div className="p-5 md:p-6 bg-primary/3 border-t border-r border-border-light">
+                  <p className="text-sm text-text-primary leading-relaxed mb-0!">{row.home}</p>
+                </div>
+                <div className="p-5 md:p-6 bg-white border-t border-border-light">
+                  <p className="text-sm text-text-secondary leading-relaxed mb-0!">{row.center}</p>
+                </div>
+              </div>
+            ))}
             </div>
 
             <p className="text-center text-sm text-text-muted mt-6 italic">
@@ -712,12 +829,12 @@ export default function InHomeAbaContent() {
               </a>
             </div>
 
-            <div className="bg-primary/[0.04] rounded-3xl p-8 md:p-10 border border-primary/10">
+            <div className="bg-primary/4 rounded-3xl p-8 md:p-10 border border-primary/10">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
                   <Icon icon="solar:hand-money-bold-duotone" className="w-6 h-6" />
                 </div>
-                <h3 className="text-dark text-xl font-semibold !mb-0">We make it simple</h3>
+                <h3 className="text-dark text-xl font-semibold mb-0!">We make it simple</h3>
               </div>
               <div className="space-y-4">
                 {[
@@ -753,7 +870,7 @@ export default function InHomeAbaContent() {
             {faqItems.map((faq) => (
               <details key={faq.question} className="group bg-white rounded-2xl border border-border-light overflow-hidden">
                 <summary className="flex items-center justify-between gap-4 p-5 md:p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                  <h3 className="text-dark text-base md:text-lg font-semibold !mb-0 group-hover:text-primary transition-colors pr-4">{faq.question}</h3>
+                  <h3 className="text-dark text-base md:text-lg font-semibold mb-0! group-hover:text-primary transition-colors pr-4">{faq.question}</h3>
                   <span className="shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition-transform duration-300 group-open:rotate-45">
                     <Icon icon="solar:add-circle-bold" className="w-5 h-5 text-text-muted" />
                   </span>
@@ -768,28 +885,41 @@ export default function InHomeAbaContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-primary text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 h-72 w-72 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/[0.03] blur-3xl pointer-events-none" />
+      <section className="section bg-[#FB9A31] text-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/10 blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-white/10 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/3" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl pointer-events-none" />
+        
+        {/* Pattern overlay for texture */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
 
         <div className="container-max relative z-10 text-center">
-          <h2 className="!text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-sm border border-white/20">
+            Start Today
+          </span>
+          
+          <h2 className="text-white! text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
             Ready to bring therapy home?
           </h2>
-          <p className="body-large text-white/85 max-w-2xl mx-auto mb-8">
+          
+          <p className="body-large text-white/90 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
             Take the first step toward meaningful progress for your child. Our team is ready to 
             answer your questions and help you explore if In-Home ABA therapy is the right fit 
             for your family.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#contact" className="inline-flex items-center justify-center gap-3 bg-white text-primary font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
+            <a href="#contact" className="inline-flex items-center justify-center gap-3 bg-white text-[#FB9A31] font-bold py-3 pl-8 pr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg transform hover:-translate-y-1">
               Begin Your Child&apos;s Journey
-              <span className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                <Icon icon="solar:arrow-right-broken" className="w-6 h-6" />
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FB9A31]/10 group-hover:bg-[#FB9A31]/20 transition-colors">
+                <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </span>
             </a>
-            <a href="tel:612-284-5382" className="btn btn-tertiary btn-large rounded-full !border-white/40 !text-white hover:!bg-white/10 w-full sm:w-auto">
+            
+            <a href="tel:612-284-5382" className="inline-flex items-center justify-center gap-2 btn-large rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 w-full sm:w-auto font-semibold">
+              <Icon icon="solar:phone-calling-bold" className="w-5 h-5" />
               Call (612) 284-5382
             </a>
           </div>

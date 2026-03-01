@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
@@ -213,6 +213,15 @@ const principles = [
 export default function HomeContent() {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0].id);
   const activeContent = tabs.find((tab) => tab.id === activeTab) || tabs[0];
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
+
+  const aboutRef = React.useRef(null);
+  const { scrollYProgress: aboutScrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"]
+  });
+  const aboutY = useTransform(aboutScrollYProgress, [0, 1], [50, -50]);
 
   return (
     <main id="main-content" className="w-full overflow-hidden">
@@ -221,7 +230,7 @@ export default function HomeContent() {
         className="relative w-full min-h-[calc(100vh-150px)] bg-white overflow-hidden border-b border-border-light"
         aria-labelledby="hero-heading"
       >
-        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
+        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
           <Image
             src="/hero-image.png"
             alt="Therapist working with a child in a supportive environment"
@@ -231,7 +240,7 @@ export default function HomeContent() {
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </div>
+        </motion.div>
 
         <div className="container-max relative z-10 h-full flex flex-col justify-end flex-1 py-12 lg:pb-16 lg:min-h-[calc(100vh-150px)]">
           <div className="w-full lg:w-[50%] lg:pr-12 text-center md:text-left">
@@ -563,10 +572,11 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 4. About Section ────────────────── */}
-      <section className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
+      <section ref={aboutRef} className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
         <div className="container-max relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
+              style={{ y: aboutY }}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

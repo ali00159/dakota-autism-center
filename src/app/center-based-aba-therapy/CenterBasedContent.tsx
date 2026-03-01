@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Icon } from '@iconify/react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
 
 const programHighlights = [
@@ -138,10 +138,13 @@ const centerFeatures = [
 ];
 
 export default function CenterBasedContent() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
+
   return (
     <main id="main-content" className="w-full bg-white">
       <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
+        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
           <Image
             src="/hero-image.png"
             alt="Therapist and child engaged in center-based ABA activities"
@@ -151,7 +154,7 @@ export default function CenterBasedContent() {
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </div>
+        </motion.div>
 
         <div className="container-max relative z-10 py-10 md:py-12 lg:py-14">
           <div className="w-full lg:w-1/2 lg:pr-12 animate-fade-in-up">

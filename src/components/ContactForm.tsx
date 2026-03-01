@@ -1,32 +1,25 @@
 'use client';
 
+import { useRef } from 'react';
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ContactForm() {
-  const [settingHome, setSettingHome] = useState(false);
-  const [settingCenter, setSettingCenter] = useState(false);
-  const [settingNotSure, setSettingNotSure] = useState(false);
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
-  const handleSettingChange = (type: 'home' | 'center' | 'notSure', checked: boolean) => {
-    if (type === 'notSure') {
-      setSettingNotSure(checked);
-      if (checked) {
-        setSettingHome(false);
-        setSettingCenter(false);
-      }
-    } else {
-      if (type === 'home') setSettingHome(checked);
-      else setSettingCenter(checked);
-      if (checked) setSettingNotSure(false);
-    }
-  };
   return (
-    <section className="section bg-white relative overflow-hidden" id="contact">
+    <section ref={sectionRef} className="section bg-white relative overflow-hidden" id="contact">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl" />
+        <motion.div style={{ y: y1 }} className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <motion.div style={{ y: y2 }} className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container-max relative z-10">
@@ -141,32 +134,17 @@ export default function ContactForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <label className="form-label form-label-required">Preferred Setting</label>
-                    <div className="flex flex-col gap-3">
-                      <label className="checkbox-wrapper">
-                        <input
-                          type="checkbox"
-                          className="checkbox"
-                          checked={settingHome}
-                          onChange={(e) => handleSettingChange('home', e.target.checked)}
-                        />
+                    <div className="flex flex-col gap-3" role="radiogroup" aria-label="Preferred setting">
+                      <label className="radio-wrapper">
+                        <input type="radio" name="preferredSetting" value="in-home" className="radio" />
                         <span className="text-text-primary">In-Home Therapy</span>
                       </label>
-                      <label className="checkbox-wrapper">
-                        <input
-                          type="checkbox"
-                          className="checkbox"
-                          checked={settingCenter}
-                          onChange={(e) => handleSettingChange('center', e.target.checked)}
-                        />
+                      <label className="radio-wrapper">
+                        <input type="radio" name="preferredSetting" value="center-based" className="radio" />
                         <span className="text-text-primary">Center-Based Therapy</span>
                       </label>
-                      <label className="checkbox-wrapper">
-                        <input
-                          type="checkbox"
-                          className="checkbox"
-                          checked={settingNotSure}
-                          onChange={(e) => handleSettingChange('notSure', e.target.checked)}
-                        />
+                      <label className="radio-wrapper">
+                        <input type="radio" name="preferredSetting" value="not-sure" className="radio" />
                         <span className="text-text-primary">Not sure</span>
                       </label>
                     </div>
