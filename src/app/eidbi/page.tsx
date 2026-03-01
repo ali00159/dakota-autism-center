@@ -60,6 +60,63 @@ const eligibilityCriteria = [
   'Medical need determined via CMDE assessment',
 ];
 
+const mnEidbiLandscape = [
+  {
+    title: 'Eligibility Window',
+    detail: 'EIDBI is designed for children, youth, and young adults under age 21 with ASD or related conditions when medically necessary.',
+    icon: 'solar:user-id-bold-duotone',
+    tone: 'bg-primary/10 text-primary',
+  },
+  {
+    title: 'Service Settings',
+    detail: 'Across Minnesota, services may be delivered in-home, in clinic, at school, in community environments, and through telehealth when appropriate.',
+    icon: 'solar:point-on-map-bold-duotone',
+    tone: 'bg-tertiary/15 text-tertiary',
+  },
+  {
+    title: 'Family-Centered Benefit',
+    detail: 'The DHS benefit explicitly includes family education, coaching, and support to improve outcomes beyond therapy sessions.',
+    icon: 'solar:heart-angle-bold-duotone',
+    tone: 'bg-accent/10 text-accent',
+  },
+  {
+    title: 'Current Licensing Shift',
+    detail: 'Minnesota now requires provisional licensure for existing EIDBI agencies, with the current application deadline set for May 31, 2026.',
+    icon: 'solar:shield-check-bold-duotone',
+    tone: 'bg-secondary/15 text-[#FB9A31]',
+  },
+];
+
+const providerComparison = [
+  {
+    focus: 'How goals are personalized',
+    commonPattern: 'Many providers describe standard ABA tracks and broad age-group pathways.',
+    dakotaApproach: 'We pair EIDBI requirements with individualized goals shaped by your child’s sensory, communication, and family priorities.',
+  },
+  {
+    focus: 'Family training quality',
+    commonPattern: 'Caregiver coaching is often offered, but depth and consistency can vary across programs.',
+    dakotaApproach: 'Our clinicians build practical routines with caregivers so progress transfers to mornings, meals, play, and community outings.',
+  },
+  {
+    focus: 'Cross-setting coordination',
+    commonPattern: 'Coordination is listed on many sites, but execution can feel fragmented between teams.',
+    dakotaApproach: 'We coordinate with schools and related providers to keep targets, data, and support strategies aligned.',
+  },
+  {
+    focus: 'Therapy environment',
+    commonPattern: 'Most providers emphasize either center-based structure or in-home convenience.',
+    dakotaApproach: 'We prioritize relationship-based, naturalistic teaching so skills are learned in meaningful contexts, not just table work.',
+  },
+];
+
+const familyActionChecklist = [
+  'Ask how soon a CMDE can be scheduled and how authorization steps are handled.',
+  'Request a sample of how treatment goals are written and updated over time.',
+  'Confirm where services can occur (home, center, community, telehealth) for your child.',
+  'Ask how parent/caregiver training is documented and practiced between sessions.',
+];
+
 export default function EidbiPage() {
   return (
     <main id="main-content" className="w-full bg-white">
@@ -204,6 +261,97 @@ export default function EidbiPage() {
         </div>
       </section>
 
+      {/* Minnesota EIDBI Landscape + Comparison */}
+      <section className="section relative bg-white overflow-hidden">
+        <div className="absolute -top-10 -left-10 w-56 h-56 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-12 right-0 w-72 h-72 rounded-full bg-tertiary/10 blur-3xl pointer-events-none" />
+
+        <div className="container-max relative">
+          <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+            <span className="badge badge-primary mb-4">Minnesota EIDBI Insights</span>
+            <h2 className="text-dark mb-5">A clearer view of Minnesota options for families</h2>
+            <p className="body-large text-text-secondary mb-0">
+              We reviewed current Minnesota DHS guidance and the messaging families commonly see across EIDBI providers to make decision-making easier and more transparent.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10 lg:mb-14">
+            {mnEidbiLandscape.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-border-light bg-white shadow-sm hover:shadow-md transition-all duration-300 px-6 py-7"
+              >
+                <div className={`w-12 h-12 rounded-xl ${item.tone} flex items-center justify-center mb-4`}>
+                  <Icon icon={item.icon} className="w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold text-dark mb-3">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-text-secondary mb-0">{item.detail}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div className="lg:col-span-8 rounded-3xl border border-border-light bg-[#FCFDFC] p-6 md:p-8 lg:p-10 shadow-sm">
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <div>
+                  <span className="badge badge-info mb-3">Competitor Analysis</span>
+                  <h3 className="text-dark mb-2">What families should compare before choosing a provider</h3>
+                  <p className="text-text-secondary mb-0">
+                    Across Minnesota, many agencies offer similar service lists. The biggest difference is how consistently care is personalized and coordinated.
+                  </p>
+                </div>
+                <div className="hidden md:flex w-12 h-12 rounded-xl bg-[#E5F4FC] text-tertiary items-center justify-center shrink-0">
+                  <Icon icon="solar:chart-square-bold-duotone" className="w-7 h-7" />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {providerComparison.map((row) => (
+                  <article
+                    key={row.focus}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-2xl border border-border-light bg-white p-5"
+                  >
+                    <div>
+                      <p className="text-sm font-bold text-dark mb-1">{row.focus}</p>
+                    </div>
+                    <div className="rounded-xl bg-[#F5F5F5] p-4">
+                      <p className="text-xs uppercase tracking-wide text-text-muted font-semibold mb-2">Common market pattern</p>
+                      <p className="text-sm text-text-secondary mb-0">{row.commonPattern}</p>
+                    </div>
+                    <div className="rounded-xl bg-primary/10 p-4 border border-primary/15">
+                      <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">Dakota approach</p>
+                      <p className="text-sm text-dark mb-0">{row.dakotaApproach}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <aside className="lg:col-span-4 rounded-3xl border border-border-light bg-[#FEF3E8] p-6 md:p-8 shadow-sm">
+              <span className="badge badge-secondary mb-3">Family Action Checklist</span>
+              <h3 className="text-dark mb-4">Questions to ask on your first call</h3>
+              <ul className="space-y-4 mb-7">
+                {familyActionChecklist.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-white border border-secondary/30 text-[#FB9A31] flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon icon="solar:check-circle-bold" className="w-4 h-4" />
+                    </span>
+                    <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-text-muted leading-relaxed mb-4">
+                EIDBI policy details can change. For the most current statewide rules, families can verify guidance with Minnesota DHS.
+              </p>
+              <a href="#contact" className="btn btn-primary w-full justify-center rounded-full">
+                Talk With Our Team
+                <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
+              </a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="section bg-white overflow-hidden">
         <div className="container-max">
@@ -216,7 +364,7 @@ export default function EidbiPage() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-dark/60 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon icon="solar:star-bold" className="w-5 h-5 text-secondary" />
@@ -273,107 +421,6 @@ export default function EidbiPage() {
       <section className="section bg-primary text-white text-center">
         <div className="container-max">
           <h2 id="cta-heading" className="text-white! mb-6">Start Your EIDBI Journey</h2>
-          {/* #region agent log */}
-          <script dangerouslySetInnerHTML={{ __html: `
-            (function() {
-              setTimeout(function() {
-                var el = document.getElementById('cta-heading');
-                if (!el) return;
-                var computed = window.getComputedStyle(el);
-                var allClasses = el.className;
-                var parentSection = el.closest('section');
-                var parentComputed = parentSection ? window.getComputedStyle(parentSection) : null;
-                fetch('http://127.0.0.1:7245/ingest/d1c30ef8-027a-4d69-b9e0-92987f80e372',{
-                  method:'POST',
-                  headers:{'Content-Type':'application/json'},
-                  body:JSON.stringify({
-                    location:'eidbi/page.tsx:CTA',
-                    message:'CTA h2 computed styles',
-                    hypothesisId:'A,B,C,D',
-                    data:{
-                      computedColor: computed.color,
-                      computedBgColor: computed.backgroundColor,
-                      classes: allClasses,
-                      parentBgColor: parentComputed ? parentComputed.backgroundColor : 'N/A',
-                      parentColor: parentComputed ? parentComputed.color : 'N/A',
-                      inlineStyle: el.style.cssText
-                    },
-                    timestamp:Date.now()
-                  })
-                }).catch(function(){});
-
-                var sheets = document.styleSheets;
-                var matchingRules = [];
-                try {
-                  for (var i = 0; i < sheets.length; i++) {
-                    try {
-                      var rules = sheets[i].cssRules || sheets[i].rules;
-                      for (var j = 0; j < rules.length; j++) {
-                        var rule = rules[j];
-                        if (rule.cssText && (rule.selectorText === 'h2' || rule.selectorText === 'h2, .h2' || (rule.selectorText && rule.selectorText.indexOf('h2') !== -1 && rule.cssText.indexOf('color') !== -1))) {
-                          matchingRules.push({selector: rule.selectorText, cssText: rule.cssText.substring(0, 200), layer: rule.parentRule ? rule.parentRule.cssText.substring(0, 50) : 'none'});
-                        }
-                        if (rule.cssRules) {
-                          for (var k = 0; k < rule.cssRules.length; k++) {
-                            var inner = rule.cssRules[k];
-                            if (inner.selectorText && inner.selectorText.indexOf('h2') !== -1 && inner.cssText.indexOf('color') !== -1) {
-                              matchingRules.push({selector: inner.selectorText, cssText: inner.cssText.substring(0, 200), parentLayer: rule.cssText.substring(0, 80)});
-                            }
-                          }
-                        }
-                      }
-                    } catch(e) {}
-                  }
-                } catch(e) {}
-                fetch('http://127.0.0.1:7245/ingest/d1c30ef8-027a-4d69-b9e0-92987f80e372',{
-                  method:'POST',
-                  headers:{'Content-Type':'application/json'},
-                  body:JSON.stringify({
-                    location:'eidbi/page.tsx:CTA-rules',
-                    message:'CSS rules matching h2',
-                    hypothesisId:'A,B,C,D',
-                    data:{ matchingRules: matchingRules, totalRulesFound: matchingRules.length },
-                    timestamp:Date.now()
-                  })
-                }).catch(function(){});
-
-                var textWhiteRule = null;
-                try {
-                  for (var i = 0; i < sheets.length; i++) {
-                    try {
-                      var rules = sheets[i].cssRules || sheets[i].rules;
-                      for (var j = 0; j < rules.length; j++) {
-                        var rule = rules[j];
-                        if (rule.selectorText === '.text-white' || (rule.selectorText && rule.selectorText.indexOf('text-white') !== -1)) {
-                          textWhiteRule = {selector: rule.selectorText, cssText: rule.cssText.substring(0, 200), parentLayer: rule.parentRule ? rule.parentRule.cssText.substring(0, 80) : 'none'};
-                        }
-                        if (rule.cssRules) {
-                          for (var k = 0; k < rule.cssRules.length; k++) {
-                            var inner = rule.cssRules[k];
-                            if (inner.selectorText && inner.selectorText.indexOf('text-white') !== -1) {
-                              textWhiteRule = {selector: inner.selectorText, cssText: inner.cssText.substring(0, 200), parentLayer: rule.cssText.substring(0, 80)};
-                            }
-                          }
-                        }
-                      }
-                    } catch(e) {}
-                  }
-                } catch(e) {}
-                fetch('http://127.0.0.1:7245/ingest/d1c30ef8-027a-4d69-b9e0-92987f80e372',{
-                  method:'POST',
-                  headers:{'Content-Type':'application/json'},
-                  body:JSON.stringify({
-                    location:'eidbi/page.tsx:text-white-rule',
-                    message:'text-white CSS rule details',
-                    hypothesisId:'A,B',
-                    data:{ textWhiteRule: textWhiteRule || 'NOT FOUND' },
-                    timestamp:Date.now()
-                  })
-                }).catch(function(){});
-              }, 1000);
-            })();
-          `}} />
-          {/* #endregion */}
           <p className="text-white/90 text-lg max-w-2xl mx-auto mb-10">
             Navigating state benefits can be complex. Let us help you understand your options and get your child the support they deserve.
           </p>
