@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
 
