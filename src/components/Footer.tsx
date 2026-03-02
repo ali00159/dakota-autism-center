@@ -8,8 +8,8 @@ export default function Footer() {
   const footerLinks: Record<string, FooterLink[]> = {
     company: [
       { label: 'Home', href: '/' },
-      { label: 'About Us', href: '#about' },
-      { label: 'Careers', href: '#careers' },
+      { label: 'Contact Us', href: '/contact-us' },
+      { label: 'About Us', href: '/understanding-autism/about-autism' },
     ],
     visit: [
       { label: 'Get Started', href: '#get-started' },
