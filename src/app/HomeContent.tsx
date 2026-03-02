@@ -458,26 +458,58 @@ export default function HomeContent() {
       {/* ────────────────── 3. Services Overview ────────────────── */}
       <section
         id="services"
-        className="section relative w-full overflow-hidden rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px] bg-bg-services"
+        className="section relative w-full overflow-hidden bg-[#F7FAF8]"
         aria-labelledby="services-heading"
       >
-        <div className="container-max section-header relative z-10">
-          <h2
-            id="services-heading"
-            className="text-3xl md:text-4xl lg:text-[40px] font-bold leading-[1.1] tracking-tight mb-4 text-dark"
-          >
-            <span className="text-tertiary">Flexible ABA Therapy</span> That
-            Fits Your Family
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            We offer a range of evidence-based programs designed to meet your
-            child where they are — at home, at our center, at school, or through
-            family coaching.
-          </p>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-24 -left-20 h-64 w-64 rounded-full bg-[#115C47]/10 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-[#42AEEB]/10 blur-3xl" />
+        </div>
+
+        <div className="container-max relative z-10">
+          <div className="mx-auto max-w-5xl">
+            <div className="section-header text-center">
+              <span className="inline-flex items-center rounded-full border border-[#115C47]/15 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#115C47] shadow-sm">
+                Programs Designed Around Daily Life
+              </span>
+              <h2
+                id="services-heading"
+                className="mt-5 text-3xl font-bold leading-[1.08] tracking-tight text-[#2F2A2D] md:text-4xl lg:text-[44px]"
+              >
+                <span className="text-[#115C47]">Flexible ABA Therapy</span> That
+                Fits Your Family
+              </h2>
+              <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#6B6569] md:text-lg">
+                We offer evidence-based programs that adapt to your child&apos;s
+                routine, environment, and pace, so support feels seamless at home,
+                in our center, and everywhere growth happens.
+              </p>
+            </div>
+
+            <div className="mb-8 grid grid-cols-1 gap-3 rounded-2xl border border-[#115C47]/10 bg-white/85 p-3 shadow-sm backdrop-blur sm:grid-cols-3 md:mb-12">
+              {[
+                { label: 'Care settings', value: '4' },
+                { label: 'Family-first model', value: '1:1 + coaching' },
+                { label: 'Coverage support', value: 'Insurance-guided' },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-xl border border-[#115C47]/10 bg-[#F8FBFA] px-4 py-3 text-left"
+                >
+                  <p className="text-xs uppercase tracking-[0.14em] text-[#7B7579]">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-[#2F2A2D]">
+                    {item.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <motion.div
-          className="container-max grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 relative z-10"
+          className="container-max relative z-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-7"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -489,64 +521,55 @@ export default function HomeContent() {
               variants={cardVariants}
               whileHover={{
                 y: -4,
-                boxShadow: '0 8px 32px rgba(71, 64, 68, 0.16)',
+                boxShadow: '0 20px 40px rgba(17, 92, 71, 0.14)',
               }}
               transition={{ duration: 0.3, ease: 'easeOut' as const }}
-              className="group relative rounded-2xl overflow-hidden shadow-md flex flex-col h-full will-change-transform"
-              style={{ backgroundColor: service.accentHex }}
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#115C47]/10 bg-white shadow-[0_10px_35px_rgba(27,35,31,0.06)] will-change-transform"
             >
-              <div className="p-6 lg:p-8 flex flex-col h-full items-center text-center">
+              <div
+                className="absolute inset-x-0 top-0 h-1.5"
+                style={{ backgroundColor: service.accentHex }}
+              />
+              <div
+                className="absolute -right-16 -top-16 h-40 w-40 rounded-full blur-2xl transition-opacity duration-300 group-hover:opacity-80"
+                style={{ backgroundColor: service.lightBg, opacity: 0.65 }}
+              />
+              <div className="relative z-10 flex h-full flex-col p-6 lg:p-8">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shadow-sm"
+                  className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#115C47]/10 shadow-sm"
                   style={{
-                    backgroundColor:
-                      service.textColor === '#FFFFFF'
-                        ? 'rgba(255,255,255,0.2)'
-                        : 'rgba(255,255,255,0.8)',
-                    color: service.iconColor,
+                    backgroundColor: service.lightBg,
+                    color:
+                      service.iconColor === '#FFFFFF'
+                        ? '#115C47'
+                        : service.iconColor,
                   }}
                 >
                   <Icon icon={service.icon} width={24} height={24} />
                 </div>
 
                 <h3
-                  className="text-xl lg:text-2xl font-bold mb-3 tracking-tight"
-                  style={{
-                    fontFamily: 'var(--font-primary)',
-                    color: service.textColor,
-                  }}
+                  className="mb-3 text-xl font-bold tracking-tight text-[#2F2A2D] lg:text-2xl"
                 >
                   {service.title}
                 </h3>
 
-                <p
-                  className="text-[15px] leading-relaxed mb-6 font-medium"
-                  style={{ color: service.textColor, opacity: 0.9 }}
-                >
+                <p className="mb-6 text-[15px] font-medium leading-relaxed text-[#696367]">
                   {service.description}
                 </p>
 
-                <ul className="space-y-3 mt-auto w-full text-left">
+                <ul className="mt-auto space-y-3">
                   {service.bullets.map((bullet, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center gap-3 px-4 py-3 rounded-full"
-                      style={{
-                        backgroundColor:
-                          service.textColor === '#FFFFFF'
-                            ? 'rgba(255, 255, 255, 0.15)'
-                            : 'rgba(255, 255, 255, 0.6)',
-                      }}
+                      className="flex items-center gap-3 rounded-2xl border border-[#115C47]/10 bg-[#F8FAF9] px-4 py-3"
                     >
                       <Icon
                         icon="solar:check-circle-bold"
                         className="w-6 h-6 shrink-0"
-                        style={{ color: service.textColor }}
+                        style={{ color: service.accentHex }}
                       />
-                      <span
-                        className="text-base lg:text-lg leading-snug font-medium"
-                        style={{ color: service.textColor }}
-                      >
+                      <span className="text-base font-medium leading-snug text-[#3D373B] lg:text-lg">
                         {bullet}
                       </span>
                     </li>
@@ -558,7 +581,7 @@ export default function HomeContent() {
         </motion.div>
 
         <div className="container-max text-center mt-10 lg:mt-14 relative z-10">
-          <button className="btn btn-primary btn-large rounded-full shadow-lg hover:shadow-xl bg-[#474044]! text-white! hover:bg-[#2d292b]! hover:-translate-y-1 transition-all duration-300">
+          <button className="btn btn-large rounded-full border border-[#115C47]/20 bg-[#115C47] px-8 text-white shadow-lg shadow-[#115C47]/25 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C4535] hover:shadow-xl hover:shadow-[#115C47]/30">
             Learn About All Our Services
             <Icon
               icon="solar:arrow-right-broken"

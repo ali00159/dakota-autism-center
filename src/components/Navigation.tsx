@@ -29,6 +29,15 @@ export default function Navigation() {
     },
   ];
 
+  const resourcesLinks = [
+    {
+      label: 'Understanding Autism',
+      href: '/understanding-autism/about-autism',
+      icon: 'solar:book-2-bold-duotone',
+      description: 'Learn about autism spectrum disorder and how we support families on their journey.',
+    },
+  ];
+
   return (
     <nav className="relative isolate z-300 bg-white border-b border-border-light h-(--header-height)">
       <div className="container-max h-full flex items-center justify-between relative">
@@ -37,9 +46,48 @@ export default function Navigation() {
           <Link href="/" className="nav-link text-[15px] font-bold text-dark">
             Home
           </Link>
-          <Link href="/understanding-autism/about-autism" className="nav-link text-[15px] font-bold text-dark">
-            Understanding Autism
-          </Link>
+
+          <div className="relative group/resources">
+            <button
+              type="button"
+              className="nav-link text-[15px] font-bold text-dark flex items-center gap-1.5 py-4 cursor-pointer bg-transparent border-none"
+              aria-haspopup="menu"
+              aria-expanded="false"
+            >
+              Resources
+              <Icon
+                icon="solar:alt-arrow-down-bold"
+                className="w-4 h-4 opacity-60 transition-transform duration-200 group-hover/resources:rotate-180 group-focus-within/resources:rotate-180"
+              />
+            </button>
+
+            <div
+              className="absolute left-0 top-full w-[320px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/resources:opacity-100 group-hover/resources:pointer-events-auto group-hover/resources:translate-y-0"
+              role="menu"
+              aria-label="Resources"
+            >
+              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 flex flex-col gap-2">
+                {resourcesLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    role="menuitem"
+                    className="group/item flex flex-col gap-3 rounded-xl p-4 transition-all hover:bg-primary-light/30 focus-visible:bg-primary-light/30"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-light text-primary transition-colors duration-300">
+                        <Icon icon={link.icon} className="w-6 h-6" />
+                      </span>
+                      <span className="font-bold text-dark group-hover/item:text-primary transition-colors">{link.label}</span>
+                    </div>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      {link.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <div className="relative group/services">
             <Link
@@ -140,19 +188,29 @@ export default function Navigation() {
                 Home
               </Link>
               <Link
-                href="/understanding-autism/about-autism"
-                className="nav-link text-base py-3 px-4 rounded-md hover:bg-primary-light flex items-center justify-between group"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Understanding Autism
-              </Link>
-              <Link
                 href="/contact-us"
                 className="nav-link text-base py-3 px-4 rounded-md hover:bg-primary-light flex items-center justify-between group"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>
+
+              <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                Resources
+              </div>
+              <div className="flex flex-col gap-1 px-2">
+                {resourcesLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-base py-2.5 px-3 rounded-xl hover:bg-primary-light text-dark font-semibold flex items-center gap-2.5"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon icon={link.icon} className="w-5 h-5 text-primary" />
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
 
               <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
                 Services
