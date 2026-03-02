@@ -37,6 +37,9 @@ export default function Navigation() {
           <Link href="/" className="nav-link text-[15px] font-bold text-dark">
             Home
           </Link>
+          <Link href="/understanding-autism/about-autism" className="nav-link text-[15px] font-bold text-dark">
+            Understanding Autism
+          </Link>
 
           <div className="relative group/services">
             <Link
@@ -132,6 +135,13 @@ export default function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
+              </Link>
+              <Link
+                href="/understanding-autism/about-autism"
+                className="nav-link text-base py-3 px-4 rounded-md hover:bg-primary-light flex items-center justify-between group"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Understanding Autism
               </Link>
 
               <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">

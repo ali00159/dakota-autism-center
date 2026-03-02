@@ -17,7 +17,7 @@ export default function Footer() {
       { label: 'Our Approach', href: '#approach' },
       { label: 'Our Program', href: '#program' },
       { label: 'Insurance', href: '#insurance' },
-      { label: 'Learning Center', href: '#learning-center' },
+      { label: 'Learning Center', href: '/understanding-autism/about-autism' },
     ],
     locations: [
       { label: 'Minneapolis, MN (HQ)', href: '#locations' },
