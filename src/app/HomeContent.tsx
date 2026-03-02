@@ -6,7 +6,6 @@ import { Icon } from '@iconify/react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -64,9 +63,9 @@ const tabs: TabContent[] = [
     headline: "Let's Begin Your Child's Journey",
     body: "Know what you need and ready to move forward? Schedule a free consultation with our team. We'll walk you through enrollment, insurance verification, and create a personalized plan for your child.",
     primaryBtn: 'Schedule Consultation',
-    primaryHref: '/contact',
+    primaryHref: '#',
     secondaryBtn: 'Call Us Now',
-    secondaryHref: '/contact',
+    secondaryHref: '#',
     accent: 'bg-[#FB9A31]',
     accentHex: '#FB9A31',
     btnClass: 'bg-[#FB9A31] hover:bg-[#E8882B] active:bg-[#D47725] text-white',
@@ -263,7 +262,7 @@ export default function HomeContent() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 md:gap-5 mb-12 stagger-3">
                 <a
-                  href="#contact"
+                  href="#"
                   className="btn-find-center w-full sm:w-auto group"
                 >
                   Connect with Our Team
@@ -642,7 +641,7 @@ export default function HomeContent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <button className="btn-contact group">
+                <button className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
                   Read Our Story
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon
@@ -774,7 +773,6 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 6. Contact Form ────────────────── */}
-      <ContactForm />
     </main>
   );
 }

@@ -4,7 +4,6 @@
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import ContactForm from '@/components/ContactForm';
 
 const parentOutcomes = [
   {
@@ -349,7 +348,7 @@ export default function InHomeAbaContent() {
               everyday moments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contact" className="btn-find-center w-full sm:w-auto">
+              <a href="#" className="btn-find-center w-full sm:w-auto">
                 Start Your Child&apos;s Journey
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -452,7 +451,7 @@ export default function InHomeAbaContent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="#contact" className="btn-contact group">
+                <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
                   Start Your Journey
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon
@@ -606,7 +605,7 @@ export default function InHomeAbaContent() {
                 families who value learning in a natural, comfortable environment with high caregiver 
                 involvement.
               </p>
-              <a href="#contact" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+              <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Talk to a Specialist <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </a>
             </div>
@@ -824,7 +823,7 @@ export default function InHomeAbaContent() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+              <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Verify Your Coverage <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </a>
             </div>
@@ -911,7 +910,7 @@ export default function InHomeAbaContent() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#contact" className="inline-flex items-center justify-center gap-3 bg-white text-[#FB9A31] font-bold py-3 pl-8 pr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg transform hover:-translate-y-1">
+            <a href="#" className="inline-flex items-center justify-center gap-3 bg-white text-[#FB9A31] font-bold py-3 pl-8 pr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg transform hover:-translate-y-1">
               Begin Your Child&apos;s Journey
               <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FB9A31]/10 group-hover:bg-[#FB9A31]/20 transition-colors">
                 <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -925,8 +924,6 @@ export default function InHomeAbaContent() {
           </div>
         </div>
       </section>
-
-      <ContactForm />
     </main>
   );
 }

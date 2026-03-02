@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import ContactForm from '@/components/ContactForm';
 
 const programHighlights = [
   {
@@ -169,7 +168,7 @@ export default function CenterBasedContent() {
               way that feels safe, engaging, and personalized to each child.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contact" className="btn-find-center w-full sm:w-auto">
+              <a href="#" className="btn-find-center w-full sm:w-auto">
                 Get Started
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -276,7 +275,7 @@ export default function CenterBasedContent() {
                   Every room, material, and transition has a purpose: helping children feel secure while
                   building real-world skills.
                 </p>
-                <a href="#contact" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+                <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                   Get in touch <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
                 </a>
               </div>
@@ -347,7 +346,7 @@ export default function CenterBasedContent() {
             support your family&apos;s goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#contact" className="inline-flex items-center justify-center gap-3 bg-white text-accent font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
+            <a href="#" className="inline-flex items-center justify-center gap-3 bg-white text-accent font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
               Start Enrollment Conversation
               <span className="flex items-center justify-center w-11 h-11 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">
                 <Icon icon="solar:arrow-right-broken" className="w-6 h-6" />
@@ -359,8 +358,6 @@ export default function CenterBasedContent() {
           </div>
         </div>
       </section>
-
-      <ContactForm />
     </main>
   );
 }

@@ -12,7 +12,6 @@ import {
   Sparkles,
   Stethoscope,
 } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
 
 const coreAutismFacts = [
   {
@@ -366,7 +365,6 @@ export default function AboutAutismContent() {
         </div>
       </section>
 
-      <ContactForm />
     </main>
   );
 }

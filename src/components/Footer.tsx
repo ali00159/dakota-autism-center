@@ -10,7 +10,6 @@ export default function Footer() {
       { label: 'Home', href: '/' },
       { label: 'About Us', href: '#about' },
       { label: 'Careers', href: '#careers' },
-      { label: 'Contact Us', href: '#contact' },
     ],
     visit: [
       { label: 'Get Started', href: '#get-started' },

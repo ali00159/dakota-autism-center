@@ -104,10 +104,6 @@ export default function Navigation() {
             <Icon icon="solar:phone-linear" className="w-6 h-6 text-primary" />
             (612) 284-5382
           </a>
-          <a href="#contact" className="btn-contact">
-            <Icon icon="solar:letter-bold-duotone" className="w-7 h-7" />
-            Contact Us
-          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -164,12 +160,12 @@ export default function Navigation() {
               {/* Mobile CTA */}
               <div className="pt-4 mt-2 border-t border-border-light">
                 <a
-                  href="#contact"
-                  className="btn-contact w-full"
+                  href="tel:612-284-5382"
+                  className="btn btn-primary w-full justify-center rounded-full"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Icon icon="solar:phone-broken" className="w-7 h-7" />
-                  Contact Us
+                  (612) 284-5382
                 </a>
               </div>
             </div>
