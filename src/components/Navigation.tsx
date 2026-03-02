@@ -40,9 +40,6 @@ export default function Navigation() {
           <Link href="/understanding-autism/about-autism" className="nav-link text-[15px] font-bold text-dark">
             Understanding Autism
           </Link>
-          <Link href="/contact-us" className="nav-link text-[15px] font-bold text-dark">
-            Contact Us
-          </Link>
 
           <div className="relative group/services">
             <Link
@@ -107,6 +104,13 @@ export default function Navigation() {
             <Icon icon="solar:phone-linear" className="w-6 h-6 text-primary" />
             (612) 284-5382
           </a>
+          <Link
+            href="/contact-us"
+            className="btn btn-secondary btn-small rounded-full shadow-sm hover:shadow-md transition-all"
+          >
+            <Icon icon="solar:letter-bold-duotone" className="w-4 h-4" />
+            Contact
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -147,7 +151,7 @@ export default function Navigation() {
                 className="nav-link text-base py-3 px-4 rounded-md hover:bg-primary-light flex items-center justify-between group"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contact Us
+                Contact
               </Link>
 
               <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
