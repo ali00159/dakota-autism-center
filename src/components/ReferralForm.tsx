@@ -298,7 +298,7 @@ export default function ReferralForm() {
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-bg-secondary">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-300"
+            className="h-full rounded-full bg-linear-to-r from-primary via-secondary to-tertiary transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

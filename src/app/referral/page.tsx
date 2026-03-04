@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { CheckCircle2, FileText, ShieldCheck, Stethoscope } from 'lucide-react';
+import { FileCheck2, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReferralForm from '@/components/ReferralForm';
 
 export const metadata: Metadata = {
@@ -47,6 +46,27 @@ const referralPageSchema = {
   ],
 };
 
+const highlights = [
+  {
+    title: 'Built for Professional Referrals',
+    description:
+      'Captures provider credentials, agency information, and referral intent in a structured intake format.',
+    icon: Stethoscope,
+  },
+  {
+    title: 'Clinical + Coverage Context',
+    description:
+      'Collects diagnosis history, presenting concerns, requested services, and insurance readiness details.',
+    icon: FileCheck2,
+  },
+  {
+    title: 'Confidentiality Aware',
+    description:
+      'Includes attestation and information-release acknowledgement to support secure care coordination.',
+    icon: ShieldCheck,
+  },
+];
+
 export default function ReferralPage() {
   return (
     <main id="main-content" className="bg-white">
@@ -55,126 +75,53 @@ export default function ReferralPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(referralPageSchema) }}
       />
 
-      {/* ── Hero ──────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden border-b border-border-light bg-white" aria-labelledby="referral-hero-heading">
-        {/* Right-side image — desktop only */}
-        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[48%] z-0 h-full">
-          <div className="relative h-full w-full bg-bg-secondary/30">
-             {/* Using a subtle pattern or solid color instead of image if no specific referral image exists, 
-                 or reusing hero image but with different styling to distinguish it. 
-                 For "clean" look, let's use a solid color block or pattern. 
-                 Actually, let's use the hero image but maybe a different crop or overlay if possible, 
-                 or just a nice abstract shape. 
-                 Since I don't have a new image, I'll use a clean background color that matches the theme.
-             */}
-             <div className="absolute inset-0 bg-primary/5" />
-             <Image
-                src="/hero-image.png"
-                alt="Dakota Autism Center facility"
-                fill
-                className="object-cover opacity-20 grayscale"
-                priority
-                sizes="48vw"
-              />
-          </div>
-        </div>
+      <section className="relative overflow-hidden border-b border-border-light bg-linear-to-b from-bg-hero to-white">
+        <div className="pointer-events-none absolute -top-24 -left-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 top-6 h-80 w-80 rounded-full bg-tertiary/12 blur-3xl" />
 
-        <div className="container-max relative z-10 py-14 md:py-18 lg:min-h-[480px] lg:flex lg:items-center lg:py-20">
-          <div className="w-full lg:w-[52%] lg:pr-14 text-left">
-            <span className="badge badge-primary mb-5 inline-block">Professional Referral</span>
-
-            <h1
-              id="referral-hero-heading"
-              className="max-w-2xl text-(--font-size-h1) font-bold leading-tight text-primary md:text-5xl"
-            >
-              Streamlined intake for healthcare providers & partners.
-            </h1>
-
-            <p className="mt-5 max-w-xl text-lg text-text-secondary">
-              Submit a secure, multi-step referral for ABA services. Our intake team coordinates directly with families to ensure a smooth start to therapy.
-            </p>
-
-            {/* Trust stats */}
-            <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3">
-              {[
-                'Secure & Confidential',
-                'Quick Intake Review',
-                'Care Coordination',
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm font-medium text-text-secondary">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="container-max relative py-16 md:py-20 lg:py-24">
+          <span className="badge badge-primary mb-5 inline-block">Referral Intake</span>
+          <h1 className="max-w-4xl text-4xl font-bold leading-tight text-primary md:text-5xl">
+            Professional referral form for child ABA services
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg text-text-secondary">
+            This multi-step form is designed for pediatricians, psychologists, case managers, school
+            teams, and partner agencies submitting referrals. Complete all required fields for a
+            faster intake review.
+          </p>
         </div>
       </section>
 
-      {/* ── Referral Form Section ─────────────────────────────────── */}
-      <section className="section bg-white pt-12 md:pt-16">
+      <section className="section">
+        <div className="container-max grid gap-6 lg:grid-cols-3">
+          {highlights.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title} className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary-light text-primary">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h2 className="mb-2 text-2xl font-semibold text-primary">{item.title}</h2>
+                <p className="mb-0 text-text-secondary">{item.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="section bg-bg-secondary">
         <div className="container-max">
-          <div className="flex flex-col lg:flex-row lg:gap-16">
-            
-            {/* Left Sidebar (Desktop) / Top (Mobile) */}
-            <div className="w-full lg:w-1/3 mb-10 lg:mb-0">
-               <div className="sticky top-8">
-                  <h2 className="text-2xl font-semibold text-primary mb-4">How it works</h2>
-                  <p className="text-text-secondary mb-8">
-                    Complete the form with as much detail as available. We can assist with gathering missing documentation later.
-                  </p>
-
-                  <div className="space-y-6">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <Stethoscope className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-dark">1. Provider Details</h3>
-                        <p className="text-sm text-text-secondary mt-1">Your contact info for care coordination.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <FileText className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-dark">2. Patient Information</h3>
-                        <p className="text-sm text-text-secondary mt-1">Demographics and diagnosis history.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-dark">3. Secure Submission</h3>
-                        <p className="text-sm text-text-secondary mt-1">HIPAA-compliant transfer to our intake team.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-10 p-6 bg-bg-secondary rounded-2xl border border-border-light">
-                    <h3 className="font-semibold text-dark mb-2">Need assistance?</h3>
-                    <p className="text-sm text-text-secondary mb-4">
-                      Our intake coordinators are available to help with complex cases.
-                    </p>
-                    <a href="tel:6122845382" className="text-primary font-semibold hover:underline">
-                      Call (612) 284-5382
-                    </a>
-                  </div>
-               </div>
+          <div className="card-static rounded-3xl border border-border-light p-6 md:p-10">
+            <div className="mb-8">
+              <h2 className="mb-3 text-3xl font-semibold text-primary">Submit a Professional Referral</h2>
+              <p className="mb-0 max-w-3xl text-text-secondary">
+                Include diagnosis and insurance details as available. If some documentation is still
+                pending, you can still submit this form and our team will follow up.
+              </p>
             </div>
 
-            {/* Right Side - Form */}
-            <div className="w-full lg:w-2/3">
-              <div className="rounded-3xl border border-border-light bg-white p-6 md:p-10 shadow-lg shadow-primary/5">
-                <ReferralForm />
-              </div>
-            </div>
-
+            <ReferralForm />
           </div>
         </div>
       </section>
