@@ -36,6 +36,18 @@ export default function Navigation() {
       icon: 'solar:book-2-bold-duotone',
       description: 'Learn about autism spectrum disorder and how we support families on their journey.',
     },
+    {
+      label: 'Insurance & Funding',
+      href: '/insurance-and-funding',
+      icon: 'solar:wallet-money-bold-duotone',
+      description: 'Explore insurance coverage and Minnesota funding pathways with culturally responsive guidance.',
+    },
+    {
+      label: 'Culturally Responsive ABA',
+      href: '/culturally-responsive-aba-therapy',
+      icon: 'solar:translation-bold-duotone',
+      description: 'Family-centered ABA therapy that aligns care with language needs, values, and daily routines.',
+    },
   ];
 
   return (
@@ -62,11 +74,11 @@ export default function Navigation() {
             </button>
 
             <div
-              className="absolute left-0 top-full w-[320px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/resources:opacity-100 group-hover/resources:pointer-events-auto group-hover/resources:translate-y-0"
+              className="absolute left-0 top-full w-[780px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/resources:opacity-100 group-hover/resources:pointer-events-auto group-hover/resources:translate-y-0"
               role="menu"
               aria-label="Resources"
             >
-              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 flex flex-col gap-2">
+              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-3 gap-4">
                 {resourcesLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -103,7 +115,7 @@ export default function Navigation() {
             </Link>
 
             <div
-              className="absolute left-0 top-full w-[750px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/services:opacity-100 group-hover/services:pointer-events-auto group-hover/services:translate-y-0"
+              className="absolute left-0 top-full w-[780px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/services:opacity-100 group-hover/services:pointer-events-auto group-hover/services:translate-y-0"
               role="menu"
               aria-label="Services"
             >
@@ -147,7 +159,7 @@ export default function Navigation() {
         <div className="hidden lg:flex items-center gap-6">
           <a
             href="tel:612-284-5382"
-            className="flex items-center gap-2 font-bold text-lg text-dark hover:text-primary transition-colors"
+            className="nav-link flex items-center gap-2 font-bold text-lg text-dark"
           >
             <Icon icon="solar:phone-linear" className="w-6 h-6 text-primary" />
             (612) 284-5382

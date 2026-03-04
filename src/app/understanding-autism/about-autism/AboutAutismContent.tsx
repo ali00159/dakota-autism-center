@@ -152,17 +152,17 @@ export default function AboutAutismContent() {
         <div className="absolute -bottom-14 left-0 w-64 h-64 rounded-full bg-tertiary/10 blur-3xl pointer-events-none" />
 
         <div className="container-max relative py-12 md:py-14 lg:py-16">
-          <div className="max-w-4xl animate-fade-in-up">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
             <span className="badge badge-info mb-4">Parent Learning Center</span>
             <h1 className="hero-headline text-dark mb-5">
               Understanding Autism:
               <span className="text-primary"> a research-backed guide for parents</span>
             </h1>
-            <p className="body-large text-text-secondary max-w-3xl mb-7">
+            <p className="body-large text-text-secondary max-w-3xl mx-auto mb-7">
               This page is designed to help families build a clear, evidence-informed understanding of autism and make confident decisions about next steps. It combines clinical guidance, practical parent questions, and trusted sources for deeper study.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#diagnosis-path" className="btn-find-center w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#diagnosis-path" className="btn-find-center w-full sm:w-auto bg-primary!">
                 Start With Diagnosis Basics
               </a>
               <a href="#trusted-sources" className="btn btn-tertiary btn-large w-full sm:w-auto rounded-full">

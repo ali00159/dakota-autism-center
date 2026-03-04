@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Phone, Mail, MapPin, Printer } from 'lucide-react';
 import { FooterLink } from '@/types';
 
@@ -10,12 +11,14 @@ export default function Footer() {
       { label: 'Home', href: '/' },
       { label: 'Contact Us', href: '/contact-us' },
       { label: 'About Us', href: '/understanding-autism/about-autism' },
+      { label: 'Cultural Competency', href: '/culturally-responsive-aba-therapy' },
+      { label: 'Insurance & Funding', href: '/insurance-and-funding' },
     ],
     visit: [
       { label: 'Get Started', href: '#get-started' },
       { label: 'Our Approach', href: '#approach' },
       { label: 'Our Program', href: '#program' },
-      { label: 'Insurance', href: '#insurance' },
+      { label: 'Insurance', href: '/insurance-and-funding' },
       { label: 'Learning Center', href: '/understanding-autism/about-autism' },
     ],
     locations: [
@@ -32,7 +35,7 @@ export default function Footer() {
           
           {/* Brand Column */}
           <div className="lg:col-span-6 space-y-6">
-            <a href="/" className="inline-block">
+            <Link href="/" className="inline-block">
               <div className="flex items-center gap-3">
                 <Image
                   src="/full-logo.svg"
@@ -42,7 +45,7 @@ export default function Footer() {
                   className="h-40 w-auto brightness-0 invert"
                 />
               </div>
-            </a>
+            </Link>
             <p className="text-white/80 leading-relaxed">
               Dakota Autism Center is a center-based Applied Behavior Analysis (ABA) program for young children 
               with Autism Spectrum Disorder. Our centers are run in a preschool-like setting and our 

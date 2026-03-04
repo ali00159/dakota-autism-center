@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import FAQ from '@/components/FAQ';
 
 const parentOutcomes = [
   {
@@ -314,6 +315,22 @@ const faqItems = [
     question: 'Can therapy happen in other settings besides our home?',
     answer: 'Yes! While sessions are primarily home-based, therapists can also work with your child in community settings like parks, grocery stores, or playgrounds to practice skills in real-world environments.',
   },
+  {
+    question: 'What happens if my child is having a difficult day or refuses to engage?',
+    answer: 'Difficult days are a normal part of therapy. Our therapists are trained to read your child\'s cues and adjust the session dynamically — shifting to lower-demand activities, preferred play, or sensory breaks when needed. The goal is always to end sessions on a positive note. Your BCBA will also review any patterns and update the treatment plan accordingly.',
+  },
+  {
+    question: 'Will my other children at home be a distraction or involved in sessions?',
+    answer: 'Siblings can actually be a wonderful asset! Our therapists are skilled at including siblings in natural play scenarios to build social and turn-taking skills. We work with your family to create a session structure that works for your whole household, not just your child receiving therapy.',
+  },
+  {
+    question: 'What happens when my child is ready to transition to school or a center-based program?',
+    answer: 'Transitions are planned collaboratively. Your BCBA will work with you and any school or center team to ensure goals are aligned, strategies are shared, and your child experiences a smooth handoff. We can also coordinate directly with teachers and special education staff to support continuity.',
+  },
+  {
+    question: 'Is telehealth an option for in-home ABA services?',
+    answer: 'Telehealth can be used to supplement in-home therapy — particularly for parent coaching sessions, BCBA supervision check-ins, and goal review meetings. Direct, hands-on therapy with your child is most effective in person, but telehealth offers flexibility for consultations and caregiver training components.',
+  },
 ];
 
 export default function InHomeAbaContent() {
@@ -348,7 +365,7 @@ export default function InHomeAbaContent() {
               everyday moments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto">
+              <a href="#" className="btn-find-center w-full sm:w-auto bg-[#FB9A31]!">
                 Start Your Child&apos;s Journey
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -853,35 +870,12 @@ export default function InHomeAbaContent() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="section bg-[#F7FBF9]">
-        <div className="container-max">
-          <div className="section-header text-left md:text-center mb-12 md:mb-16">
-            <span className="badge badge-primary mb-4">Common Questions</span>
-            <h2 className="text-dark mb-6">Frequently asked questions</h2>
-            <p className="body-large text-text-secondary max-w-3xl mx-auto">
-              Starting therapy can feel overwhelming. Here are answers to the questions families 
-              ask us most.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqItems.map((faq) => (
-              <details key={faq.question} className="group bg-white rounded-2xl border border-border-light overflow-hidden">
-                <summary className="flex items-center justify-between gap-4 p-5 md:p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                  <h3 className="text-dark text-base md:text-lg font-semibold mb-0! group-hover:text-primary transition-colors pr-4">{faq.question}</h3>
-                  <span className="shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition-transform duration-300 group-open:rotate-45">
-                    <Icon icon="solar:add-circle-bold" className="w-5 h-5 text-text-muted" />
-                  </span>
-                </summary>
-                <div className="px-5 md:px-6 pb-5 md:pb-6 -mt-1">
-                  <p className="text-text-secondary text-sm leading-relaxed mb-0">{faq.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FAQ
+        badge="Common Questions"
+        title="Frequently asked questions"
+        subtitle="Starting therapy can feel overwhelming. Here are answers to the questions families ask us most."
+        items={faqItems}
+      />
 
       {/* CTA Section */}
       <section className="section bg-[#FB9A31] text-white relative overflow-hidden">

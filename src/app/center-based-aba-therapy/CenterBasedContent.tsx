@@ -168,7 +168,7 @@ export default function CenterBasedContent() {
               way that feels safe, engaging, and personalized to each child.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto">
+              <a href="#" className="btn-find-center w-full sm:w-auto bg-tertiary!">
                 Get Started
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />

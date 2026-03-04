@@ -11,6 +11,7 @@ import {
   Route,
   ShieldCheck,
 } from 'lucide-react';
+import FAQ from '@/components/FAQ';
 
 const primaryLocation = {
   name: 'Dakota Autism Center Headquarters',
@@ -130,9 +131,24 @@ const faqs = [
       'Timelines vary based on clinical fit, scheduling, and insurance authorization. Contact us to start intake and receive a realistic next-step timeline.',
   },
   {
-    question: 'Will this page support other locations later?',
+    question: 'Is Dakota Autism Center currently accepting new clients?',
     answer:
-      'Yes. This page is designed as our primary headquarters contact hub. Future location-specific pages will branch from here with unique local details.',
+      'Yes — we are actively accepting new clients. Reaching out early is the best way to get on our schedule, as intake spots can fill up. Contact us today and our team will walk you through the next steps and expected timeline.',
+  },
+  {
+    question: 'What areas of Minnesota do you serve?',
+    answer:
+      'Our center-based services are located in the Minneapolis area. Our in-home ABA therapy extends to surrounding communities across the Twin Cities metro and select greater Minnesota regions. Contact us to confirm whether we currently serve your area.',
+  },
+  {
+    question: 'Do you offer telehealth or virtual consultations?',
+    answer:
+      'Yes. We offer telehealth options for initial consultations, parent coaching sessions, and BCBA supervision check-ins. If you are located outside our service area or prefer a virtual first meeting, we can accommodate that. Direct therapy for children is most effective in person, but virtual support for caregivers is available.',
+  },
+  {
+    question: 'How do I know if ABA therapy is the right fit for my child?',
+    answer:
+      'ABA therapy is the most evidence-based intervention for autism spectrum disorder, with decades of research supporting its effectiveness across a wide range of ages and needs. The best way to determine fit is to speak with one of our BCBAs — no commitment required. We’ll discuss your child’s strengths, challenges, and goals and help you understand what a realistic program would look like.',
   },
 ];
 
@@ -283,8 +299,8 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container-max grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+      <section className="section bg-white">
+        <div className="container-max">
           <div className="rounded-3xl bg-primary p-8 text-white md:p-10">
             <h2 className="mb-4 text-3xl font-semibold text-white!">Need help choosing the right service?</h2>
             <p className="mb-6 text-white/90">
@@ -292,7 +308,7 @@ export default function ContactUsPage() {
               child’s current needs and family goals.
             </p>
 
-            <ul className="space-y-4">
+            <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">
                 <CalendarClock className="mt-0.5 h-5 w-5 shrink-0 text-supporting" />
                 <p className="mb-0 text-white/90">Schedule a consultation call with intake and clinical staff.</p>
@@ -309,7 +325,7 @@ export default function ContactUsPage() {
               </li>
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <a href={`tel:${primaryLocation.phoneE164}`} className="btn btn-secondary rounded-full">
                 <Phone className="h-5 w-5" />
                 Start by Phone
@@ -319,22 +335,15 @@ export default function ContactUsPage() {
               </Link>
             </div>
           </div>
-
-          <div className="rounded-3xl border border-border-light bg-white p-6 md:p-8">
-            <h2 className="mb-5 text-3xl font-semibold text-primary">Contact FAQs</h2>
-            <div className="space-y-4">
-              {faqs.map((faq) => (
-                <details key={faq.question} className="rounded-xl border border-border-light px-4 py-3">
-                  <summary className="cursor-pointer list-none pr-6 font-semibold text-dark">
-                    {faq.question}
-                  </summary>
-                  <p className="mb-0 mt-3 text-text-secondary">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
+
+      <FAQ
+        badge="Contact FAQs"
+        title="Questions before getting in touch?"
+        subtitle="Here are quick answers to what families ask us most before reaching out."
+        items={faqs}
+      />
     </main>
   );
 }

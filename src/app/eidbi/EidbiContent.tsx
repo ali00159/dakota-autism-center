@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import FAQ from '@/components/FAQ';
 
 const eidbiServices = [
   {
@@ -119,6 +120,41 @@ const familyActionChecklist = [
   'Ask how parent/caregiver training is documented and practiced between sessions.',
 ];
 
+const eidbisFaqItems = [
+  {
+    question: 'What does EIDBI stand for and who funds it?',
+    answer: 'EIDBI stands for Early Intensive Developmental and Behavioral Intervention. It is a benefit funded by the Minnesota Department of Human Services (DHS) through the state\'s Medical Assistance programs — including Medical Assistance (MA), MinnesotaCare, TEFRA, and PMAP. It is not the same as private insurance; it is a state-funded benefit for qualifying Minnesota families.',
+  },
+  {
+    question: 'How is EIDBI different from private insurance coverage for ABA therapy?',
+    answer: 'EIDBI is a state Medicaid benefit available to families enrolled in Minnesota Health Care Programs. Private insurance is employer- or marketplace-based coverage. Both can fund ABA therapy, but they follow different authorization processes, billing codes, and documentation requirements. Some families qualify for both simultaneously, and our team helps you understand how to coordinate coverage effectively.',
+  },
+  {
+    question: 'Does my child need an autism diagnosis to access EIDBI services?',
+    answer: 'Yes. To qualify for EIDBI, your child must have a diagnosis of Autism Spectrum Disorder (ASD) or a related condition, be under 21 years old, and be enrolled in a qualifying Minnesota Health Care Program. A Comprehensive Multi-Disciplinary Evaluation (CMDE) is also required to determine medical necessity before services begin.',
+  },
+  {
+    question: 'What is a CMDE and why is it required for EIDBI?',
+    answer: 'A CMDE (Comprehensive Multi-Disciplinary Evaluation) is a thorough assessment conducted by qualified professionals to determine whether EIDBI services are medically necessary for your child. It evaluates your child\'s developmental strengths and needs across multiple domains and forms the clinical foundation for the Individual Treatment Plan (ITP). Dakota Autism Center\'s qualified team conducts CMDEs as part of our EIDBI intake process.',
+  },
+  {
+    question: 'How do I apply for EIDBI services at Dakota Autism Center?',
+    answer: 'The first step is to contact our intake team. We will verify your child\'s eligibility for EIDBI, confirm Medical Assistance enrollment, schedule the required CMDE evaluation, and guide you through the authorization process with Minnesota DHS. We handle all paperwork and follow up with the state on your behalf so the process moves as quickly as possible.',
+  },
+  {
+    question: 'How long does the EIDBI authorization process typically take?',
+    answer: 'Timelines vary depending on documentation readiness and DHS review periods, but most families can expect the process from initial contact to therapy start to take several weeks. The CMDE must be completed and reviewed before services are authorized. Our team works proactively to prevent delays — gathering documentation early and following up with DHS regularly.',
+  },
+  {
+    question: 'Can my child receive EIDBI services at home, at school, and in the community?',
+    answer: 'Yes. EIDBI is designed to be delivered across multiple settings — including your home, our center, your child\'s school, and community environments. The appropriate service settings are determined by your child\'s Individual Treatment Plan and what will best support skill generalization. We coordinate across these environments to ensure consistent goals and strategies wherever your child is learning.',
+  },
+  {
+    question: 'Are there any changes to the EIDBI program I should know about for 2025–2026?',
+    answer: 'Yes. Minnesota passed legislation in 2025 requiring all enrolled EIDBI agencies to obtain provisional licensure by May 31, 2026. Dakota Autism Center is actively navigating this process to ensure uninterrupted service for all families. Additionally, effective July 1, 2025, the Play Project and Early Social Interaction (ESI) modalities are no longer approved EIDBI treatment methods. We keep our treatment plans current with all DHS policy updates.',
+  },
+];
+
 export default function EidbiContent() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 100]);
@@ -149,7 +185,7 @@ export default function EidbiContent() {
               Early Intensive Developmental and Behavioral Intervention (EIDBI) is a state benefit providing medically necessary treatment for children and young adults with autism. At Dakota Autism Center, we turn this benefit into <span className="text-secondary font-semibold">meaningful progress</span>.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto">
+              <a href="#" className="btn-find-center w-full sm:w-auto bg-primary!">
                 Check Eligibility
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -421,6 +457,13 @@ export default function EidbiContent() {
           </div>
         </div>
       </section>
+
+      <FAQ
+        badge="EIDBI Questions"
+        title="Frequently asked questions about EIDBI in Minnesota"
+        subtitle="Clear answers to the questions families ask us most about Minnesota's EIDBI benefit, eligibility, and what to expect."
+        items={eidbisFaqItems}
+      />
 
       {/* CTA Section */}
       <section className="section bg-primary text-white text-center">
