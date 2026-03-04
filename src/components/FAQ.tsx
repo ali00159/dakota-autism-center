@@ -112,14 +112,14 @@ export default function FAQ({
                     <span
                       className={`shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
                         isOpen
-                          ? 'bg-tertiary rotate-45'
+                          ? 'bg-tertiary'
                           : 'bg-gray-100 hover:bg-gray-200'
                       }`}
                     >
                       <Icon
-                        icon="solar:add-linear"
-                        className={`w-3.5 h-3.5 transition-colors duration-200 ${
-                          isOpen ? 'text-white' : 'text-text-muted'
+                        icon="solar:alt-arrow-down-bold"
+                        className={`w-3.5 h-3.5 transition-all duration-300 ${
+                          isOpen ? 'text-white rotate-180' : 'text-text-muted rotate-0'
                         }`}
                       />
                     </span>

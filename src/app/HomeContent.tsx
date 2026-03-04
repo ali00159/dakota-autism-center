@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -33,9 +34,9 @@ const tabs: TabContent[] = [
     headline: "Understanding Your Child's Diagnosis",
     body: "Just received a diagnosis or concerned about your child? You're not alone. We'll help you understand what autism means, how ABA therapy works, and what the next steps look like for your family.",
     primaryBtn: 'Learn About Autism & ABA',
-    primaryHref: '/resources',
-    secondaryBtn: 'What to Expect',
-    secondaryHref: '/about',
+    primaryHref: '/understanding-autism/about-autism',
+    secondaryBtn: 'Insurance & Funding',
+    secondaryHref: '/insurance-and-funding',
     accent: 'bg-[#115C47]',
     accentHex: '#115C47',
     btnClass: 'bg-[#115C47] hover:bg-[#0E4A38] active:bg-[#0A3829] text-white',
@@ -47,10 +48,10 @@ const tabs: TabContent[] = [
     icon: GitCompareArrows,
     headline: 'Find the Right Therapy for Your Family',
     body: "Researching the best therapy options for your family? Explore our range of evidence-based ABA programs — from early intervention to social skills groups — and discover which approach fits your child's unique needs.",
-    primaryBtn: 'Compare Our Services',
-    primaryHref: '/services',
+    primaryBtn: 'Explore Our Programs',
+    primaryHref: '/center-based-aba-therapy',
     secondaryBtn: 'Insurance & Funding',
-    secondaryHref: '/insurance',
+    secondaryHref: '/insurance-and-funding',
     accent: 'bg-[#42AEEB]',
     accentHex: '#42AEEB',
     btnClass: 'bg-[#42AEEB] hover:bg-[#2B9ADB] active:bg-[#1F8BCC] text-white',
@@ -63,9 +64,9 @@ const tabs: TabContent[] = [
     headline: "Let's Begin Your Child's Journey",
     body: "Know what you need and ready to move forward? Schedule a free consultation with our team. We'll walk you through enrollment, insurance verification, and create a personalized plan for your child.",
     primaryBtn: 'Schedule Consultation',
-    primaryHref: '#',
+    primaryHref: '/contact-us',
     secondaryBtn: 'Call Us Now',
-    secondaryHref: '#',
+    secondaryHref: 'tel:612-284-5382',
     accent: 'bg-[#FB9A31]',
     accentHex: '#FB9A31',
     btnClass: 'bg-[#FB9A31] hover:bg-[#E8882B] active:bg-[#D47725] text-white',
@@ -84,6 +85,7 @@ interface ServiceItem {
   textColor: string;
   iconColor: string;
   bulletBg: string;
+  href: string;
 }
 
 const services: ServiceItem[] = [
@@ -103,6 +105,7 @@ const services: ServiceItem[] = [
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
     bulletBg: 'rgba(0, 0, 0, 0.15)',
+    href: '/center-based-aba-therapy',
   },
   {
     id: 'in-home',
@@ -120,6 +123,7 @@ const services: ServiceItem[] = [
     textColor: '#1F2937',
     iconColor: '#0284C7',
     bulletBg: 'rgba(255, 255, 255, 0.6)',
+    href: '/in-home-aba-therapy',
   },
   {
     id: 'family-training',
@@ -137,6 +141,7 @@ const services: ServiceItem[] = [
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
     bulletBg: 'rgba(0, 0, 0, 0.1)',
+    href: '/contact-us',
   },
   {
     id: 'eidbi',
@@ -154,6 +159,7 @@ const services: ServiceItem[] = [
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
     bulletBg: 'rgba(0, 0, 0, 0.1)',
+    href: '/eidbi',
   },
 ];
 
@@ -261,15 +267,15 @@ export default function HomeContent() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 md:gap-5 mb-12 stagger-3">
-                <a
-                  href="#"
+                <Link
+                  href="/contact-us"
                   className="btn-find-center w-full sm:w-auto group"
                 >
                   Connect with Our Team
                   <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/20">
                     <Icon icon="solar:phone-bold" className="w-6 h-6" />
                   </span>
-                </a>
+                </Link>
                 <a
                   href="#services"
                   className="nav-link font-semibold text-lg ml-4"
@@ -422,7 +428,8 @@ export default function HomeContent() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto mt-1 md:mt-2">
-                <button
+                <Link
+                  href={activeContent.primaryHref}
                   className={cn(
                     'btn btn-large rounded-full w-full sm:w-auto',
                     activeContent.btnClass
@@ -435,15 +442,28 @@ export default function HomeContent() {
                     height={18}
                     className="shrink-0"
                   />
-                </button>
-                <button
-                  className={cn(
-                    'btn btn-large rounded-full w-full sm:w-auto bg-transparent border-[1.5px]',
-                    activeContent.outlineClass
-                  )}
-                >
-                  {activeContent.secondaryBtn}
-                </button>
+                </Link>
+                {activeContent.secondaryHref.startsWith('tel:') ? (
+                  <a
+                    href={activeContent.secondaryHref}
+                    className={cn(
+                      'btn btn-large rounded-full w-full sm:w-auto bg-transparent border-[1.5px]',
+                      activeContent.outlineClass
+                    )}
+                  >
+                    {activeContent.secondaryBtn}
+                  </a>
+                ) : (
+                  <Link
+                    href={activeContent.secondaryHref}
+                    className={cn(
+                      'btn btn-large rounded-full w-full sm:w-auto bg-transparent border-[1.5px]',
+                      activeContent.outlineClass
+                    )}
+                  >
+                    {activeContent.secondaryBtn}
+                  </Link>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -526,6 +546,9 @@ export default function HomeContent() {
               transition={{ duration: 0.3, ease: 'easeOut' as const }}
               className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#115C47]/10 bg-white shadow-[0_10px_35px_rgba(27,35,31,0.06)] will-change-transform"
             >
+              <Link href={service.href} className="absolute inset-0 z-20" aria-label={`Learn more about ${service.title}`}>
+                <span className="sr-only">Learn more</span>
+              </Link>
               <div
                 className="absolute inset-x-0 top-0 h-1.5"
                 style={{ backgroundColor: service.accentHex }}
@@ -534,7 +557,7 @@ export default function HomeContent() {
                 className="absolute -right-16 -top-16 h-40 w-40 rounded-full blur-2xl transition-opacity duration-300 group-hover:opacity-80"
                 style={{ backgroundColor: service.lightBg, opacity: 0.65 }}
               />
-              <div className="relative z-10 flex h-full flex-col p-6 lg:p-8">
+              <div className="relative z-10 flex h-full flex-col p-6 lg:p-8 pointer-events-none">
                 <div
                   className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#115C47]/10 shadow-sm"
                   style={{
@@ -549,7 +572,7 @@ export default function HomeContent() {
                 </div>
 
                 <h3
-                  className="mb-3 text-xl font-bold tracking-tight text-[#2F2A2D] lg:text-2xl"
+                  className="mb-3 text-xl font-bold tracking-tight text-[#2F2A2D] lg:text-2xl group-hover:text-[#115C47] transition-colors"
                 >
                   {service.title}
                 </h3>
@@ -581,15 +604,15 @@ export default function HomeContent() {
         </motion.div>
 
         <div className="container-max text-center mt-10 lg:mt-14 relative z-10">
-          <button className="btn btn-large rounded-full border border-[#115C47]/20 bg-[#115C47] px-8 text-white shadow-lg shadow-[#115C47]/25 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C4535] hover:shadow-xl hover:shadow-[#115C47]/30">
-            Learn About All Our Services
+          <Link href="/contact-us" className="btn btn-large rounded-full border border-[#115C47]/20 bg-[#115C47] px-8 text-white shadow-lg shadow-[#115C47]/25 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C4535] hover:shadow-xl hover:shadow-[#115C47]/30">
+            Get Started Today
             <Icon
               icon="solar:arrow-right-broken"
               width={18}
               height={18}
               className="shrink-0"
             />
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -664,7 +687,7 @@ export default function HomeContent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <button className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
+                <Link href="/understanding-autism/about-autism" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
                   Read Our Story
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon
@@ -672,7 +695,7 @@ export default function HomeContent() {
                       className="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
                     />
                   </span>
-                </button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -680,14 +703,14 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 5. Testimonials ────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#FB9A31] pt-4 pb-12 lg:pt-6 lg:pb-16">
+      <section className="relative w-full overflow-hidden bg-[#FB9A31] pt-8 pb-14 lg:pt-10 lg:pb-18">
         <div className="container-max relative z-10 px-4 md:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-8 lg:mb-10 gap-4 lg:gap-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white! leading-tight max-w-xl">
+          <div className="flex flex-col lg:flex-row justify-between items-end mb-10 lg:mb-12 gap-6 lg:gap-10">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white! leading-[1.08] max-w-xl">
               See what everyday <br className="hidden lg:block" />
               <span className="text-white">joy looks like</span>
             </h2>
-            <p className="text-white/90 text-lg leading-snug font-secondary max-w-lg mb-1">
+            <p className="text-white/90 text-lg leading-relaxed font-secondary max-w-lg mb-0.5">
               Step inside a day at Dakota Autism Center – where calm curiosity
               meets spontaneous joy. Watch how our teachers guide, listen, and
               laugh alongside the little ones, creating an environment where
@@ -701,31 +724,17 @@ export default function HomeContent() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="relative w-full aspect-21/9 rounded-3xl overflow-hidden shadow-xl mb-10 bg-white/20 group"
+            className="relative w-full aspect-21/9 rounded-tl-[48px] rounded-br-[48px] md:rounded-tl-[72px] md:rounded-br-[72px] border border-white/35 p-1.5 overflow-hidden shadow-xl mb-10 bg-white/20 group"
           >
-            <Image
-              src="/placeholder.svg"
-              alt="Day at Dakota Autism Center Video"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button className="flex items-center gap-3 bg-[#474044]/90 hover:bg-[#115C47] text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 group-hover:shadow-2xl">
-                <div className="w-8 h-8 rounded-full border-2 border-white/30 flex items-center justify-center">
-                  <Icon
-                    icon="solar:play-bold"
-                    className="w-4 h-4 text-[#FB9A31]"
-                  />
-                </div>
-                <div className="text-left">
-                  <span className="block text-sm font-semibold tracking-wide">
-                    Watch the full video
-                  </span>
-                  <span className="block text-xs opacity-80">2m 32s</span>
-                </div>
-              </button>
+            <div className="relative h-full w-full rounded-tl-[42px] rounded-br-[42px] md:rounded-tl-[64px] md:rounded-br-[64px] overflow-hidden">
+              <Image
+                src="/hero-image.png"
+                alt="Children and therapists sharing a joyful moment at Dakota Autism Center"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/8 group-hover:bg-black/16 transition-colors duration-300" />
+              <div className="pointer-events-none absolute inset-0 ring-1 ring-white/25 rounded-tl-[42px] rounded-br-[42px] md:rounded-tl-[64px] md:rounded-br-[64px]" />
             </div>
           </motion.div>
 

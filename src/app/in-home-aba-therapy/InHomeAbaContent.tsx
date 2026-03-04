@@ -2,6 +2,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
@@ -365,12 +366,12 @@ export default function InHomeAbaContent() {
               everyday moments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto bg-[#FB9A31]!">
+              <Link href="/contact-us" className="btn-find-center w-full sm:w-auto bg-[#FB9A31]!">
                 Start Your Child&apos;s Journey
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
                 </span>
-              </a>
+              </Link>
               <a href="#how-it-works" className="btn btn-tertiary btn-large w-full sm:w-auto rounded-full">
                 See How It Works
               </a>
@@ -468,7 +469,7 @@ export default function InHomeAbaContent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
+                <Link href="/contact-us" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
                   Start Your Journey
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon
@@ -476,7 +477,7 @@ export default function InHomeAbaContent() {
                       className="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
                     />
                   </span>
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -622,9 +623,9 @@ export default function InHomeAbaContent() {
                 families who value learning in a natural, comfortable environment with high caregiver 
                 involvement.
               </p>
-              <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+              <Link href="/contact-us" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Talk to a Specialist <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
 
             <div className="lg:col-span-7">
@@ -840,9 +841,9 @@ export default function InHomeAbaContent() {
                   </li>
                 ))}
               </ul>
-              <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+              <Link href="/insurance-and-funding" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Verify Your Coverage <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
 
             <div className="bg-primary/4 rounded-3xl p-8 md:p-10 border border-primary/10">
@@ -904,12 +905,12 @@ export default function InHomeAbaContent() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#" className="inline-flex items-center justify-center gap-3 bg-white text-[#FB9A31] font-bold py-3 pl-8 pr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg transform hover:-translate-y-1">
+            <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 bg-white text-[#FB9A31] font-bold py-3 pl-8 pr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg transform hover:-translate-y-1">
               Begin Your Child&apos;s Journey
               <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FB9A31]/10 group-hover:bg-[#FB9A31]/20 transition-colors">
                 <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </span>
-            </a>
+            </Link>
             
             <a href="tel:612-284-5382" className="inline-flex items-center justify-center gap-2 btn-large rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 w-full sm:w-auto font-semibold">
               <Icon icon="solar:phone-calling-bold" className="w-5 h-5" />

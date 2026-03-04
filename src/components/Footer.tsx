@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Facebook, Instagram, Linkedin, Phone, Mail, MapPin, Printer } from 'lucide-react';
+import { Phone, Mail, MapPin, Printer } from 'lucide-react';
 import { FooterLink } from '@/types';
 
 export default function Footer() {
@@ -14,16 +14,15 @@ export default function Footer() {
       { label: 'Cultural Competency', href: '/culturally-responsive-aba-therapy' },
       { label: 'Insurance & Funding', href: '/insurance-and-funding' },
     ],
-    visit: [
-      { label: 'Get Started', href: '#get-started' },
-      { label: 'Our Approach', href: '#approach' },
-      { label: 'Our Program', href: '#program' },
-      { label: 'Insurance', href: '/insurance-and-funding' },
-      { label: 'Learning Center', href: '/understanding-autism/about-autism' },
+    services: [
+      { label: 'Center-Based ABA', href: '/center-based-aba-therapy' },
+      { label: 'In-Home ABA', href: '/in-home-aba-therapy' },
+      { label: 'EIDBI Services', href: '/eidbi' },
+      { label: 'Insurance & Funding', href: '/insurance-and-funding' },
+      { label: 'Understanding Autism', href: '/understanding-autism/about-autism' },
     ],
     locations: [
-      { label: 'Minneapolis, MN (HQ)', href: '#locations' },
-      { label: 'View All Locations', href: '#locations' },
+      { label: 'Minneapolis, MN (HQ)', href: '/contact-us' },
     ]
   };
 
@@ -53,18 +52,7 @@ export default function Footer() {
               and transitioning skills.
             </p>
             
-            <div className="flex gap-4 pt-4">
-              {/* Social placeholders */}
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
+            
           </div>
 
           {/* Links Columns */}
@@ -76,26 +64,26 @@ export default function Footer() {
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="footer-link inline-flex items-center gap-2 group">
+                    <Link href={link.href} className="footer-link inline-flex items-center gap-2 group">
                       {link.label}
                       {link.isNew && (
                         <span className="bg-tertiary text-[10px] font-bold px-1.5 py-0.5 rounded text-white">NEW</span>
                       )}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Plan Your Visit */}
+            {/* Services */}
             <div>
-              <h3 className="text-[11px] font-bold tracking-wider uppercase mb-6 text-supporting">Plan</h3>
+              <h3 className="text-[11px] font-bold tracking-wider uppercase mb-6 text-supporting">Services</h3>
               <ul className="space-y-4">
-                {footerLinks.visit.map((link) => (
+                {footerLinks.services.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="footer-link">
+                    <Link href={link.href} className="footer-link">
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -107,10 +95,10 @@ export default function Footer() {
               <ul className="space-y-4">
                 {footerLinks.locations.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="footer-link inline-flex items-center gap-2">
+                    <Link href={link.href} className="footer-link inline-flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-tertiary" />
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -171,8 +159,8 @@ export default function Footer() {
           <p>© {currentYear} Dakota Autism Center. All rights reserved.</p>
           
           <div className="flex gap-6">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
+            <span className="text-white/40 cursor-default">Privacy Policy</span>
+            <span className="text-white/40 cursor-default">Terms of Service</span>
           </div>
 
           <p className="text-white/40">

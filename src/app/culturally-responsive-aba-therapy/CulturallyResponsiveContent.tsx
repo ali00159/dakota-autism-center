@@ -112,11 +112,8 @@ const faqItems = [
 export default function CulturallyResponsiveContent() {
   return (
     <main id="main-content" className="w-full bg-white">
-      <section className="relative overflow-hidden border-b border-border-light bg-white">
-        <div className="absolute -top-14 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 h-72 w-72 translate-x-1/3 translate-y-1/3 rounded-full bg-tertiary/10 blur-3xl pointer-events-none" />
-
-        <div className="container-max relative py-14 md:py-16 lg:py-20">
+      <section className="border-b border-border-light bg-white">
+        <div className="container-max py-14 md:py-16 lg:py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -194,7 +191,7 @@ export default function CulturallyResponsiveContent() {
 
       <section id="compare" className="section bg-white">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-8 rounded-3xl border border-border-light bg-[#FCFDFC] p-6 md:p-8 lg:p-10 shadow-sm">
               <span className="badge badge-info mb-3">Competitor Analysis</span>
               <h2 className="text-dark mb-5">

@@ -15,7 +15,7 @@ export default function ContactForm() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <section ref={sectionRef} className="section relative overflow-hidden bg-white" id="contact">
+    <section ref={sectionRef} className="section relative bg-white" id="contact">
       <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
         <motion.div
           style={{ y: y1 }}
@@ -29,7 +29,7 @@ export default function ContactForm() {
 
       <div className="container-max relative z-10">
         <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-24">
-          <div className="w-full pt-8 lg:w-5/12">
+          <div className="w-full pt-8 lg:sticky lg:top-8 lg:self-start lg:w-5/12">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
               <Icon icon="solar:chat-round-dots-bold" className="h-4 w-4" />
               <span>Get in Touch</span>

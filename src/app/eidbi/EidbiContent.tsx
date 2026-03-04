@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
@@ -185,12 +186,12 @@ export default function EidbiContent() {
               Early Intensive Developmental and Behavioral Intervention (EIDBI) is a state benefit providing medically necessary treatment for children and young adults with autism. At Dakota Autism Center, we turn this benefit into <span className="text-secondary font-semibold">meaningful progress</span>.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto bg-primary!">
+              <Link href="/contact-us" className="btn-find-center w-full sm:w-auto bg-primary!">
                 Check Eligibility
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
                 </span>
-              </a>
+              </Link>
               <a href="#services" className="btn btn-tertiary btn-large w-full sm:w-auto rounded-full">
                 View Services
               </a>
@@ -262,9 +263,9 @@ export default function EidbiContent() {
                 <p className="text-sm text-text-muted mb-4">
                   Not sure if you qualify? Our team can help verify your insurance and eligibility.
                 </p>
-                <a href="#" className="text-primary font-bold hover:underline inline-flex items-center gap-1">
+                <Link href="/contact-us" className="text-primary font-bold hover:underline inline-flex items-center gap-1">
                   Contact us for assistance <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -384,10 +385,10 @@ export default function EidbiContent() {
               <p className="text-xs text-text-muted leading-relaxed mb-4">
                 EIDBI policy details can change. For the most current statewide rules, families can verify guidance with Minnesota DHS.
               </p>
-              <a href="#" className="btn btn-primary w-full justify-center rounded-full">
+              <Link href="/contact-us" className="btn btn-primary w-full justify-center rounded-full">
                 Talk With Our Team
                 <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
-              </a>
+              </Link>
             </aside>
           </div>
         </div>
@@ -473,12 +474,12 @@ export default function EidbiContent() {
             Navigating state benefits can be complex. Let us help you understand your options and get your child the support they deserve.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <a href="#" className="inline-flex items-center justify-center gap-3 bg-white text-primary font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
+            <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 bg-white text-primary font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
               Contact Us Today
               <span className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                 <Icon icon="solar:arrow-right-broken" className="w-6 h-6" />
               </span>
-            </a>
+            </Link>
             <a
               href="tel:612-284-5382"
               className="relative text-white font-bold text-lg inline-flex items-center gap-2 pb-1 group/call"

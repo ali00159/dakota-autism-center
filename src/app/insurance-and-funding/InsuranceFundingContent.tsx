@@ -147,14 +147,8 @@ const faqs = [
 export default function InsuranceFundingContent() {
   return (
     <main id="main-content" className="w-full bg-white">
-      <section className="relative overflow-hidden border-b border-border-light bg-white">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute top-24 right-1/5 h-64 w-64 rounded-full bg-secondary/15 blur-3xl" />
-          <div className="absolute -bottom-20 left-1/2 h-80 w-80 rounded-full bg-tertiary/10 blur-3xl" />
-        </div>
-
-        <div className="container-max relative py-12 md:py-16 lg:py-20">
+      <section className="border-b border-border-light bg-white">
+        <div className="container-max py-12 md:py-16 lg:py-20">
           <div className="max-w-4xl mx-auto text-center">
             <span className="badge badge-primary mb-4">Insurance + Funding Clarity</span>
             <h1 className="hero-headline text-dark mb-5">

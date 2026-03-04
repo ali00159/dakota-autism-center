@@ -84,13 +84,13 @@ export default function Navigation() {
                     key={link.label}
                     href={link.href}
                     role="menuitem"
-                    className="group/item flex flex-col gap-3 rounded-xl p-4 transition-all hover:bg-primary-light/30 focus-visible:bg-primary-light/30"
+                    className="group/item flex flex-col gap-3 rounded-xl p-4 transition-all hover:bg-supporting/40 focus-visible:bg-supporting/40"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-light text-primary transition-colors duration-300">
+                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-supporting text-tertiary transition-colors duration-300">
                         <Icon icon={link.icon} className="w-6 h-6" />
                       </span>
-                      <span className="font-bold text-dark group-hover/item:text-primary transition-colors">{link.label}</span>
+                      <span className="font-bold text-dark group-hover/item:text-tertiary transition-colors">{link.label}</span>
                     </div>
                     <p className="text-sm text-text-muted leading-relaxed">
                       {link.description}
@@ -215,10 +215,10 @@ export default function Navigation() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-base py-2.5 px-3 rounded-xl hover:bg-primary-light text-dark font-semibold flex items-center gap-2.5"
+                    className="text-base py-2.5 px-3 rounded-xl hover:bg-supporting/50 text-dark font-semibold flex items-center gap-2.5"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Icon icon={link.icon} className="w-5 h-5 text-primary" />
+                    <Icon icon={link.icon} className="w-5 h-5 text-tertiary" />
                     {link.label}
                   </Link>
                 ))}

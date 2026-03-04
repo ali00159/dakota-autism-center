@@ -147,11 +147,8 @@ const references = [
 export default function AboutAutismContent() {
   return (
     <main id="main-content" className="w-full bg-white">
-      <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <div className="absolute -top-10 right-0 w-72 h-72 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-14 left-0 w-64 h-64 rounded-full bg-tertiary/10 blur-3xl pointer-events-none" />
-
-        <div className="container-max relative py-12 md:py-14 lg:py-16">
+      <section className="border-b border-border-light bg-white">
+        <div className="container-max py-12 md:py-14 lg:py-16">
           <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
             <span className="badge badge-info mb-4">Parent Learning Center</span>
             <h1 className="hero-headline text-dark mb-5">

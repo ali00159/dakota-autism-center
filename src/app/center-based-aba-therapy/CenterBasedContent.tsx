@@ -1,6 +1,8 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -141,6 +143,13 @@ export default function CenterBasedContent() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 100]);
 
+  const insideCenterRef = useRef(null);
+  const { scrollYProgress: insideCenterScrollYProgress } = useScroll({
+    target: insideCenterRef,
+    offset: ['start end', 'end start'],
+  });
+  const insideCenterY = useTransform(insideCenterScrollYProgress, [0, 1], [50, -50]);
+
   return (
     <main id="main-content" className="w-full bg-white">
       <section className="relative border-b border-border-light overflow-hidden bg-white">
@@ -168,12 +177,12 @@ export default function CenterBasedContent() {
               way that feels safe, engaging, and personalized to each child.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="btn-find-center w-full sm:w-auto bg-tertiary!">
+              <Link href="/contact-us" className="btn-find-center w-full sm:w-auto bg-tertiary!">
                 Get Started
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
                 </span>
-              </a>
+              </Link>
               <a href="#daily-program" className="btn btn-tertiary btn-large w-full sm:w-auto rounded-full">
                 Explore Daily Program
               </a>
@@ -263,7 +272,7 @@ export default function CenterBasedContent() {
         </div>
       </section>
 
-      <section id="learning-center" className="section bg-[#D4EAFC]/30">
+      <section ref={insideCenterRef} id="learning-center" className="section bg-[#D4EAFC]/30">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div className="flex flex-col">
@@ -275,9 +284,9 @@ export default function CenterBasedContent() {
                   Every room, material, and transition has a purpose: helping children feel secure while
                   building real-world skills.
                 </p>
-                <a href="#" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
+                <Link href="/contact-us" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                   Get in touch <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -285,24 +294,30 @@ export default function CenterBasedContent() {
                   <article key={feature.title} className="p-6 border border-border-light rounded-2xl bg-white hover:shadow-md transition-shadow flex flex-col h-full group">
                     <span className="text-4xl font-light text-gray-300 mb-4 block">0{index + 1}</span>
                     <h3 className="text-xl font-semibold text-dark mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
-                    <p className="text-sm text-text-secondary mb-4 grow">{feature.copy}</p>
-                    <div className="flex items-center text-primary font-medium text-sm mt-auto">
-                      <span className="border-b border-transparent group-hover:border-primary transition-colors">View Details</span>
-                    </div>
+                    <p className="text-sm text-text-secondary mb-0 grow">{feature.copy}</p>
                   </article>
                 ))}
               </div>
             </div>
 
-            <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-lg border border-white/70 lg:sticky lg:top-32">
-              <Image
-                src="/homepage-about-us-image.jpeg"
-                alt="Children learning and playing inside the center-based ABA program"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            <motion.div
+              style={{ y: insideCenterY }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative h-full lg:sticky lg:top-32"
+            >
+              <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl min-h-[500px] h-full">
+                <Image
+                  src="/homepage-about-us-image.jpeg"
+                  alt="Children learning and playing inside the center-based ABA program"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -346,12 +361,12 @@ export default function CenterBasedContent() {
             support your family&apos;s goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#" className="inline-flex items-center justify-center gap-3 bg-white text-accent font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
+            <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 bg-white text-accent font-semibold py-2 pl-6 pr-2 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 group w-full sm:w-auto text-lg">
               Start Enrollment Conversation
               <span className="flex items-center justify-center w-11 h-11 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">
                 <Icon icon="solar:arrow-right-broken" className="w-6 h-6" />
               </span>
-            </a>
+            </Link>
             <a href="tel:612-284-5382" className="btn btn-tertiary btn-large rounded-full !border-white/40 !text-white hover:!bg-white/10 w-full sm:w-auto">
               Call (612) 284-5382
             </a>
