@@ -50,6 +50,27 @@ export default function Navigation() {
     },
   ];
 
+  const aboutLinks = [
+    {
+      label: 'About Us',
+      href: '/about-us',
+      icon: 'solar:buildings-3-bold-duotone',
+      description: 'Meet our team and learn about our mission to deliver compassionate, evidence-based care.',
+    },
+    {
+      label: 'Referral',
+      href: '/referral',
+      icon: 'solar:user-plus-bold-duotone',
+      description: 'Refer a client or learn how our streamlined intake process gets families started quickly.',
+    },
+    {
+      label: 'Careers',
+      href: '/careers',
+      icon: 'solar:case-bold-duotone',
+      description: 'Join a passionate team dedicated to making a meaningful difference in children\'s lives.',
+    },
+  ];
+
   return (
     <nav className="relative isolate z-300 bg-white border-b border-border-light h-(--header-height)">
       <div className="container-max h-full flex items-center justify-between relative">
@@ -141,6 +162,48 @@ export default function Navigation() {
               </div>
             </div>
           </div>
+
+          <div className="relative group/about">
+            <button
+              type="button"
+              className="nav-link text-[15px] font-bold text-dark flex items-center gap-1.5 py-4 cursor-pointer bg-transparent border-none"
+              aria-haspopup="menu"
+              aria-expanded="false"
+            >
+              About Dakota
+              <Icon
+                icon="solar:alt-arrow-down-bold"
+                className="w-4 h-4 opacity-60 transition-transform duration-200 group-hover/about:rotate-180 group-focus-within/about:rotate-180"
+              />
+            </button>
+
+            <div
+              className="absolute left-0 top-full w-[780px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/about:opacity-100 group-hover/about:pointer-events-auto group-hover/about:translate-y-0"
+              role="menu"
+              aria-label="About Dakota"
+            >
+              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-3 gap-4">
+                {aboutLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    role="menuitem"
+                    className="group/item flex flex-col gap-3 rounded-xl p-4 transition-all hover:bg-[#FDE8EE]/50 focus-visible:bg-[#FDE8EE]/50"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FDE8EE] text-accent transition-colors duration-300">
+                        <Icon icon={link.icon} className="w-6 h-6" />
+                      </span>
+                      <span className="font-bold text-dark group-hover/item:text-accent transition-colors">{link.label}</span>
+                    </div>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      {link.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Center: Brand Mark */}
@@ -199,13 +262,6 @@ export default function Navigation() {
               >
                 Home
               </Link>
-              <Link
-                href="/contact-us"
-                className="nav-link text-base py-3 px-4 rounded-md hover:bg-primary-light flex items-center justify-between group"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
 
               <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
                 Resources
@@ -241,16 +297,48 @@ export default function Navigation() {
                 ))}
               </div>
 
+              <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                About Dakota
+              </div>
+              <div className="flex flex-col gap-1 px-2">
+                {aboutLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-base py-2.5 px-3 rounded-xl hover:bg-[#FDE8EE] text-dark font-semibold flex items-center gap-2.5"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon icon={link.icon} className="w-5 h-5 text-accent" />
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
               {/* Mobile CTA */}
               <div className="pt-4 mt-2 border-t border-border-light">
-                <a
-                  href="tel:612-284-5382"
-                  className="btn btn-primary w-full justify-center rounded-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Icon icon="solar:phone-broken" className="w-7 h-7" />
-                  (612) 284-5382
-                </a>
+                <p className="text-xs font-semibold text-text-muted text-center mb-3 uppercase tracking-wider">
+                  Get in touch
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <a
+                    href="tel:612-284-5382"
+                    className="flex flex-col items-center gap-1.5 py-4 px-3 rounded-2xl bg-primary text-white font-bold text-sm transition-all active:scale-[0.97] shadow-sm shadow-primary/30"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon icon="solar:phone-bold-duotone" className="w-6 h-6" />
+                    <span>Call Us</span>
+                    <span className="text-xs font-normal opacity-80 tracking-tight">(612) 284-5382</span>
+                  </a>
+                  <Link
+                    href="/contact-us"
+                    className="flex flex-col items-center gap-1.5 py-4 px-3 rounded-2xl bg-[#FDE8EE] text-accent font-bold text-sm transition-all active:scale-[0.97]"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon icon="solar:letter-bold-duotone" className="w-6 h-6" />
+                    <span>Contact Us</span>
+                    <span className="text-xs font-normal opacity-70 tracking-tight">Send a message</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
