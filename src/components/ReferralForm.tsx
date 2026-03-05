@@ -15,6 +15,7 @@ type ReferralFormData = {
   childFirstName: string;
   childLastName: string;
   childDateOfBirth: string;
+  childAge: string;
   childGender: string;
   parentGuardianName: string;
   guardianRelationship: string;
@@ -35,7 +36,6 @@ type ReferralFormData = {
   insuranceSubscriberName: string;
   insuranceMemberId: string;
   insuranceGroupNumber: string;
-  authorizationStatus: string;
   documentsAvailable: string[];
   preferredStartTimeline: string;
   careCoordinationNotes: string;
@@ -90,6 +90,7 @@ const initialData: ReferralFormData = {
   childFirstName: '',
   childLastName: '',
   childDateOfBirth: '',
+  childAge: '',
   childGender: '',
   parentGuardianName: '',
   guardianRelationship: '',
@@ -110,13 +111,23 @@ const initialData: ReferralFormData = {
   insuranceSubscriberName: '',
   insuranceMemberId: '',
   insuranceGroupNumber: '',
-  authorizationStatus: '',
   documentsAvailable: [],
   preferredStartTimeline: '',
   careCoordinationNotes: '',
   consentReleaseInfo: false,
   attestationAccurate: false,
 };
+
+const US_STATES = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+  'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
+  'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
+  'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+  'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+  'Wisconsin', 'Wyoming', 'District of Columbia',
+];
 
 const requiredByStep: Record<number, (keyof ReferralFormData)[]> = {
   0: [
@@ -142,17 +153,10 @@ const requiredByStep: Record<number, (keyof ReferralFormData)[]> = {
   ],
   2: [
     'primaryDiagnosis',
-    'diagnosisDate',
-    'diagnosingProvider',
     'serviceRequested',
-    'referralConcerns',
   ],
   3: [
     'primaryInsurance',
-    'insuranceSubscriberName',
-    'insuranceMemberId',
-    'authorizationStatus',
-    'documentsAvailable',
     'preferredStartTimeline',
   ],
   4: ['consentReleaseInfo', 'attestationAccurate'],
@@ -452,6 +456,14 @@ export default function ReferralForm() {
             onChange={(value) => setField('childDateOfBirth', value)}
             error={errors.childDateOfBirth}
           />
+          <Field
+            id="childAge"
+            label="Age (Optional)"
+            value={formData.childAge}
+            onChange={(value) => setField('childAge', value.replace(/\D/g, '').slice(0, 2))}
+            error={errors.childAge}
+            placeholder="e.g. 5"
+          />
           <SelectField
             id="childGender"
             label="Gender"
@@ -515,14 +527,14 @@ export default function ReferralForm() {
             error={errors.addressCity}
             placeholder="Minneapolis"
           />
-          <Field
+          <SelectField
             id="addressState"
             label="State"
             required
             value={formData.addressState}
             onChange={(value) => setField('addressState', value)}
             error={errors.addressState}
-            placeholder="MN"
+            options={US_STATES}
           />
           <Field
             id="addressZip"
@@ -550,17 +562,15 @@ export default function ReferralForm() {
             />
             <Field
               id="diagnosisDate"
-              label="Diagnosis Date"
+              label="Diagnosis Date (Optional)"
               type="date"
-              required
               value={formData.diagnosisDate}
               onChange={(value) => setField('diagnosisDate', value)}
               error={errors.diagnosisDate}
             />
             <Field
               id="diagnosingProvider"
-              label="Diagnosing Provider or Clinic"
-              required
+              label="Diagnosing Provider or Clinic (Optional)"
               value={formData.diagnosingProvider}
               onChange={(value) => setField('diagnosingProvider', value)}
               error={errors.diagnosingProvider}
@@ -602,8 +612,8 @@ export default function ReferralForm() {
           </fieldset>
 
           <div>
-            <label htmlFor="referralConcerns" className="form-label form-label-required">
-              Presenting Concerns and Behavioral Priorities
+            <label htmlFor="referralConcerns" className="form-label">
+              Presenting Concerns and Behavioral Priorities (Optional)
             </label>
             <textarea
               id="referralConcerns"
@@ -639,8 +649,7 @@ export default function ReferralForm() {
             />
             <Field
               id="insuranceSubscriberName"
-              label="Subscriber Name"
-              required
+              label="Subscriber Name (Optional)"
               value={formData.insuranceSubscriberName}
               onChange={(value) => setField('insuranceSubscriberName', value)}
               error={errors.insuranceSubscriberName}
@@ -648,8 +657,7 @@ export default function ReferralForm() {
             />
             <Field
               id="insuranceMemberId"
-              label="Member ID"
-              required
+              label="Member ID (Optional)"
               value={formData.insuranceMemberId}
               onChange={(value) => setField('insuranceMemberId', value)}
               error={errors.insuranceMemberId}
@@ -663,33 +671,22 @@ export default function ReferralForm() {
               error={errors.insuranceGroupNumber}
               placeholder="Group number"
             />
-            <SelectField
-              id="authorizationStatus"
-              label="Insurance Authorization Status"
-              required
-              value={formData.authorizationStatus}
-              onChange={(value) => setField('authorizationStatus', value)}
-              error={errors.authorizationStatus}
-              options={[
-                'Not started',
-                'In progress',
-                'Approved',
-                'Denied',
-                'Unknown at this time',
-              ]}
-            />
           </div>
 
           <fieldset>
-            <legend className="form-label form-label-required">Available Documentation</legend>
+            <legend className="form-label">Available Documentation</legend>
+            <p className="mt-1 text-sm text-text-secondary">
+              These do not need to be in hand at the time of referral or before intake.
+            </p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
-                'Diagnostic evaluation report',
-                'Medical necessity letter',
-                'Recent progress notes',
-                'IEP or school plan',
-                'Insurance card copy',
-                'Prior ABA records',
+                'Individualized Treatment Plan (ITP)',
+                'Comprehensive Multi-Disciplinary Evaluation (CMDE)',
+                'Diagnostic Assessment (DA)',
+                'Functional Behavior Assessment (FBA)',
+                'Behavior Intervention Plan (BIP)',
+                'Insurance Card',
+                'Individualized Education Plan (IEP)',
               ].map((option) => (
                 <label key={option} className="checkbox-wrapper rounded-lg border border-border-light px-3 py-2">
                   <input

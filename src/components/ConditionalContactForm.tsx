@@ -4,13 +4,13 @@ import { usePathname } from 'next/navigation';
 import ContactForm from './ContactForm';
 
 /**
- * Renders the global ContactForm on every page EXCEPT /contact-us,
- * where the form is embedded directly in the page content to avoid duplication.
+ * Renders the global ContactForm on most pages.
+ * Excludes routes that already have dedicated intake/referral workflows.
  */
 export default function ConditionalContactForm() {
   const pathname = usePathname();
 
-  if (pathname === '/contact-us') return null;
+  if (pathname === '/contact-us' || pathname === '/referral') return null;
 
   return <ContactForm />;
 }

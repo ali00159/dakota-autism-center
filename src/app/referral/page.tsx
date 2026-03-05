@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { FileCheck2, ShieldCheck, Stethoscope } from 'lucide-react';
+import { ArrowRight, FileCheck2, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReferralForm from '@/components/ReferralForm';
 
 export const metadata: Metadata = {
@@ -75,53 +75,74 @@ export default function ReferralPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(referralPageSchema) }}
       />
 
-      <section className="relative overflow-hidden border-b border-border-light bg-linear-to-b from-bg-hero to-white">
-        <div className="pointer-events-none absolute -top-24 -left-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-20 top-6 h-80 w-80 rounded-full bg-tertiary/12 blur-3xl" />
-
-        <div className="container-max relative py-16 md:py-20 lg:py-24">
-          <span className="badge badge-primary mb-5 inline-block">Referral Intake</span>
-          <h1 className="max-w-4xl text-4xl font-bold leading-tight text-primary md:text-5xl">
-            Professional referral form for child ABA services
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg text-text-secondary">
-            This multi-step form is designed for pediatricians, psychologists, case managers, school
-            teams, and partner agencies submitting referrals. Complete all required fields for a
-            faster intake review.
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-max grid gap-6 lg:grid-cols-3">
-          {highlights.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article key={item.title} className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
-                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary-light text-primary">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h2 className="mb-2 text-2xl font-semibold text-primary">{item.title}</h2>
-                <p className="mb-0 text-text-secondary">{item.description}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="section bg-bg-secondary">
-        <div className="container-max">
-          <div className="card-static rounded-3xl border border-border-light p-6 md:p-10">
-            <div className="mb-8">
-              <h2 className="mb-3 text-3xl font-semibold text-primary">Submit a Professional Referral</h2>
-              <p className="mb-0 max-w-3xl text-text-secondary">
-                Include diagnosis and insurance details as available. If some documentation is still
-                pending, you can still submit this form and our team will follow up.
+      <section className="border-b border-border-light bg-white">
+        <div className="container-max py-14 md:py-18 lg:py-20">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="flex flex-col items-center">
+              <span className="badge badge-secondary mb-5 inline-block">Referral Intake</span>
+              <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">
+                Professional ABA referrals, organized for quick clinical review
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg text-text-secondary">
+                Submit one complete referral package for intake, insurance readiness, and care
+                coordination planning. The form below is built to capture what our clinical team needs
+                without extra back-and-forth.
               </p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="referral-form" className="relative pb-12 md:pb-16">
+        <div className="container-max -mt-8 md:-mt-12">
+          <div className="card-static rounded-3xl border border-border-light p-6 md:p-10">
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <h2 className="mb-3 text-3xl font-semibold text-primary">Submit a Professional Referral</h2>
+                <p className="mb-0 max-w-3xl text-text-secondary">
+                  Include diagnosis and insurance details as available. If documentation is still
+                  pending, submit what you have and our team will follow up for the remainder.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 rounded-full bg-tertiary/15 px-4 py-2 text-sm font-semibold text-tertiary">
+                Secure intake <ArrowRight className="h-4 w-4" />
+              </span>
             </div>
 
             <ReferralForm />
+          </div>
+        </div>
+      </section>
+
+      <section className="section border-t border-border-light bg-bg-secondary">
+        <div className="container-max">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <span className="badge badge-info mb-4 inline-block">Why this structure works</span>
+              <h2 className="mb-2 text-3xl font-semibold text-primary">Built for complete intake clarity</h2>
+              <p className="mb-0 max-w-2xl text-text-secondary">
+                Every section is tailored to give the clinical team actionable context while reducing
+                follow-up delays.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {highlights.map((item, index) => {
+              const Icon = item.icon;
+              const iconStyles = ['bg-secondary/20 text-secondary', 'bg-tertiary/20 text-tertiary', 'bg-accent/20 text-accent'];
+
+              return (
+                <article key={item.title} className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+                  <span className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full ${iconStyles[index]}`}>
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mb-2 text-2xl font-semibold text-primary">{item.title}</h3>
+                  <p className="mb-0 text-text-secondary">{item.description}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
