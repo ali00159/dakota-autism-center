@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AboutAutismContent from './AboutAutismContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Understanding Autism for Parents | Dakota Autism Center',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function AboutAutismPage() {
-  return <AboutAutismContent />;
+  return (
+    <>
+      <AboutAutismContent />
+      <ContactForm />
+    </>
+  );
 }

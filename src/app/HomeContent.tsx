@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -805,6 +806,7 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 6. Contact Form ────────────────── */}
+      <ContactForm />
     </main>
   );
 }

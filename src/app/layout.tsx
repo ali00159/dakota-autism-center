@@ -25,8 +25,6 @@ export const metadata: Metadata = {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
-import ConditionalContactForm from "@/components/ConditionalContactForm";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,7 +46,6 @@ export default function RootLayout({
         <div className="grow">
           {children}
         </div>
-        <ConditionalContactForm />
         <Footer />
       </body>
     </html>

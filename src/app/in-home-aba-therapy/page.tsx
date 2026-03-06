@@ -1,6 +1,7 @@
 // Force rebuild
 import type { Metadata } from 'next';
 import InHomeAbaContent from './InHomeAbaContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'In-Home ABA Therapy — Evidence-Based Support at Home | Dakota Autism Center',
@@ -17,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function InHomeAbaTherapyPage() {
-  return <InHomeAbaContent />;
+  return (
+    <>
+      <InHomeAbaContent />
+      <ContactForm />
+    </>
+  );
 }

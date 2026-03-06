@@ -98,6 +98,143 @@ export type Database = {
           },
         ]
       }
+      "dakota-autism-center-referral_submissions": {
+        Row: {
+          address_city: string
+          address_state: string
+          address_street: string | null
+          address_zip: string
+          attestation_accurate: boolean
+          care_coordination_notes: string | null
+          child_age: string | null
+          child_date_of_birth: string
+          child_first_name: string
+          child_gender: string
+          child_last_name: string
+          consent_release_info: boolean
+          created_at: string | null
+          current_services: string | null
+          diagnosis_date: string | null
+          diagnosing_provider: string | null
+          documents_available: string[] | null
+          guardian_email: string
+          guardian_phone: string
+          guardian_relationship: string
+          id: string
+          insurance_group_number: string | null
+          insurance_member_id: string | null
+          insurance_subscriber_name: string | null
+          org_id: string
+          organization_name: string
+          parent_guardian_name: string
+          preferred_start_timeline: string
+          primary_diagnosis: string
+          primary_insurance: string
+          professional_credentials: string
+          professional_email: string
+          professional_fax: string | null
+          professional_name: string
+          professional_npi: string | null
+          professional_phone: string
+          referral_concerns: string | null
+          referral_reason: string
+          secondary_insurance: string | null
+          service_requested: string[]
+        }
+        Insert: {
+          address_city: string
+          address_state: string
+          address_street?: string | null
+          address_zip: string
+          attestation_accurate?: boolean
+          care_coordination_notes?: string | null
+          child_age?: string | null
+          child_date_of_birth: string
+          child_first_name: string
+          child_gender: string
+          child_last_name: string
+          consent_release_info?: boolean
+          created_at?: string | null
+          current_services?: string | null
+          diagnosis_date?: string | null
+          diagnosing_provider?: string | null
+          documents_available?: string[] | null
+          guardian_email: string
+          guardian_phone: string
+          guardian_relationship: string
+          id?: string
+          insurance_group_number?: string | null
+          insurance_member_id?: string | null
+          insurance_subscriber_name?: string | null
+          org_id: string
+          organization_name: string
+          parent_guardian_name: string
+          preferred_start_timeline: string
+          primary_diagnosis: string
+          primary_insurance: string
+          professional_credentials: string
+          professional_email: string
+          professional_fax?: string | null
+          professional_name: string
+          professional_npi?: string | null
+          professional_phone: string
+          referral_concerns?: string | null
+          referral_reason: string
+          secondary_insurance?: string | null
+          service_requested?: string[]
+        }
+        Update: {
+          address_city?: string
+          address_state?: string
+          address_street?: string | null
+          address_zip?: string
+          attestation_accurate?: boolean
+          care_coordination_notes?: string | null
+          child_age?: string | null
+          child_date_of_birth?: string
+          child_first_name?: string
+          child_gender?: string
+          child_last_name?: string
+          consent_release_info?: boolean
+          created_at?: string | null
+          current_services?: string | null
+          diagnosis_date?: string | null
+          diagnosing_provider?: string | null
+          documents_available?: string[] | null
+          guardian_email?: string
+          guardian_phone?: string
+          guardian_relationship?: string
+          id?: string
+          insurance_group_number?: string | null
+          insurance_member_id?: string | null
+          insurance_subscriber_name?: string | null
+          org_id?: string
+          organization_name?: string
+          parent_guardian_name?: string
+          preferred_start_timeline?: string
+          primary_diagnosis?: string
+          primary_insurance?: string
+          professional_credentials?: string
+          professional_email?: string
+          professional_fax?: string | null
+          professional_name?: string
+          professional_npi?: string | null
+          professional_phone?: string
+          referral_concerns?: string | null
+          referral_reason?: string
+          secondary_insurance?: string | null
+          service_requested?: string[]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dakota-autism-center-referral_submissions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["org_id"]
+          },
+        ]
+      }
       "mali-design-works-contact_submissions": {
         Row: {
           budget: string | null

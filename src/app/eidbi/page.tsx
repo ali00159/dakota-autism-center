@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import EidbiContent from './EidbiContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'EIDBI Services — Specialized Autism Support in Minnesota | Dakota Autism Center',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function EidbiPage() {
-  return <EidbiContent />;
+  return (
+    <>
+      <EidbiContent />
+      <ContactForm />
+    </>
+  );
 }

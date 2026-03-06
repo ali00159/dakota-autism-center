@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CulturallyResponsiveContent from './CulturallyResponsiveContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title:
@@ -24,5 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function CulturallyResponsiveAbaTherapyPage() {
-  return <CulturallyResponsiveContent />;
+  return (
+    <>
+      <CulturallyResponsiveContent />
+      <ContactForm />
+    </>
+  );
 }

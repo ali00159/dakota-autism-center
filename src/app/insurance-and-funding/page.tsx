@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import InsuranceFundingContent from './InsuranceFundingContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Insurance and Funding for ABA Therapy in Minnesota | Dakota Autism Center',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function InsuranceAndFundingPage() {
-  return <InsuranceFundingContent />;
+  return (
+    <>
+      <InsuranceFundingContent />
+      <ContactForm />
+    </>
+  );
 }

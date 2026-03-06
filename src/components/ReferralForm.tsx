@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, ShieldCheck } from 'lucide-react';
+import { useMemo, useState, useTransition } from 'react';
+import { CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, Loader2, ShieldCheck } from 'lucide-react';
+import { submitReferral } from '@/app/actions/submitReferral';
 
 type ReferralFormData = {
   professionalName: string;
@@ -190,6 +191,8 @@ export default function ReferralForm() {
   const [formData, setFormData] = useState<ReferralFormData>(initialData);
   const [errors, setErrors] = useState<ErrorMap>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [submitError, setSubmitError] = useState('');
 
   const progress = useMemo(() => ((step + 1) / steps.length) * 100, [step]);
 
@@ -271,7 +274,15 @@ export default function ReferralForm() {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validateCurrentStep()) return;
-    setSubmitted(true);
+    setSubmitError('');
+    startTransition(async () => {
+      const result = await submitReferral(formData);
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(result.error);
+      }
+    });
   };
 
   if (submitted) {
@@ -342,6 +353,16 @@ export default function ReferralForm() {
           className="rounded-xl border border-error/30 bg-red-50 px-4 py-3 text-sm text-accent"
         >
           Please complete all required fields on this step before continuing.
+        </div>
+      )}
+
+      {submitError && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="rounded-xl border border-error/30 bg-red-50 px-4 py-3 text-sm text-accent"
+        >
+          Something went wrong submitting your referral. Please try again.
         </div>
       )}
 
@@ -786,9 +807,18 @@ export default function ReferralForm() {
             <ChevronRight className="h-4 w-4" />
           </button>
         ) : (
-          <button type="submit" className="btn btn-primary rounded-full">
-            Submit Professional Referral
-            <CheckCircle2 className="h-4 w-4" />
+          <button type="submit" disabled={isPending} className="btn btn-primary rounded-full disabled:opacity-60">
+            {isPending ? (
+              <>
+                Submitting...
+                <Loader2 className="h-4 w-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                Submit Professional Referral
+                <CheckCircle2 className="h-4 w-4" />
+              </>
+            )}
           </button>
         )}
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CenterBasedContent from './CenterBasedContent';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Center-Based ABA Therapy — Structured Program for Growth | Dakota Autism Center',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function CenterBasedAbaTherapyPage() {
-  return <CenterBasedContent />;
+  return (
+    <>
+      <CenterBasedContent />
+      <ContactForm />
+    </>
+  );
 }
