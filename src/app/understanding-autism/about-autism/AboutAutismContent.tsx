@@ -13,6 +13,7 @@ import {
   Stethoscope,
 } from 'lucide-react';
 
+
 const coreAutismFacts = [
   {
     title: 'What autism is',
