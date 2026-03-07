@@ -79,13 +79,12 @@ interface ServiceItem {
   id: string;
   title: string;
   description: string;
-  bullets: string[];
+  details: string;
   icon: string;
   accentHex: string;
   lightBg: string;
   textColor: string;
   iconColor: string;
-  bulletBg: string;
   href: string;
 }
 
@@ -94,72 +93,56 @@ const services: ServiceItem[] = [
     id: 'center-based',
     title: 'Center-Based ABA Therapy',
     description:
-      'Our center provides a school-like environment where children build skills through structured routines, peer interaction, and group activities.',
-    bullets: [
-      'School-like environment',
-      'Peer interaction & group skills',
-      'Structured routines',
-    ],
+      'Our center provides a structured, school-like environment where children build essential social, communication, and behavioral skills through guided routines and meaningful peer interaction.',
+    details:
+      'Each child receives individualized programming within a collaborative setting designed to prepare them for school and community participation. With consistent daily routines, small group activities, and one-on-one instruction, your child develops confidence and independence in a space built specifically for their growth.',
     icon: 'solar:buildings-bold-duotone',
     accentHex: '#115C47',
     lightBg: '#E8F4F0',
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
-    bulletBg: 'rgba(0, 0, 0, 0.15)',
     href: '/center-based-aba-therapy',
   },
   {
     id: 'in-home',
     title: 'In-Home ABA Therapy',
     description:
-      'Therapy takes place in the comfort of your home, focusing on real-world skill building with flexible scheduling for busy families.',
-    bullets: [
-      'Natural environment learning',
-      'Flexible scheduling',
-      'Real-world skill building',
-    ],
+      'Therapy takes place in the comfort and familiarity of your own home, where children practice real-world skills in the environment that matters most — their everyday life.',
+    details:
+      'Our therapists work alongside your family\u2019s natural routines, teaching practical skills like mealtime behavior, morning transitions, and social play with siblings. Flexible scheduling options accommodate busy households, making it easier to maintain consistent therapy without disrupting your family\u2019s rhythm.',
     icon: 'solar:home-smile-bold-duotone',
     accentHex: '#E0F2FE',
     lightBg: '#E5F4FC',
     textColor: '#1F2937',
     iconColor: '#0284C7',
-    bulletBg: 'rgba(255, 255, 255, 0.6)',
     href: '/in-home-aba-therapy',
   },
   {
     id: 'family-training',
     title: 'Family Training & Support',
     description:
-      "We coach you with strategies you can use every day — because lasting progress happens when the whole family is part of the journey.",
-    bullets: [
-      'Coaching for lasting success',
-      'Everyday strategies',
-      'Partnership approach',
-    ],
+      'We partner with parents and caregivers to build strategies that extend your child\u2019s progress beyond therapy sessions — because lasting growth happens when the whole family is equipped.',
+    details:
+      'Through hands-on coaching and collaborative goal-setting, we help you understand the principles behind your child\u2019s program so you can reinforce positive behavior at home, at school, and in the community. Family training transforms everyday moments into opportunities for connection and skill-building.',
     icon: 'solar:users-group-rounded-bold-duotone',
     accentHex: '#FB9A31',
     lightBg: '#FEF3E8',
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
-    bulletBg: 'rgba(0, 0, 0, 0.1)',
     href: '/contact-us',
   },
   {
     id: 'eidbi',
     title: 'EIDBI — Early Intervention',
     description:
-      'Comprehensive early intervention for children ages 0–6, covered by Medical Assistance. Intensive support during critical years.',
-    bullets: [
-      'Comprehensive intervention',
-      'Medical Assistance coverage',
-      'Support for ages 0–6',
-    ],
+      'Minnesota\u2019s Early Intensive Developmental and Behavioral Intervention program provides comprehensive support for children ages 0\u20136, fully covered by Medical Assistance.',
+    details:
+      'Early intervention during these critical developmental years can make a profound difference. Our EIDBI services include individualized assessment, targeted skill-building, and family support to help your child reach meaningful milestones during the period when the brain is most receptive to growth and learning.',
     icon: 'solar:heart-pulse-bold-duotone',
     accentHex: '#EA3D6A',
     lightBg: '#FDE8EE',
     textColor: '#FFFFFF',
     iconColor: '#FFFFFF',
-    bulletBg: 'rgba(0, 0, 0, 0.1)',
     href: '/eidbi',
   },
 ];
@@ -578,27 +561,15 @@ export default function HomeContent() {
                   {service.title}
                 </h3>
 
-                <p className="mb-6 text-[15px] font-medium leading-relaxed text-[#696367]">
+                <p className="mb-4 text-[15px] font-medium leading-relaxed text-[#696367]">
                   {service.description}
                 </p>
 
-                <ul className="mt-auto space-y-3">
-                  {service.bullets.map((bullet, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 rounded-2xl border border-[#115C47]/10 bg-[#F8FAF9] px-4 py-3"
-                    >
-                      <Icon
-                        icon="solar:check-circle-bold"
-                        className="w-6 h-6 shrink-0"
-                        style={{ color: service.accentHex }}
-                      />
-                      <span className="text-base font-medium leading-snug text-[#3D373B] lg:text-lg">
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-auto rounded-2xl border border-[#115C47]/8 bg-[#F8FAF9] px-5 py-4">
+                  <p className="text-[14.5px] leading-[1.7] text-[#5A555A]">
+                    {service.details}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
