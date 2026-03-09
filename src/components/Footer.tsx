@@ -10,6 +10,8 @@ export default function Footer() {
     company: [
       { label: 'Home', href: '/' },
       { label: 'Contact Us', href: '/contact-us' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Referral', href: '/referral' },
       { label: 'About Us', href: '/understanding-autism/about-autism' },
       { label: 'Cultural Competency', href: '/culturally-responsive-aba-therapy' },
       { label: 'Insurance & Funding', href: '/insurance-and-funding' },
