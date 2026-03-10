@@ -99,7 +99,7 @@ export default function Navigation() {
               role="menu"
               aria-label="Resources"
             >
-              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-3 gap-4">
                 {resourcesLinks.map((link) => (
                   <Link
                     key={link.label}

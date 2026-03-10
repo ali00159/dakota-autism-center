@@ -167,29 +167,43 @@ const testimonials = [
     quote:
       'The calm, thoughtful rhythm of the day makes such a difference. My daughter comes home smiling — and so do we.',
     author: 'Maja & Ariel',
-    role: 'Parent of Emily',
   },
   {
     quote:
-      'The calm, thoughtful rhythm of the day makes such a difference. My daughter comes home smiling — and so do we.',
-    author: 'Emily R.',
-    role: 'Parent of Emily',
+      'The therapists here truly listen. They adapted to our son\'s needs and helped him find his voice in a way we never thought possible.',
+    author: 'Sarah T.',
   },
   {
     quote:
-      'The calm, thoughtful rhythm of the day makes such a difference. My daughter comes home smiling — and so do we.',
-    author: 'Maja & Ariel',
-    role: 'Parent of Emily',
+      'We finally found a place where our child feels safe and understood. The progress we\'ve seen in just a few months is incredible.',
+    author: 'David & Elena',
   },
   {
     quote:
-      'The calm, thoughtful rhythm of the day makes such a difference. My daughter comes home smiling — and so do we.',
-    author: 'Emily R.',
-    role: 'Parent of Emily',
+      'Every day is a new discovery. The compassionate approach of the team has given us hope and a clear path forward for our family.',
+    author: 'Jessica M.',
+  },
+  {
+    quote:
+      'The culturally responsive care we received made all the difference. They respected our family traditions while providing exceptional therapy.',
+    author: 'Aisha & Omar',
+  },
+  {
+    quote:
+      'Seeing my son learn to communicate his needs has been life-changing. The patience of the staff here is truly remarkable.',
+    author: 'Wei Chen',
+  },
+  {
+    quote:
+      'From the very first day, we felt like part of a community. The support extends beyond therapy sessions into our daily lives.',
+    author: 'Mateo & Sofia',
+  },
+  {
+    quote:
+      'The transition to school was so much smoother thanks to the foundational skills built here. We are forever grateful.',
+    author: 'Priya R.',
   },
 ];
-
-const marqueeTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
 const principles = [
   { text: 'Natural Growth', color: '#115C47' },
@@ -202,6 +216,9 @@ const principles = [
 
 export default function HomeContent() {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0].id);
+  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
+  
   const activeContent = tabs.find((tab) => tab.id === activeTab) || tabs[0];
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 100]);
@@ -213,8 +230,19 @@ export default function HomeContent() {
   });
   const aboutY = useTransform(aboutScrollYProgress, [0, 1], [50, -50]);
 
+  // Auto-play testimonials
+  React.useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 6000); // Switch every 6 seconds
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, testimonials.length]);
+
   return (
-    <main id="main-content" className="w-full overflow-hidden">
+    <main id="main-content" className="w-full overflow-x-hidden">
       {/* ────────────────── 1. Hero ────────────────── */}
       <section
         className="relative w-full min-h-[calc(100vh-150px)] bg-white overflow-hidden border-b border-border-light"
@@ -696,104 +724,180 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 5. Testimonials ────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#FB9A31] pt-8 pb-14 lg:pt-10 lg:pb-18">
-        <div className="container-max relative z-10 px-4 md:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-10 lg:mb-12 gap-6 lg:gap-10">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white! leading-[1.08] max-w-xl">
-              See what everyday <br className="hidden lg:block" />
-              <span className="text-white">joy looks like</span>
-            </h2>
-            <p className="text-white/90 text-lg leading-relaxed font-secondary max-w-lg mb-0.5">
-              Step inside a day at Dakota Autism Center – where calm curiosity
-              meets spontaneous joy. Watch how our teachers guide, listen, and
-              laugh alongside the little ones, creating an environment where
-              every child feels understood, supported, and free to grow at their
-              own pace.
-            </p>
-          </div>
+      <section className="relative w-full overflow-hidden bg-[#FB9A31] py-10 lg:py-12">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div 
+            animate={{ 
+              y: [0, -30, 0],
+              scale: [1, 1.05, 1],
+              rotate: [0, 5, 0]
+            }}
+            transition={{ 
+              duration: 12, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="absolute -top-[20%] -left-[10%] w-[60%] h-[70%] rounded-full bg-[#FFB05C]/60 blur-[100px]"
+          />
+          <motion.div 
+            animate={{ 
+              y: [0, 40, 0],
+              scale: [1, 1.1, 1],
+              rotate: [0, -5, 0]
+            }}
+            transition={{ 
+              duration: 15, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: 2
+            }}
+            className="absolute -bottom-[30%] -right-[10%] w-[70%] h-[80%] rounded-full bg-[#E8882B]/50 blur-[120px]"
+          />
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        <div className="container-max relative z-10 px-4 md:px-8">
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="relative w-full aspect-21/9 rounded-tl-[48px] rounded-br-[48px] md:rounded-tl-[72px] md:rounded-br-[72px] border border-white/35 p-1.5 overflow-hidden shadow-xl mb-10 bg-white/20 group"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-4 lg:mb-6 flex flex-col items-center"
           >
-            <div className="relative h-full w-full rounded-tl-[42px] rounded-br-[42px] md:rounded-tl-[64px] md:rounded-br-[64px] overflow-hidden">
-              <Image
-                src="/hero-image.png"
-                alt="Children and therapists sharing a joyful moment at Dakota Autism Center"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/8 group-hover:bg-black/16 transition-colors duration-300" />
-              <div className="pointer-events-none absolute inset-0 ring-1 ring-white/25 rounded-tl-[42px] rounded-br-[42px] md:rounded-tl-[64px] md:rounded-br-[64px]" />
+            <div className="mb-3 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm shadow-inner">
+              <Icon icon="solar:heart-pulse-bold-duotone" className="w-8 h-8 md:w-10 md:h-10 text-white" />
             </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white leading-[1.1] tracking-tight max-w-2xl">
+              Hear from the families growing with us
+            </h2>
           </motion.div>
 
-          <div className="relative w-full overflow-hidden -mx-4 md:-mx-8 px-4 md:px-8">
-            <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-linear-to-r from-[#FB9A31] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-linear-to-l from-[#FB9A31] to-transparent z-20 pointer-events-none" />
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="relative w-full max-w-5xl mx-auto"
+          >
+            {/* Decorative Quote Mark */}
+            <div className="absolute -top-6 -left-2 md:-top-10 md:-left-6 text-white/25 z-0 select-none pointer-events-none transform -rotate-12">
+              <Icon icon="solar:quote-left-bold-duotone" className="w-24 h-24 md:w-36 md:h-36" />
+            </div>
 
-            <motion.div
-              className="flex gap-6 lg:gap-8 w-max"
-              animate={{ x: ['0%', '-33.33%'] }}
-              transition={{
-                duration: 15,
-                ease: 'linear',
-                repeat: Infinity,
-              }}
-              whileHover={{ animationPlayState: 'paused' }}
-            >
-              {marqueeTestimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="w-[300px] md:w-[400px] bg-white p-6 rounded-2xl shadow-sm border border-[#EBEBEB] flex flex-col h-full hover:shadow-md transition-shadow duration-300 shrink-0"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="relative w-8 h-8 opacity-80">
-                      <Image
-                        src="/logo-mark.svg"
-                        alt="Dakota Autism Center Logo Mark"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Icon
-                          key={i}
-                          icon="solar:star-bold"
-                          className="w-4 h-4 text-[#FB9A31]"
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-[#6B6569] text-lg leading-snug mb-6 font-secondary grow">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-10 h-10 rounded-full bg-[#E8F4F0] flex items-center justify-center overflow-hidden">
-                      <Icon
-                        icon="solar:user-circle-bold"
-                        className="w-full h-full text-[#B2D8CA]"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-bold text-[#474044] font-primary text-base leading-none mb-1">
-                        {testimonial.author}
-                      </p>
-                      <p className="text-sm text-[#8F8B8E] font-secondary leading-none">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
+            <div className="relative z-10 bg-white rounded-[32px] md:rounded-[48px] p-8 md:p-12 lg:p-16 shadow-[0_20px_60px_rgba(200,100,10,0.3)] border border-white/60">
+              <div className="flex flex-col items-center text-center">
+                {/* Logo */}
+                <div className="mb-10 relative">
+                  <div className="absolute inset-0 bg-[#FB9A31]/10 blur-xl rounded-full scale-150" />
+                  <Image
+                    src="/logo-mark.svg"
+                    alt="Dakota Autism Center"
+                    width={60}
+                    height={68}
+                    className="relative h-16 w-auto opacity-90"
+                  />
                 </div>
-              ))}
-            </motion.div>
-          </div>
+                
+                {/* Quote Text */}
+                <div 
+                  className="min-h-[160px] md:min-h-[140px] flex items-center justify-center w-full"
+                  onMouseEnter={() => setIsAutoPlaying(false)}
+                  onMouseLeave={() => setIsAutoPlaying(true)}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTestimonial}
+                      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      className="w-full"
+                    >
+                      <p className="text-xl md:text-3xl lg:text-4xl font-medium text-[#474044] leading-relaxed md:leading-snug font-primary">
+                        &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Author */}
+                <div className="mt-8 flex flex-col items-center">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTestimonial}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="flex flex-col items-center"
+                    >
+                      <div className="flex gap-1 mb-3">
+                        {[...Array(5)].map((_, i) => (
+                          <Icon
+                            key={i}
+                            icon="solar:star-bold"
+                            className="w-5 h-5 text-[#FB9A31]"
+                          />
+                        ))}
+                      </div>
+                      <p className="font-bold text-[#474044] text-lg md:text-xl font-primary">{testimonials[activeTestimonial].author}</p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Navigation */}
+                <div 
+                  className="flex items-center gap-6 md:gap-8 mt-12"
+                  onMouseEnter={() => setIsAutoPlaying(false)}
+                  onMouseLeave={() => setIsAutoPlaying(true)}
+                >
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+                      setIsAutoPlaying(false);
+                    }} 
+                    className="w-12 h-12 rounded-full border-2 border-[#EBEBEB] flex items-center justify-center text-[#474044] hover:bg-[#FB9A31] hover:text-white hover:border-[#FB9A31] transition-colors duration-300 group cursor-pointer"
+                    aria-label="Previous testimonial"
+                  >
+                    <Icon icon="solar:arrow-left-linear" className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
+                  </motion.button>
+                  
+                  <div className="flex gap-2.5">
+                    {testimonials.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setActiveTestimonial(idx);
+                          setIsAutoPlaying(false);
+                        }}
+                        className={cn(
+                          "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
+                          activeTestimonial === idx ? "bg-[#FB9A31] w-8" : "bg-[#EBEBEB] w-2.5 hover:bg-[#FB9A31]/50"
+                        )}
+                        aria-label={`Go to testimonial ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+                      setIsAutoPlaying(false);
+                    }} 
+                    className="w-12 h-12 rounded-full border-2 border-[#EBEBEB] flex items-center justify-center text-[#474044] hover:bg-[#FB9A31] hover:text-white hover:border-[#FB9A31] transition-colors duration-300 group cursor-pointer"
+                    aria-label="Next testimonial"
+                  >
+                    <Icon icon="solar:arrow-right-linear" className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
