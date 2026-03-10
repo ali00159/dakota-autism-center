@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import RotatingText from '@/components/RotatingText';
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -238,11 +239,31 @@ export default function HomeContent() {
                 id="hero-heading"
                 className="hero-headline mb-6 stagger-1 relative"
               >
-                Supporting Your Child&apos;s Unique Journey:{' '}
-                <span className="text-secondary relative inline-block">
-                  Evidence-Based
-                </span>{' '}
-                Care for Autism
+                <span className="hero-rotating-line">
+                  <RotatingText
+                    texts={[
+                      'Evidence-Based',
+                      'Compassionate',
+                      'Personalized',
+                      'Nurturing',
+                    ]}
+                    mainClassName="hero-rotating-keyword"
+                    elementLevelClassName="hero-rotating-char"
+                    rotationInterval={3000}
+                    staggerDuration={0.025}
+                    staggerFrom="first"
+                    splitBy="characters"
+                    transition={{
+                      type: 'spring',
+                      damping: 28,
+                      stiffness: 280,
+                    }}
+                    initial={{ y: '100%', opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: '-120%', opacity: 0 }}
+                  />
+                </span>
+                ABA Therapy for Your Child&apos;s Journey
               </h1>
 
               <p className="body-large text-text-secondary mb-10 max-w-2xl mx-auto md:mx-0 stagger-2 leading-relaxed">

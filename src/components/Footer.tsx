@@ -7,32 +7,28 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks: Record<string, FooterLink[]> = {
-    company: [
-      { label: 'Home', href: '/' },
-      { label: 'Contact Us', href: '/contact-us' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Referral', href: '/referral' },
-      { label: 'About Us', href: '/understanding-autism/about-autism' },
-      { label: 'Cultural Competency', href: '/culturally-responsive-aba-therapy' },
+    resources: [
+      { label: 'Understanding Autism', href: '/understanding-autism/about-autism' },
       { label: 'Insurance & Funding', href: '/insurance-and-funding' },
+      { label: 'Culturally Responsive ABA', href: '/culturally-responsive-aba-therapy' },
     ],
     services: [
       { label: 'Center-Based ABA', href: '/center-based-aba-therapy' },
       { label: 'In-Home ABA', href: '/in-home-aba-therapy' },
       { label: 'EIDBI Services', href: '/eidbi' },
-      { label: 'Insurance & Funding', href: '/insurance-and-funding' },
-      { label: 'Understanding Autism', href: '/understanding-autism/about-autism' },
     ],
-    locations: [
-      { label: 'Minneapolis, MN (HQ)', href: '/contact-us' },
-    ]
+    about: [
+      { label: 'About Us', href: '/about-us' },
+      { label: 'Referral', href: '/referral' },
+      { label: 'Careers', href: '/careers' },
+    ],
   };
 
   return (
     <footer className="bg-primary text-white pt-16 pb-8 mt-auto">
       <div className="container-max">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 border-b border-white/10 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 border-b border-white/10 pb-10">
           
           {/* Brand Column */}
           <div className="lg:col-span-6 space-y-6">
@@ -43,7 +39,7 @@ export default function Footer() {
                   alt="Dakota Autism Center"
                   width={280}
                   height={106}
-                  className="h-40 w-auto brightness-0 invert"
+                  className="h-32 w-auto brightness-0 invert"
                 />
               </div>
             </Link>
@@ -58,19 +54,16 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8 mt-4">
             
-            {/* Company */}
+            {/* Resources */}
             <div>
-              <h3 className="text-[11px] font-bold tracking-wider uppercase mb-6 text-supporting">Company</h3>
+              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">Resources</h3>
               <ul className="space-y-4">
-                {footerLinks.company.map((link) => (
+                {footerLinks.resources.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="footer-link inline-flex items-center gap-2 group">
+                    <Link href={link.href} className="footer-link">
                       {link.label}
-                      {link.isNew && (
-                        <span className="bg-tertiary text-[10px] font-bold px-1.5 py-0.5 rounded text-white">NEW</span>
-                      )}
                     </Link>
                   </li>
                 ))}
@@ -79,7 +72,7 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="text-[11px] font-bold tracking-wider uppercase mb-6 text-supporting">Services</h3>
+              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">Services</h3>
               <ul className="space-y-4">
                 {footerLinks.services.map((link) => (
                   <li key={link.label}>
@@ -91,14 +84,13 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Locations */}
+            {/* About */}
             <div>
-              <h3 className="text-[11px] font-bold tracking-wider uppercase mb-6 text-supporting">Locations</h3>
+              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">About</h3>
               <ul className="space-y-4">
-                {footerLinks.locations.map((link) => (
+                {footerLinks.about.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="footer-link inline-flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-tertiary" />
+                    <Link href={link.href} className="footer-link">
                       {link.label}
                     </Link>
                   </li>
@@ -109,7 +101,7 @@ export default function Footer() {
         </div>
 
         {/* Contact Details Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 pb-4">
           {/* Location */}
           <div className="flex items-start gap-3">
             <MapPin className="w-5 h-5 text-[#D4EAFC] mt-0.5 shrink-0" />

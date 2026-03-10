@@ -1086,3 +1086,27 @@ body {
 .font-semibold { font-weight: var(--font-weight-semibold); }
 .font-bold { font-weight: var(--font-weight-bold); }
 
+/* ========== HERO ROTATING TEXT ========== */
+
+.hero-rotating-line {
+  display: block;
+  width: 100%;
+}
+
+.hero-rotating-keyword {
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-bold);
+  vertical-align: baseline;
+  line-height: inherit;
+}
+
+.hero-rotating-char {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rotating-keyword {
+    overflow: visible;
+  }
+}
+
