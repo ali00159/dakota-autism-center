@@ -157,8 +157,14 @@ export default function Footer() {
             <span className="text-white/40 cursor-default">Terms of Service</span>
           </div>
 
-          <p className="text-white/40">
-            Designed by <span className="text-white">Mali Design Works</span> MDW
+          <p className="text-white/40 flex items-center gap-1.5">
+            Designed by{' '}
+            <a href="https://malidesign.works/" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:text-white/80 transition-colors">
+              Mali Design Works
+            </a>
+            <a href="https://malidesign.works/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+              <Image src="/images/center-based/mdw-logo.svg" alt="Mali Design Works" width={40} height={16} className="h-4 w-auto relative -top-[2px]" />
+            </a>
           </p>
         </div>
       </div>
