@@ -242,7 +242,7 @@ export default function HomeContent() {
   }, [isAutoPlaying, testimonials.length]);
 
   return (
-    <main id="main-content" className="w-full overflow-x-hidden">
+    <main id="main-content" className="w-full overflow-x-clip">
       {/* ────────────────── 1. Hero ────────────────── */}
       <section
         className="relative w-full min-h-[calc(100vh-150px)] bg-white overflow-hidden border-b border-border-light"
