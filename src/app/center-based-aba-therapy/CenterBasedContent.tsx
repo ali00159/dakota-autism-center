@@ -161,6 +161,19 @@ const centerFitSignals = [
     description: 'A strong fit when you want frequent BCBA oversight and collaborative therapist support in one place.',
     icon: 'solar:stethoscope-bold-duotone',
   },
+  {
+    title: 'Transition and Routine Support',
+    description:
+      'Helpful for children who benefit from practicing transitions between activities with visual schedules and predictable cues.',
+    icon: 'solar:calendar-mark-bold-duotone',
+    badge: 'Structured Routines',
+  },
+  {
+    title: 'Group Learning Readiness',
+    description:
+      'A great option when your child is ready to build attention, flexibility, and participation in guided small-group settings.',
+    icon: 'solar:users-group-rounded-bold-duotone',
+  },
 ];
 
 const settingComparison = [
@@ -270,8 +283,8 @@ export default function CenterBasedContent() {
       <section className="relative border-b border-border-light overflow-hidden bg-white">
         <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
           <Image
-            src="/hero-image.png"
-            alt="Therapist and child engaged in center-based ABA activities"
+            src="/images/center-based/hero-center-based.webp"
+            alt="Therapist guiding children through a table activity in a structured learning setting"
             fill
             className="object-cover"
             priority
@@ -305,8 +318,8 @@ export default function CenterBasedContent() {
 
             <div className="block lg:hidden relative -mx-(--space-lg) w-[calc(100%+var(--space-lg)*2)] h-[32vh] min-h-[220px] max-h-[360px] mt-8">
               <Image
-                src="/hero-image.png"
-                alt="Therapist and child engaged in center-based ABA activities"
+                src="/images/center-based/hero-center-based.webp"
+                alt="Therapist guiding children through a table activity in a structured learning setting"
                 fill
                 className="object-cover"
                 priority
@@ -368,6 +381,15 @@ export default function CenterBasedContent() {
                   </li>
                 ))}
               </ul>
+              <div className="relative mt-8 rounded-3xl overflow-hidden border border-border-light shadow-sm h-[220px] sm:h-[260px]">
+                <Image
+                  src="/images/center-based/daily-rhythm-classroom.webp"
+                  alt="Children participating in a structured classroom routine with teacher support"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
             </div>
 
             <div className="lg:col-span-6 lg:col-start-7 relative border-l border-border-light/60 ml-3 lg:ml-0 pl-8 lg:pl-12 py-2 space-y-10">
@@ -425,8 +447,8 @@ export default function CenterBasedContent() {
             >
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl min-h-[500px] h-full">
                 <Image
-                  src="/homepage-about-us-image.jpeg"
-                  alt="Children learning and playing inside the center-based ABA program"
+                  src="/images/center-based/inside-center-classroom.webp"
+                  alt="Children and instructor engaged in collaborative activities inside a calm classroom"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -479,18 +501,32 @@ export default function CenterBasedContent() {
                 Discuss Your Child&apos;s Fit
                 <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </Link>
+              <div className="relative mt-8 rounded-3xl overflow-hidden border border-border-light/70 shadow-sm h-[220px] sm:h-[260px]">
+                <Image
+                  src="/images/center-based/outcomes-school-readiness.webp"
+                  alt="Children gathered near bookshelves during a guided school-readiness learning moment"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 30vw"
+                />
+              </div>
             </div>
 
             <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6 content-start">
                 {centerFitSignals.map((item) => (
                   <article
                     key={item.title}
-                    className="group p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300"
+                    className="group p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300 h-full"
                   >
                     <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <Icon icon={item.icon} className="w-6 h-6" />
                     </div>
+                    {item.badge ? (
+                      <span className="inline-flex items-center rounded-full bg-primary/10 text-primary text-[11px] font-semibold tracking-wide px-3 py-1 mb-3">
+                        {item.badge}
+                      </span>
+                    ) : null}
                     <h3 className="text-dark text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>

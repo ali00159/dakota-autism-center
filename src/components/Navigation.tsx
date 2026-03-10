@@ -50,12 +50,12 @@ export default function Navigation() {
     },
   ];
 
-  const aboutLinks = [
+  const connectLinks = [
     {
-      label: 'About Us',
-      href: '/about-us',
-      icon: 'solar:buildings-3-bold-duotone',
-      description: 'Meet our team and learn about our mission to deliver compassionate, evidence-based care.',
+      label: 'Contact Us',
+      href: '/contact-us',
+      icon: 'solar:letter-bold-duotone',
+      description: 'Get in touch with our team and ask questions about services, next steps, or enrollment support.',
     },
     {
       label: 'Referral',
@@ -99,7 +99,7 @@ export default function Navigation() {
               role="menu"
               aria-label="Resources"
             >
-              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-3 gap-4">
+              <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-2 gap-4">
                 {resourcesLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -163,27 +163,27 @@ export default function Navigation() {
             </div>
           </div>
 
-          <div className="relative group/about">
+          <div className="relative group/connect">
             <button
               type="button"
               className="nav-link text-[15px] font-bold text-dark flex items-center gap-1.5 py-4 cursor-pointer bg-transparent border-none"
               aria-haspopup="menu"
               aria-expanded="false"
             >
-              About Dakota
+              Connect
               <Icon
                 icon="solar:alt-arrow-down-bold"
-                className="w-4 h-4 opacity-60 transition-transform duration-200 group-hover/about:rotate-180 group-focus-within/about:rotate-180"
+                className="w-4 h-4 opacity-60 transition-transform duration-200 group-hover/connect:rotate-180 group-focus-within/connect:rotate-180"
               />
             </button>
 
             <div
-              className="absolute left-0 top-full w-[780px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/about:opacity-100 group-hover/about:pointer-events-auto group-hover/about:translate-y-0"
+              className="absolute left-0 top-full w-[780px] pt-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 ease-out z-320 group-hover/connect:opacity-100 group-hover/connect:pointer-events-auto group-hover/connect:translate-y-0"
               role="menu"
-              aria-label="About Dakota"
+              aria-label="Connect"
             >
               <div className="bg-white rounded-2xl border border-border-light shadow-xl shadow-black/8 p-6 grid grid-cols-3 gap-4">
-                {aboutLinks.map((link) => (
+                {connectLinks.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
@@ -204,6 +204,10 @@ export default function Navigation() {
               </div>
             </div>
           </div>
+
+          <Link href="/blog" className="nav-link text-[15px] font-bold text-dark">
+            Blog
+          </Link>
         </div>
 
         {/* Center: Brand Mark */}
@@ -229,10 +233,12 @@ export default function Navigation() {
           </a>
           <Link
             href="/contact-us"
-            className="btn btn-secondary btn-small rounded-full shadow-sm hover:shadow-md transition-all"
+            className="group inline-flex items-center justify-center gap-3 rounded-full bg-tertiary py-2.5 pl-7 pr-2.5 text-lg font-semibold tracking-[-0.04em] text-white shadow-md shadow-tertiary/35 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-lg hover:shadow-tertiary/45"
           >
-            <Icon icon="solar:letter-bold-duotone" className="w-4 h-4" />
             Contact
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 transition-colors duration-300 group-hover:bg-white/30">
+              <Icon icon="solar:arrow-right-broken" className="h-5 w-5" />
+            </span>
           </Link>
         </div>
 
@@ -297,11 +303,19 @@ export default function Navigation() {
                 ))}
               </div>
 
+              <Link
+                href="/blog"
+                className="nav-link text-base py-3 px-4 rounded-md hover:bg-supporting/50 flex items-center justify-between group"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+
               <div className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
-                About Dakota
+                Connect
               </div>
               <div className="flex flex-col gap-1 px-2">
-                {aboutLinks.map((link) => (
+                {connectLinks.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}

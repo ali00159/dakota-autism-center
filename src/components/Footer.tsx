@@ -17,8 +17,8 @@ export default function Footer() {
       { label: 'In-Home ABA', href: '/in-home-aba-therapy' },
       { label: 'EIDBI Services', href: '/eidbi' },
     ],
-    about: [
-      { label: 'About Us', href: '/about-us' },
+    connect: [
+      { label: 'Contact Us', href: '/contact-us' },
       { label: 'Referral', href: '/referral' },
       { label: 'Careers', href: '/careers' },
     ],
@@ -84,11 +84,11 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* About */}
+            {/* Connect */}
             <div>
-              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">About</h3>
+              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">Connect</h3>
               <ul className="space-y-4">
-                {footerLinks.about.map((link) => (
+                {footerLinks.connect.map((link) => (
                   <li key={link.label}>
                     <Link href={link.href} className="footer-link">
                       {link.label}

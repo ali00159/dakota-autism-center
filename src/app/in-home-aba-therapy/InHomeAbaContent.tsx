@@ -134,7 +134,7 @@ const realWorldImpact = [
   {
     clinical: 'Tact Training',
     realWorld: 'Pointing at a plane and saying "Look!"',
-    icon: 'solar:plane-bold-duotone',
+    icon: 'solar:eye-bold-duotone',
     color: 'text-[#FB9A31]',
     bg: 'bg-[#FB9A31]/10'
   },
