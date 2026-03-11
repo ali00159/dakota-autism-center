@@ -36,7 +36,7 @@ const tabs: TabContent[] = [
     headline: "Understanding Your Child's Diagnosis",
     body: "Just received a diagnosis or concerned about your child? You're not alone. We'll help you understand what autism means, how ABA therapy works, and what the next steps look like for your family.",
     primaryBtn: 'Learn About Autism & ABA',
-    primaryHref: '/understanding-autism/about-autism',
+    primaryHref: '/understanding-autism',
     secondaryBtn: 'Insurance & Funding',
     secondaryHref: '/insurance-and-funding',
     accent: 'bg-[#115C47]',
@@ -708,7 +708,7 @@ export default function HomeContent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <Link href="/understanding-autism/about-autism" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
+                <Link href="/understanding-autism" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2 group">
                   Read Our Story
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon

@@ -25,6 +25,8 @@ export default function SmoothScroll() {
 
     requestAnimationFrame(raf);
 
+    lenis.scrollTo(0, { immediate: true });
+
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');

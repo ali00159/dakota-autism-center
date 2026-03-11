@@ -165,8 +165,8 @@ export default function ContactUsPage() {
         {/* Right-side image — desktop only */}
         <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[48%] z-0 h-full">
           <Image
-            src="/hero-image.png"
-            alt="Therapist working with a child at Dakota Autism Center"
+            src="/images/contact/hero-contact-parent-child.webp"
+            alt="Parent and child drawing together — getting started with ABA therapy at Dakota Autism Center"
             fill
             className="object-cover"
             priority
@@ -226,8 +226,8 @@ export default function ContactUsPage() {
         {/* Mobile image — shown below text on small screens */}
         <div className="block lg:hidden relative -mx-(--space-lg,1.5rem) w-[calc(100%+var(--space-lg,1.5rem)*2)] h-[42vw] min-h-[260px]">
           <Image
-            src="/hero-image.png"
-            alt="Therapist working with a child at Dakota Autism Center"
+            src="/images/contact/hero-contact-parent-child.webp"
+            alt="Parent and child drawing together — getting started with ABA therapy at Dakota Autism Center"
             fill
             className="object-cover"
             sizes="100vw"

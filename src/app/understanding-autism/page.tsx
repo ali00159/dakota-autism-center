@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       'A practical, evidence-informed autism guide for families, with diagnosis basics, treatment literacy, and trusted sources.',
   },
   alternates: {
-    canonical: '/understanding-autism/about-autism',
+    canonical: '/understanding-autism',
   },
 };
 

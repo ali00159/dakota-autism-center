@@ -166,7 +166,6 @@ const centerFitSignals = [
     description:
       'Helpful for children who benefit from practicing transitions between activities with visual schedules and predictable cues.',
     icon: 'solar:calendar-mark-bold-duotone',
-    badge: 'Structured Routines',
   },
   {
     title: 'Group Learning Readiness',
@@ -522,11 +521,6 @@ export default function CenterBasedContent() {
                     <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <Icon icon={item.icon} className="w-6 h-6" />
                     </div>
-                    {item.badge ? (
-                      <span className="inline-flex items-center rounded-full bg-primary/10 text-primary text-[11px] font-semibold tracking-wide px-3 py-1 mb-3">
-                        {item.badge}
-                      </span>
-                    ) : null}
                     <h3 className="text-dark text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>

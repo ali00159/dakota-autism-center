@@ -2,15 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Printer } from 'lucide-react';
 import { FooterLink } from '@/types';
+import { cities } from '@/data/cities';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks: Record<string, FooterLink[]> = {
     resources: [
-      { label: 'Understanding Autism', href: '/understanding-autism/about-autism' },
+      { label: 'Understanding Autism', href: '/understanding-autism' },
       { label: 'Insurance & Funding', href: '/insurance-and-funding' },
       { label: 'Culturally Responsive ABA', href: '/culturally-responsive-aba-therapy' },
+      { label: 'Blog', href: '/blog' },
     ],
     services: [
       { label: 'Center-Based ABA', href: '/center-based-aba-therapy' },
@@ -22,6 +24,10 @@ export default function Footer() {
       { label: 'Referral', href: '/referral' },
       { label: 'Careers', href: '/careers' },
     ],
+    areas: cities.map((city) => ({
+      label: city.cityName,
+      href: `/${city.slug}`,
+    })),
   };
 
   return (
@@ -54,7 +60,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8 mt-4">
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-8 mt-4">
             
             {/* Resources */}
             <div>
@@ -89,6 +95,20 @@ export default function Footer() {
               <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">Connect</h3>
               <ul className="space-y-4">
                 {footerLinks.connect.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="footer-link">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Areas We Serve */}
+            <div>
+              <h3 className="text-[13px] font-bold tracking-wider uppercase mb-6 text-supporting">Areas We Serve</h3>
+              <ul className="space-y-4">
+                {footerLinks.areas.map((link) => (
                   <li key={link.label}>
                     <Link href={link.href} className="footer-link">
                       {link.label}

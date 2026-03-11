@@ -97,15 +97,15 @@ const supportsWithEvidence = [
 
 const mythsAndFacts = [
   {
-    myth: '“Autism has one single profile.”',
+    myth: '"Autism has one single profile."',
     fact: 'Autism is a spectrum; support needs and strengths vary from person to person.',
   },
   {
-    myth: '“Children should wait and see before any support.”',
+    myth: '"Children should wait and see before any support."',
     fact: 'Guidelines emphasize acting on concerns early instead of delaying intervention.',
   },
   {
-    myth: '“Every therapy claiming results is evidence-based.”',
+    myth: '"Every therapy claiming results is evidence-based."',
     fact: 'Families should ask for peer-reviewed evidence, risks, and measurable goals.',
   },
 ];

@@ -1,6 +1,6 @@
-// Force rebuild
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
@@ -195,32 +195,32 @@ const comparisonData = [
 const idealCandidates = [
   {
     title: 'Young Learners',
-    description: 'Children under 5 who benefit from early intervention in a comfortable, familiar environment.',
+    description: 'Children under 5 who benefit most from early intervention delivered in a comfortable, familiar environment — where they feel safe to explore, learn, and grow at their own pace.',
     icon: 'solar:star-bold-duotone',
   },
   {
     title: 'Sensory-Sensitive Children',
-    description: 'Kids who are easily overwhelmed by new settings and thrive with the predictability of home.',
+    description: 'Kids who are easily overwhelmed by new settings, loud sounds, or unfamiliar faces thrive with the predictability and comfort of learning in their own home with a consistent therapist.',
     icon: 'solar:shield-check-bold-duotone',
   },
   {
     title: 'Busy Families',
-    description: 'Families who value the convenience of no commute and flexible scheduling around daily life.',
+    description: 'Families juggling multiple schedules who value the convenience of no commute, no drop-off, and flexible session times that work around naps, school, and daily routines.',
     icon: 'solar:calendar-mark-bold-duotone',
   },
   {
     title: 'Daily Living Focus',
-    description: 'Children who need to build independence in self-care, mealtime, and household routines.',
+    description: 'Children who need to build real independence in self-care, mealtime, toileting, and household routines — skills that are best practiced right where they happen every day.',
     icon: 'solar:home-smile-bold-duotone',
   },
   {
     title: 'Rural Communities',
-    description: 'Families located far from a center who deserve the same quality of evidence-based therapy.',
+    description: 'Families located far from a therapy center who deserve the same quality of evidence-based ABA services — delivered directly to their doorstep without long commutes or wait times.',
     icon: 'solar:map-point-wave-bold-duotone',
   },
   {
     title: 'Involved Parents',
-    description: 'Caregivers who want to actively participate and learn strategies they can use between sessions.',
+    description: 'Caregivers who want to actively participate in their child\'s therapy, observe sessions firsthand, and learn proven strategies they can reinforce between sessions throughout the week.',
     icon: 'solar:hand-heart-bold-duotone',
   },
 ];
@@ -338,14 +338,21 @@ export default function InHomeAbaContent() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 100]);
 
+  const teamRef = useRef(null);
+  const { scrollYProgress: teamScrollYProgress } = useScroll({
+    target: teamRef,
+    offset: ['start end', 'end start'],
+  });
+  const teamY = useTransform(teamScrollYProgress, [0, 1], [40, -40]);
+
   return (
     <main id="main-content" className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative border-b border-border-light overflow-hidden bg-white">
         <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
           <Image
-            src="/hero-image.png"
-            alt="Therapist working with a child in a comfortable home setting"
+            src="/images/in-home/hero-in-home-therapy.webp"
+            alt="Therapist engaging with a young child through play-based learning in a warm, comfortable home setting"
             fill
             className="object-cover"
             priority
@@ -379,8 +386,8 @@ export default function InHomeAbaContent() {
 
             <div className="block lg:hidden relative -mx-(--space-lg) w-[calc(100%+var(--space-lg)*2)] h-[32vh] min-h-[220px] max-h-[360px] mt-8">
               <Image
-                src="/hero-image.png"
-                alt="Therapist working with a child in a comfortable home setting"
+                src="/images/in-home/hero-in-home-therapy.webp"
+                alt="Therapist engaging with a young child through play-based learning in a warm, comfortable home setting"
                 fill
                 className="object-cover"
                 priority
@@ -406,8 +413,8 @@ export default function InHomeAbaContent() {
             >
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full h-full min-h-[500px]">
                 <Image
-                  src="/homepage-about-us-image.jpeg"
-                  alt="Child learning through play in their home environment"
+                  src="/images/in-home/what-is-in-home-aba.webp"
+                  alt="Child engaged in play-based learning activities at home with a therapist, building skills through everyday moments"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -532,15 +539,33 @@ export default function InHomeAbaContent() {
       {/* A Session in Your Home */}
       <section id="how-it-works" className="section bg-white overflow-visible">
         <div className="container-max">
-          <div className="section-header text-left md:text-center mb-12 md:mb-16">
-            <span className="badge badge-accent mb-4">A Session in Your Home</span>
-            <h2 className="text-dark mb-6">
-              What a typical therapy session looks like
-            </h2>
-            <p className="body-large text-text-secondary max-w-3xl mx-auto">
-              Each 2–3 hour session follows a purposeful rhythm designed to maximize engagement, 
-              learning, and your involvement as a parent.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 md:mb-16">
+            <div className="text-left">
+              <span className="badge badge-accent mb-4">A Session in Your Home</span>
+              <h2 className="text-dark mb-6">
+                What a typical therapy session looks like
+              </h2>
+              <p className="body-large text-text-secondary">
+                Each 2–3 hour session follows a purposeful rhythm designed to maximize engagement, 
+                learning, and your involvement as a parent.
+              </p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]"
+            >
+              <Image
+                src="/images/in-home/session-overview.webp"
+                alt="A therapist and child working together on an activity in a home living room during an ABA session"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
+            </motion.div>
           </div>
 
           <div className="relative max-w-4xl mx-auto mb-20">
@@ -626,6 +651,21 @@ export default function InHomeAbaContent() {
               <Link href="/contact-us" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Talk to a Specialist <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                className="relative mt-8 rounded-3xl overflow-hidden border border-border-light/70 shadow-sm h-[220px] sm:h-[260px]"
+              >
+                <Image
+                  src="/images/in-home/family-moment.webp"
+                  alt="Parent watching their child engage with a therapist during a play-based learning activity at home"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </motion.div>
             </div>
 
             <div className="lg:col-span-7">
@@ -693,9 +733,9 @@ export default function InHomeAbaContent() {
       </section>
 
       {/* Your Therapy Team */}
-      <section className="section bg-[#F7FBF9]">
+      <section ref={teamRef} className="section bg-[#F7FBF9]">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
               <span className="badge badge-secondary mb-4">Your Therapy Team</span>
               <h2 className="text-dark mb-6">Trusted professionals in your home</h2>
@@ -732,21 +772,40 @@ export default function InHomeAbaContent() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: 'Background Checked', desc: 'Comprehensive screening for every team member', icon: 'solar:shield-check-bold-duotone', bg: 'bg-primary/10', color: 'text-primary' },
-                { label: 'Ongoing Training', desc: '40+ hours of initial training plus continuing education', icon: 'solar:book-2-bold-duotone', bg: 'bg-secondary/15', color: 'text-[#FB9A31]' },
-                { label: 'Weekly Supervision', desc: 'BCBA oversight ensures treatment fidelity', icon: 'solar:eye-bold-duotone', bg: 'bg-tertiary/15', color: 'text-tertiary' },
-                { label: 'Consistent Team', desc: 'The same therapist works with your child each session', icon: 'solar:heart-bold-duotone', bg: 'bg-accent/10', color: 'text-[#EA3D6A]' },
-              ].map((trust) => (
-                <article key={trust.label} className="p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow group">
-                  <div className={`w-10 h-10 rounded-xl ${trust.bg} ${trust.color} flex items-center justify-center mb-3`}>
-                    <Icon icon={trust.icon} className="w-5 h-5" />
-                  </div>
-                  <h4 className="text-dark text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{trust.label}</h4>
-                  <p className="text-text-secondary text-xs leading-relaxed mb-0">{trust.desc}</p>
-                </article>
-              ))}
+            <div className="flex flex-col gap-6">
+              <motion.div
+                style={{ y: teamY }}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="relative rounded-3xl overflow-hidden border border-border-light shadow-sm h-[220px] sm:h-[280px]"
+              >
+                <Image
+                  src="/images/in-home/therapy-team.webp"
+                  alt="A BCBA and RBT therapy team collaborating to support a child during an in-home session"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+              </motion.div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: 'Background Checked', desc: 'Comprehensive screening for every team member', icon: 'solar:shield-check-bold-duotone', bg: 'bg-primary/10', color: 'text-primary' },
+                  { label: 'Ongoing Training', desc: '40+ hours of initial training plus continuing education', icon: 'solar:book-2-bold-duotone', bg: 'bg-secondary/15', color: 'text-[#FB9A31]' },
+                  { label: 'Weekly Supervision', desc: 'BCBA oversight ensures treatment fidelity', icon: 'solar:eye-bold-duotone', bg: 'bg-tertiary/15', color: 'text-tertiary' },
+                  { label: 'Consistent Team', desc: 'The same therapist works with your child each session', icon: 'solar:heart-bold-duotone', bg: 'bg-accent/10', color: 'text-[#EA3D6A]' },
+                ].map((trust) => (
+                  <article key={trust.label} className="p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow group">
+                    <div className={`w-10 h-10 rounded-xl ${trust.bg} ${trust.color} flex items-center justify-center mb-3`}>
+                      <Icon icon={trust.icon} className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-dark text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{trust.label}</h4>
+                    <p className="text-text-secondary text-xs leading-relaxed mb-0">{trust.desc}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>

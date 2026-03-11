@@ -166,8 +166,8 @@ export default function EidbiContent() {
       <section className="relative border-b border-border-light overflow-hidden bg-white">
         <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
           <Image
-            src="/hero-image.png"
-            alt="Therapist working with child in EIDBI program"
+            src="/images/eidbi/hero-eidbi-therapy.webp"
+            alt="Caregiver and child engaged in a play-based developmental activity with colorful building blocks"
             fill
             className="object-cover"
             priority
@@ -199,8 +199,8 @@ export default function EidbiContent() {
 
             <div className="block lg:hidden relative -mx-(--space-lg) w-[calc(100%+var(--space-lg)*2)] h-[32vh] min-h-[220px] max-h-[360px] mt-8">
               <Image
-                src="/hero-image.png"
-                alt="Therapist working with child in EIDBI program"
+                src="/images/eidbi/hero-eidbi-therapy.webp"
+                alt="Caregiver and child engaged in a play-based developmental activity with colorful building blocks"
                 fill
                 className="object-cover"
                 priority
@@ -218,56 +218,83 @@ export default function EidbiContent() {
       {/* What is EIDBI Section */}
       <section className="section bg-white">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-6">
-              <span className="badge badge-secondary mb-4">About The Program</span>
-              <h2 className="text-dark mb-6">What is EIDBI?</h2>
-              <div className="prose prose-lg text-text-secondary">
-                <p className="mb-4">
-                  EIDBI stands for <strong>Early Intensive Developmental and Behavioral Intervention</strong>. It is a Minnesota Department of Human Services (DHS) benefit designed to provide medically necessary treatment for people under age 21 with Autism Spectrum Disorder (ASD) and related conditions.
-                </p>
-                <p>
-                  The goal of EIDBI is to educate, train, and support parents and families while promoting children's independence and participation in their communities. It focuses on:
-                </p>
-                <ul className="list-none space-y-3 mt-4">
-                  {[
-                    'Social communication and interaction',
-                    'Emotional regulation and behavioral health',
-                    'Adaptive and self-care skills',
-                    'Cognitive and play skills'
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-primary mt-1 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative lg:sticky lg:top-28"
+            >
+              <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full min-h-[420px]">
+                <Image
+                  src="/images/eidbi/what-is-eidbi.webp"
+                  alt="A clinician reading with a child during a developmental assessment, reviewing milestones together"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
-            </div>
-            <div className="lg:col-span-5 lg:col-start-8 bg-[#F5F5F5] rounded-2xl p-8 lg:p-10 border border-border-light">
-              <h3 className="text-xl font-bold text-dark mb-6 flex items-center gap-3">
-                <Icon icon="solar:clipboard-list-bold-duotone" className="w-8 h-8 text-secondary" />
-                Who is Eligible?
-              </h3>
-              <ul className="space-y-4">
-                {eligibilityCriteria.map((criteria, index) => (
-                  <li key={index} className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white border border-secondary/30 flex items-center justify-center shrink-0 mt-0.5 text-secondary font-bold text-sm">
-                      {index + 1}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="flex flex-col gap-8"
+            >
+              <div>
+                <span className="badge badge-secondary mb-4">About The Program</span>
+                <h2 className="text-dark mb-6">What is EIDBI?</h2>
+                <div className="prose prose-lg text-text-secondary">
+                  <p className="mb-4">
+                    EIDBI stands for <strong>Early Intensive Developmental and Behavioral Intervention</strong>. It is a Minnesota Department of Human Services (DHS) benefit designed to provide medically necessary treatment for people under age 21 with Autism Spectrum Disorder (ASD) and related conditions.
+                  </p>
+                  <p>
+                    The goal of EIDBI is to educate, train, and support parents and families while promoting children's independence and participation in their communities. It focuses on:
+                  </p>
+                  <ul className="list-none space-y-3 mt-4">
+                    {[
+                      'Social communication and interaction',
+                      'Emotional regulation and behavioral health',
+                      'Adaptive and self-care skills',
+                      'Cognitive and play skills'
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-primary mt-1 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-[#F5F5F5] rounded-2xl p-6 lg:p-8 border border-border-light">
+                <h3 className="text-xl font-bold text-dark mb-5 flex items-center gap-3">
+                  <Icon icon="solar:clipboard-list-bold-duotone" className="w-7 h-7 text-secondary" />
+                  Who is Eligible?
+                </h3>
+                <div className="space-y-3">
+                  {eligibilityCriteria.map((criteria, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-white border border-secondary/30 flex items-center justify-center shrink-0 mt-0.5 text-secondary font-bold text-sm">
+                        {index + 1}
+                      </div>
+                      <span className="text-text-secondary font-medium text-sm">{criteria}</span>
                     </div>
-                    <span className="text-text-secondary font-medium">{criteria}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 pt-6 border-t border-border-light/50">
-                <p className="text-sm text-text-muted mb-4">
-                  Not sure if you qualify? Our team can help verify your insurance and eligibility.
-                </p>
-                <Link href="/contact-us" className="text-primary font-bold hover:underline inline-flex items-center gap-1">
-                  Contact us for assistance <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
-                </Link>
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-border-light/50">
+                  <p className="text-sm text-text-muted mb-3">
+                    Not sure if you qualify? Our team can help verify your insurance and eligibility.
+                  </p>
+                  <Link href="/contact-us" className="text-primary font-bold hover:underline inline-flex items-center gap-1 text-sm">
+                    Contact us for assistance <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -275,12 +302,30 @@ export default function EidbiContent() {
       {/* Services Grid */}
       <section id="services" className="section bg-[#F7FBF9]">
         <div className="container-max">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="badge badge-info mb-4">Our EIDBI Services</span>
-            <h2 className="text-dark mb-6">Comprehensive Support for Your Child's Journey</h2>
-            <p className="body-large text-text-secondary">
-              As an enrolled EIDBI provider, Dakota Autism Center offers the full range of services covered under the benefit, delivered with our signature warm and relationship-focused approach.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 md:mb-16">
+            <div className="text-left">
+              <span className="badge badge-info mb-4">Our EIDBI Services</span>
+              <h2 className="text-dark mb-6">Comprehensive Support for Your Child&apos;s Journey</h2>
+              <p className="body-large text-text-secondary">
+                As an enrolled EIDBI provider, Dakota Autism Center offers the full range of services covered under the benefit, delivered with our signature warm and relationship-focused approach.
+              </p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]"
+            >
+              <Image
+                src="/images/eidbi/eidbi-services-overview.webp"
+                alt="Children engaged in a group play activity with toys, building communication and social skills together"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -382,6 +427,15 @@ export default function EidbiContent() {
                   </li>
                 ))}
               </ul>
+              <div className="relative h-[200px] rounded-2xl overflow-hidden mb-5">
+                <Image
+                  src="/images/eidbi/family-first-call.webp"
+                  alt="A child's hands stacking colorful wooden blocks during a structured play-based learning activity"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+              </div>
               <p className="text-xs text-text-muted leading-relaxed mb-4">
                 EIDBI policy details can change. For the most current statewide rules, families can verify guidance with Minnesota DHS.
               </p>
@@ -398,10 +452,10 @@ export default function EidbiContent() {
       <section className="section bg-white overflow-hidden">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative h-[400px] lg:h-[600px] rounded-3xl overflow-hidden order-2 lg:order-1">
+            <div className="relative h-[400px] lg:h-[600px] rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl order-2 lg:order-1">
               <Image
-                src="/homepage-about-us-image.jpeg"
-                alt="Dakota Autism Center facility"
+                src="/images/eidbi/why-choose-dakota.webp"
+                alt="A father and child building together with colorful blocks in a warm, naturalistic home environment"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -413,7 +467,7 @@ export default function EidbiContent() {
                   <span className="font-bold tracking-wide uppercase text-sm">The Dakota Difference</span>
                 </div>
                 <p className="text-xl font-medium">
-                  "We believe therapy should be something children look forward to, not just something they do."
+                  &quot;We believe therapy should be something children look forward to, not just something they do.&quot;
                 </p>
               </div>
             </div>
@@ -467,8 +521,12 @@ export default function EidbiContent() {
       />
 
       {/* CTA Section */}
-      <section className="section bg-primary text-white text-center">
-        <div className="container-max">
+      <section className="section relative overflow-hidden text-white text-center bg-primary">
+
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3 z-1" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-white/5 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/3 z-1" />
+
+        <div className="container-max relative z-10">
           <h2 id="cta-heading" className="text-white! mb-6">Start Your EIDBI Journey</h2>
           <p className="text-white/90 text-lg max-w-2xl mx-auto mb-10">
             Navigating state benefits can be complex. Let us help you understand your options and get your child the support they deserve.
