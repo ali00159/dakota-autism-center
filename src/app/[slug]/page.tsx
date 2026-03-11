@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cities, primaryLocation } from '@/data/cities';
 import CityContactPage from '@/components/CityContactPage';
+import { ORGANIZATION_ID, SITE_URL, withSiteUrl } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -18,7 +19,7 @@ export async function generateMetadata({
   const city = cities.find((c) => c.slug === slug);
   if (!city) return {};
 
-  const title = `ABA Therapy in ${city.cityName}, ${city.stateAbbr} | Dakota Autism Center`;
+  const title = `ABA Therapy in ${city.cityName}, ${city.stateAbbr}`;
   const description = `Dakota Autism Center provides evidence-based ABA therapy and EIDBI services for children in ${city.cityName}, ${city.stateAbbr}. Center-based and in-home options available — call (612) 284-5382 to get started.`;
 
   return {
@@ -28,15 +29,17 @@ export async function generateMetadata({
       canonical: `/${city.slug}`,
     },
     openGraph: {
-      title: `ABA Therapy in ${city.cityName}, ${city.stateAbbr} | Dakota Autism Center`,
+      title: `ABA Therapy in ${city.cityName}, ${city.stateAbbr}`,
       description: `Get started with ABA therapy for your child in ${city.cityName}. Dakota Autism Center offers center-based ABA, in-home therapy, and EIDBI services for families across the Twin Cities.`,
       type: 'website',
       url: `/${city.slug}`,
+      images: ['/opengraph-image'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `ABA Therapy in ${city.cityName}, MN | Dakota Autism Center`,
+      title: `ABA Therapy in ${city.cityName}, MN`,
       description: `Evidence-based ABA therapy for children in ${city.cityName}, ${city.stateAbbr}. Center-based & in-home options. Call (612) 284-5382.`,
+      images: ['/opengraph-image'],
     },
     keywords: [
       `ABA therapy ${city.cityName} MN`,
@@ -52,16 +55,18 @@ export async function generateMetadata({
 }
 
 function buildJsonLd(city: (typeof cities)[number]) {
-  const canonicalUrl = `https://dakotaautismcenter.com/${city.slug}`;
+  const canonicalUrl = `${SITE_URL}/${city.slug}`;
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': ['LocalBusiness', 'MedicalOrganization'],
+        '@id': `${canonicalUrl}#location`,
         name: primaryLocation.name,
-        image: 'https://dakotaautismcenter.com/full-logo.svg',
-        url: 'https://dakotaautismcenter.com',
+        image: withSiteUrl('/full-logo.svg'),
+        url: SITE_URL,
+        parentOrganization: { '@id': ORGANIZATION_ID },
         telephone: primaryLocation.phoneE164,
         email: primaryLocation.email,
         priceRange: 'Accepts most major insurance',
@@ -135,7 +140,7 @@ function buildJsonLd(city: (typeof cities)[number]) {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://dakotaautismcenter.com',
+            item: SITE_URL,
           },
           {
             '@type': 'ListItem',

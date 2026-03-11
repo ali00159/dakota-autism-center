@@ -1,11 +1,19 @@
 import type { Metadata } from 'next';
 import { ArrowRight, BadgeCheck, BriefcaseBusiness, Users } from 'lucide-react';
 import CareersApplicationForm from '@/components/CareersApplicationForm';
+import JsonLd from '@/components/seo/JsonLd';
+import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Careers | ABA Therapy Jobs | Dakota Autism Center',
+  title: 'ABA Therapy Careers in Minnesota',
   description:
     'Apply for ABA therapy careers at Dakota Autism Center. Submit a multi-step application for RBT, BCBA, and clinical support roles serving children and families in Minnesota.',
+  keywords: [
+    'ABA therapy jobs Minnesota',
+    'RBT jobs Minneapolis',
+    'BCBA careers Minnesota',
+    'autism center careers',
+  ],
   alternates: {
     canonical: '/careers',
   },
@@ -30,17 +38,14 @@ const careersPageSchema = {
     {
       '@type': 'WebPage',
       name: 'Careers',
-      url: 'https://dakotaautismcenter.com/careers',
+      url: `${SITE_URL}/careers`,
       description:
         'Online careers application for ABA professionals and support staff at Dakota Autism Center.',
       isPartOf: {
-        '@type': 'WebSite',
-        name: 'Dakota Autism Center',
-        url: 'https://dakotaautismcenter.com',
+        '@id': WEBSITE_ID,
       },
       about: {
-        '@type': 'MedicalBusiness',
-        name: 'Dakota Autism Center',
+        '@id': ORGANIZATION_ID,
       },
     },
   ],
@@ -70,10 +75,7 @@ const highlights = [
 export default function CareersPage() {
   return (
     <main id="main-content" className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(careersPageSchema) }}
-      />
+      <JsonLd id="careers-schema" data={careersPageSchema} />
 
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-14 md:py-18 lg:py-20">

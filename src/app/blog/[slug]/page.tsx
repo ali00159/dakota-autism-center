@@ -1,13 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
-import Link from 'next/link';
-import { Icon } from '@iconify/react';
-import { blogPosts, getPostBySlug, getAllSlugs } from '../blogPosts';
+import { getPostBySlug, getAllSlugs } from '../blogPosts';
 import { getBlogPostSchemas } from './schema';
 import BlogPostContent from './BlogPostContent';
-
-const SITE_URL = 'https://dakotaautismcenter.com';
 
 type Props = {
   params: Promise<{ slug: string }>;

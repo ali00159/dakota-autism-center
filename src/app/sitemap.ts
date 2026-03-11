@@ -1,91 +1,103 @@
 import type { MetadataRoute } from 'next';
 import { cities } from '@/data/cities';
+import { SITE_URL, withSiteUrl } from '@/lib/seo';
 import { blogPosts } from './blog/blogPosts';
-
-const BASE_URL = 'https://dakotaautismcenter.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/contact-us`,
+      url: `${SITE_URL}/contact-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
+      images: [withSiteUrl('/images/contact/hero-contact-parent-child.webp')],
     },
     {
-      url: `${BASE_URL}/center-based-aba-therapy`,
+      url: `${SITE_URL}/center-based-aba-therapy`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+      images: [withSiteUrl('/images/center-based/hero-center-based.webp')],
     },
     {
-      url: `${BASE_URL}/in-home-aba-therapy`,
+      url: `${SITE_URL}/in-home-aba-therapy`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+      images: [withSiteUrl('/images/in-home/hero-in-home-therapy.webp')],
     },
     {
-      url: `${BASE_URL}/eidbi`,
+      url: `${SITE_URL}/eidbi`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+      images: [withSiteUrl('/images/eidbi/hero-eidbi-therapy.webp')],
     },
     {
-      url: `${BASE_URL}/insurance-and-funding`,
+      url: `${SITE_URL}/insurance-and-funding`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/culturally-responsive-aba-therapy`,
+      url: `${SITE_URL}/culturally-responsive-aba-therapy`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/understanding-autism`,
+      url: `${SITE_URL}/understanding-autism`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/referral`,
+      url: `${SITE_URL}/referral`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/careers`,
+      url: `${SITE_URL}/careers`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
+      images: [withSiteUrl('/opengraph-image')],
     },
     {
-      url: `${BASE_URL}/blog`,
+      url: `${SITE_URL}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.6,
+      images: [withSiteUrl('/opengraph-image')],
     },
   ];
 
   const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
+    url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.dateModified),
     changeFrequency: 'monthly',
     priority: 0.7,
+    images: post.image ? [withSiteUrl(post.image.src)] : [withSiteUrl('/opengraph-image')],
   }));
 
   const cityPages: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${BASE_URL}/${city.slug}`,
+    url: `${SITE_URL}/${city.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
+    images: [withSiteUrl('/opengraph-image')],
   }));
 
   return [...staticPages, ...blogPostPages, ...cityPages];

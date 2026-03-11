@@ -4,9 +4,15 @@ import BlogContent from './BlogContent';
 import { getBlogIndexSchema } from './schema';
 
 export const metadata: Metadata = {
-  title: 'ABA Therapy Blog for Minnesota Families | Dakota Autism Center',
+  title: 'ABA Therapy Blog for Minnesota Families',
   description:
     'Explore upcoming ABA resources for Minnesota families, including parent training guidance, school collaboration strategies, funding navigation, and early intervention support.',
+  keywords: [
+    'ABA therapy blog Minnesota',
+    'autism parent resources',
+    'EIDBI guides',
+    'autism support articles',
+  ],
   alternates: {
     canonical: '/blog',
   },

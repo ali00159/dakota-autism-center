@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { CheckCircle2, Clock3, Mail, MapPin, Phone } from 'lucide-react';
 import FAQ from '@/components/FAQ';
 import ContactForm from '@/components/ContactForm';
+import JsonLd from '@/components/seo/JsonLd';
+import { ORGANIZATION_ID, SITE_URL } from '@/lib/seo';
 
 const primaryLocation = {
   name: 'Dakota Autism Center',
@@ -20,9 +22,16 @@ const primaryLocation = {
 };
 
 export const metadata: Metadata = {
-  title: 'Contact Us | ABA Therapy in Minneapolis, MN | Dakota Autism Center',
+  title: 'Contact Us for ABA Therapy in Minneapolis',
   description:
     'Ready to start ABA therapy for your child in Minneapolis? Contact Dakota Autism Center — call (612) 284-5382 or fill out our intake form to connect with our clinical team.',
+  keywords: [
+    'ABA therapy contact Minneapolis',
+    'autism center contact Minnesota',
+    'start ABA intake',
+    'EIDBI intake contact',
+    'Dakota Autism Center phone',
+  ],
   alternates: {
     canonical: '/contact-us',
   },
@@ -32,12 +41,14 @@ export const metadata: Metadata = {
       'Connect with our Minneapolis intake team for center-based ABA therapy, in-home ABA, and EIDBI services. Fill out the intake form or call us directly.',
     type: 'website',
     url: '/contact-us',
+    images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact Dakota Autism Center | ABA Therapy Minneapolis',
     description:
       'Fill out our intake form or call (612) 284-5382 to begin ABA therapy services for your child in Minneapolis.',
+    images: ['/opengraph-image'],
   },
 };
 
@@ -49,49 +60,52 @@ const contactPageSchema = {
       name: 'Contact Dakota Autism Center',
       description:
         'Contact page for Dakota Autism Center, an ABA therapy provider serving Minneapolis and the Twin Cities metro area.',
-      url: 'https://dakotaautismcenter.com/contact-us',
-      mainEntity: {
-        '@type': ['LocalBusiness', 'MedicalOrganization'],
-        name: primaryLocation.name,
-        image: 'https://dakotaautismcenter.com/full-logo.svg',
-        url: 'https://dakotaautismcenter.com',
-        telephone: primaryLocation.phoneE164,
-        email: primaryLocation.email,
-        priceRange: 'Accepts most major insurance',
-        medicalSpecialty: 'Applied Behavior Analysis (ABA) Therapy',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: primaryLocation.street,
-          addressLocality: primaryLocation.city,
-          addressRegion: primaryLocation.region,
-          postalCode: primaryLocation.postalCode,
-          addressCountry: primaryLocation.country,
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 44.9778,
-          longitude: -93.2650,
-        },
-        areaServed: [
-          { '@type': 'City', name: 'Minneapolis' },
-          { '@type': 'City', name: 'St. Paul' },
-          { '@type': 'State', name: 'Minnesota' },
-        ],
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-            opens: '08:00',
-            closes: '18:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: 'Friday',
-            opens: '08:00',
-            closes: '16:00',
-          },
-        ],
+      url: `${SITE_URL}/contact-us`,
+      about: { '@id': ORGANIZATION_ID },
+      mainEntity: { '@id': `${SITE_URL}/contact-us#location` },
+    },
+    {
+      '@type': ['LocalBusiness', 'MedicalOrganization'],
+      '@id': `${SITE_URL}/contact-us#location`,
+      name: primaryLocation.name,
+      parentOrganization: { '@id': ORGANIZATION_ID },
+      telephone: primaryLocation.phoneE164,
+      email: primaryLocation.email,
+      priceRange: 'Accepts most major insurance',
+      medicalSpecialty: 'Applied Behavior Analysis (ABA) Therapy',
+      url: SITE_URL,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: primaryLocation.street,
+        addressLocality: primaryLocation.city,
+        addressRegion: primaryLocation.region,
+        postalCode: primaryLocation.postalCode,
+        addressCountry: primaryLocation.country,
       },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 44.9778,
+        longitude: -93.2650,
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Minneapolis' },
+        { '@type': 'City', name: 'St. Paul' },
+        { '@type': 'State', name: 'Minnesota' },
+      ],
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          opens: '08:00',
+          closes: '18:00',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Friday',
+          opens: '08:00',
+          closes: '16:00',
+        },
+      ],
     },
   ],
 };
@@ -152,13 +166,24 @@ const faqs = [
   },
 ];
 
+const contactFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function ContactUsPage() {
   return (
     <main id="main-content" className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
-      />
+      <JsonLd id="contact-page-schema" data={contactPageSchema} />
+      <JsonLd id="contact-faq-schema" data={contactFaqSchema} />
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden border-b border-border-light bg-white" aria-labelledby="contact-hero-heading">

@@ -1,11 +1,19 @@
 import type { Metadata } from 'next';
 import { ArrowRight, FileCheck2, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReferralForm from '@/components/ReferralForm';
+import JsonLd from '@/components/seo/JsonLd';
+import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Professional Referral Form | Dakota Autism Center',
+  title: 'ABA Therapy Professional Referral Form',
   description:
     'Submit a secure, multi-step professional referral for ABA services at Dakota Autism Center. Provide provider details, diagnosis history, insurance information, and care coordination notes.',
+  keywords: [
+    'ABA therapy referral form',
+    'autism referral Minnesota',
+    'professional ABA referral',
+    'provider intake form',
+  ],
   alternates: {
     canonical: '/referral',
   },
@@ -30,17 +38,14 @@ const referralPageSchema = {
     {
       '@type': 'WebPage',
       name: 'Professional Referral Form',
-      url: 'https://dakotaautismcenter.com/referral',
+      url: `${SITE_URL}/referral`,
       description:
         'Online referral form for professionals and agencies requesting ABA services for children.',
       isPartOf: {
-        '@type': 'WebSite',
-        name: 'Dakota Autism Center',
-        url: 'https://dakotaautismcenter.com',
+        '@id': WEBSITE_ID,
       },
       about: {
-        '@type': 'MedicalBusiness',
-        name: 'Dakota Autism Center',
+        '@id': ORGANIZATION_ID,
       },
     },
   ],
@@ -70,10 +75,7 @@ const highlights = [
 export default function ReferralPage() {
   return (
     <main id="main-content" className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(referralPageSchema) }}
-      />
+      <JsonLd id="referral-schema" data={referralPageSchema} />
 
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-14 md:py-18 lg:py-20">

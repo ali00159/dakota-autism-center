@@ -252,7 +252,7 @@ export default function EidbiContent() {
                     EIDBI stands for <strong>Early Intensive Developmental and Behavioral Intervention</strong>. It is a Minnesota Department of Human Services (DHS) benefit designed to provide medically necessary treatment for people under age 21 with Autism Spectrum Disorder (ASD) and related conditions.
                   </p>
                   <p>
-                    The goal of EIDBI is to educate, train, and support parents and families while promoting children's independence and participation in their communities. It focuses on:
+                    The goal of EIDBI is to educate, train, and support parents and families while promoting children&apos;s independence and participation in their communities. It focuses on:
                   </p>
                   <ul className="list-none space-y-3 mt-4">
                     {[

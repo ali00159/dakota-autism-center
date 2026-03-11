@@ -1,4 +1,4 @@
-const SITE_URL = 'https://dakotaautismcenter.com';
+import { SITE_URL } from '@/lib/seo';
 const BLOG_PATH = '/blog';
 
 export function getBlogIndexSchema() {

@@ -1,6 +1,5 @@
 import type { BlogPost } from '../blogPosts';
-
-const SITE_URL = 'https://dakotaautismcenter.com';
+import { SITE_URL } from '@/lib/seo';
 
 export function getBlogPostSchemas(post: BlogPost) {
   const postUrl = `${SITE_URL}/blog/${post.slug}`;
