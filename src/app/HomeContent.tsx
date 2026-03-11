@@ -9,6 +9,19 @@ import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import RotatingText from '@/components/RotatingText';
+import TestimonialsSection from '@/components/TestimonialsSection';
+
+import phoneBold from '@iconify-icons/solar/phone-bold';
+import shieldCheckBold from '@iconify-icons/solar/shield-check-bold';
+import usersGroupRoundedBold from '@iconify-icons/solar/users-group-rounded-bold';
+import starBold from '@iconify-icons/solar/star-bold';
+import arrowRightBroken from '@iconify-icons/solar/arrow-right-broken';
+import arrowRightLinear from '@iconify-icons/solar/arrow-right-linear';
+import buildingsBoldDuotone from '@iconify-icons/solar/buildings-bold-duotone';
+import homeSmileBoldDuotone from '@iconify-icons/solar/home-smile-bold-duotone';
+import usersGroupRoundedBoldDuotone from '@iconify-icons/solar/users-group-rounded-bold-duotone';
+import heartPulseBoldDuotone from '@iconify-icons/solar/heart-pulse-bold-duotone';
+import documentTextBoldDuotone from '@iconify-icons/solar/document-text-bold-duotone';
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -76,12 +89,14 @@ const tabs: TabContent[] = [
   },
 ];
 
+import type { IconifyIcon } from '@iconify/react';
+
 interface ServiceItem {
   id: string;
   title: string;
   description: string;
   details: string;
-  icon: string;
+  icon: IconifyIcon;
   accentHex: string;
   lightBg: string;
   textColor: string;
@@ -97,7 +112,7 @@ const services: ServiceItem[] = [
       'Our center provides a structured, school-like environment where children build essential social, communication, and behavioral skills through guided routines and meaningful peer interaction.',
     details:
       'Each child receives individualized programming within a collaborative setting designed to prepare them for school and community participation. With consistent daily routines, small group activities, and one-on-one instruction, your child develops confidence and independence in a space built specifically for their growth.',
-    icon: 'solar:buildings-bold-duotone',
+    icon: buildingsBoldDuotone,
     accentHex: '#115C47',
     lightBg: '#E8F4F0',
     textColor: '#FFFFFF',
@@ -111,7 +126,7 @@ const services: ServiceItem[] = [
       'Therapy takes place in the comfort and familiarity of your own home, where children practice real-world skills in the environment that matters most — their everyday life.',
     details:
       'Our therapists work alongside your family\u2019s natural routines, teaching practical skills like mealtime behavior, morning transitions, and social play with siblings. Flexible scheduling options accommodate busy households, making it easier to maintain consistent therapy without disrupting your family\u2019s rhythm.',
-    icon: 'solar:home-smile-bold-duotone',
+    icon: homeSmileBoldDuotone,
     accentHex: '#E0F2FE',
     lightBg: '#E5F4FC',
     textColor: '#1F2937',
@@ -125,7 +140,7 @@ const services: ServiceItem[] = [
       'We partner with parents and caregivers to build strategies that extend your child\u2019s progress beyond therapy sessions — because lasting growth happens when the whole family is equipped.',
     details:
       'Through hands-on coaching and collaborative goal-setting, we help you understand the principles behind your child\u2019s program so you can reinforce positive behavior at home, at school, and in the community. Family training transforms everyday moments into opportunities for connection and skill-building.',
-    icon: 'solar:users-group-rounded-bold-duotone',
+    icon: usersGroupRoundedBoldDuotone,
     accentHex: '#FB9A31',
     lightBg: '#FEF3E8',
     textColor: '#FFFFFF',
@@ -139,7 +154,7 @@ const services: ServiceItem[] = [
       'Minnesota\u2019s Early Intensive Developmental and Behavioral Intervention program provides comprehensive support for children ages 0\u20136, fully covered by Medical Assistance.',
     details:
       'Early intervention during these critical developmental years can make a profound difference. Our EIDBI services include individualized assessment, targeted skill-building, and family support to help your child reach meaningful milestones during the period when the brain is most receptive to growth and learning.',
-    icon: 'solar:heart-pulse-bold-duotone',
+    icon: heartPulseBoldDuotone,
     accentHex: '#EA3D6A',
     lightBg: '#FDE8EE',
     textColor: '#FFFFFF',
@@ -162,49 +177,6 @@ const cardVariants = {
   },
 } as const;
 
-const testimonials = [
-  {
-    quote:
-      'The calm, thoughtful rhythm of the day makes such a difference. My daughter comes home smiling — and so do we.',
-    author: 'Maja & Ariel',
-  },
-  {
-    quote:
-      'The therapists here truly listen. They adapted to our son\'s needs and helped him find his voice in a way we never thought possible.',
-    author: 'Sarah T.',
-  },
-  {
-    quote:
-      'We finally found a place where our child feels safe and understood. The progress we\'ve seen in just a few months is incredible.',
-    author: 'David & Elena',
-  },
-  {
-    quote:
-      'Every day is a new discovery. The compassionate approach of the team has given us hope and a clear path forward for our family.',
-    author: 'Jessica M.',
-  },
-  {
-    quote:
-      'The culturally responsive care we received made all the difference. They respected our family traditions while providing exceptional therapy.',
-    author: 'Aisha & Omar',
-  },
-  {
-    quote:
-      'Seeing my son learn to communicate his needs has been life-changing. The patience of the staff here is truly remarkable.',
-    author: 'Wei Chen',
-  },
-  {
-    quote:
-      'From the very first day, we felt like part of a community. The support extends beyond therapy sessions into our daily lives.',
-    author: 'Mateo & Sofia',
-  },
-  {
-    quote:
-      'The transition to school was so much smoother thanks to the foundational skills built here. We are forever grateful.',
-    author: 'Priya R.',
-  },
-];
-
 const principles = [
   { text: 'Natural Growth', color: '#115C47' },
   { text: 'Family Partnership', color: '#FB9A31' },
@@ -216,9 +188,7 @@ const principles = [
 
 export default function HomeContent() {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0].id);
-  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
-  
+
   const activeContent = tabs.find((tab) => tab.id === activeTab) || tabs[0];
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 100]);
@@ -229,17 +199,6 @@ export default function HomeContent() {
     offset: ["start end", "end start"]
   });
   const aboutY = useTransform(aboutScrollYProgress, [0, 1], [50, -50]);
-
-  // Auto-play testimonials
-  React.useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Switch every 6 seconds
-    
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length]);
 
   return (
     <main id="main-content" className="w-full overflow-x-clip">
@@ -306,7 +265,7 @@ export default function HomeContent() {
                 >
                   Connect with Our Team
                   <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/20">
-                    <Icon icon="solar:phone-bold" className="w-6 h-6" />
+                    <Icon icon={phoneBold} className="w-6 h-6" />
                   </span>
                 </Link>
                 <a
@@ -333,7 +292,7 @@ export default function HomeContent() {
                 <div className="text-center md:text-left">
                   <p className="text-sm font-bold text-primary mb-4 uppercase tracking-wider flex items-center justify-center md:justify-start gap-2">
                     <Icon
-                      icon="solar:shield-check-bold"
+                      icon={shieldCheckBold}
                       className="w-4 h-4"
                     />
                     Top insurance accepted
@@ -349,7 +308,7 @@ export default function HomeContent() {
                 <div className="text-center md:text-left border-l-0 sm:border-l border-gray-200 sm:pl-8">
                   <p className="text-sm font-bold text-primary mb-4 uppercase tracking-wider flex items-center justify-center md:justify-start gap-2">
                     <Icon
-                      icon="solar:users-group-rounded-bold"
+                      icon={usersGroupRoundedBold}
                       className="w-4 h-4"
                     />
                     Trusted by families
@@ -359,7 +318,7 @@ export default function HomeContent() {
                       {[1, 2, 3, 4, 5].map((i) => (
                         <Icon
                           key={i}
-                          icon="solar:star-bold"
+                          icon={starBold}
                           className="w-5 h-5 text-[#FB9A31]"
                         />
                       ))}
@@ -470,7 +429,7 @@ export default function HomeContent() {
                 >
                   {activeContent.primaryBtn}
                   <Icon
-                    icon="solar:arrow-right-broken"
+                    icon={arrowRightBroken}
                     width={18}
                     height={18}
                     className="shrink-0"
@@ -628,7 +587,7 @@ export default function HomeContent() {
           <Link href="/contact-us" className="btn btn-large rounded-full border border-[#115C47]/20 bg-[#115C47] px-8 text-white shadow-lg shadow-[#115C47]/25 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C4535] hover:shadow-xl hover:shadow-[#115C47]/30">
             Get Started Today
             <Icon
-              icon="solar:arrow-right-broken"
+              icon={arrowRightBroken}
               width={18}
               height={18}
               className="shrink-0"
@@ -712,7 +671,7 @@ export default function HomeContent() {
                   Read Our Story
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 ml-2">
                     <Icon
-                      icon="solar:arrow-right-broken"
+                      icon={arrowRightBroken}
                       className="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
                     />
                   </span>
@@ -724,184 +683,54 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 5. Testimonials ────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#FB9A31] py-10 lg:py-12">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div 
-            animate={{ 
-              y: [0, -30, 0],
-              scale: [1, 1.05, 1],
-              rotate: [0, 5, 0]
-            }}
-            transition={{ 
-              duration: 12, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="absolute -top-[20%] -left-[10%] w-[60%] h-[70%] rounded-full bg-[#FFB05C]/60 blur-[100px]"
-          />
-          <motion.div 
-            animate={{ 
-              y: [0, 40, 0],
-              scale: [1, 1.1, 1],
-              rotate: [0, -5, 0]
-            }}
-            transition={{ 
-              duration: 15, 
-              repeat: Infinity, 
-              ease: "easeInOut",
-              delay: 2
-            }}
-            className="absolute -bottom-[30%] -right-[10%] w-[70%] h-[80%] rounded-full bg-[#E8882B]/50 blur-[120px]"
-          />
-        </div>
+      <TestimonialsSection />
 
-        <div className="container-max relative z-10 px-4 md:px-8">
-          {/* Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center mb-4 lg:mb-6 flex flex-col items-center"
+      {/* ────────────────── 6. From Our Blog ────────────────── */}
+      <section className="section bg-[#F8FBFA] border-y border-border-light">
+        <div className="container-max">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+            <div>
+              <span className="badge badge-info mb-4">From Our Blog</span>
+              <h2 className="text-3xl md:text-4xl font-bold font-primary text-[#474044] leading-tight tracking-tight">
+                Helpful resources for families
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="text-primary font-semibold text-sm inline-flex items-center gap-1.5 hover:underline shrink-0"
+            >
+              View all articles
+              <Icon icon={arrowRightLinear} width={16} height={16} />
+            </Link>
+          </div>
+
+          <Link
+            href="/blog/what-is-eidbi-minnesota-parent-guide"
+            className="group flex flex-col md:flex-row items-start gap-6 rounded-2xl border border-border-light bg-white p-6 md:p-8 shadow-sm hover:shadow-md hover:border-primary/30 transition-all no-underline"
           >
-            <div className="mb-3 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm shadow-inner">
-              <Icon icon="solar:heart-pulse-bold-duotone" className="w-8 h-8 md:w-10 md:h-10 text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-[#F4EEFF] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <Icon icon={documentTextBoldDuotone} className="w-7 h-7 text-[#6843A3]" />
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white leading-[1.1] tracking-tight max-w-2xl">
-              Hear from the families growing with us
-            </h2>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="relative w-full max-w-5xl mx-auto"
-          >
-            {/* Decorative Quote Mark */}
-            <div className="absolute -top-6 -left-2 md:-top-10 md:-left-6 text-white/25 z-0 select-none pointer-events-none transform -rotate-12">
-              <Icon icon="solar:quote-left-bold-duotone" className="w-24 h-24 md:w-36 md:h-36" />
+            <div className="flex-1 min-w-0">
+              <span className="inline-flex rounded-full px-3 py-0.5 text-xs font-semibold bg-[#F4EEFF] text-[#6843A3] mb-2">
+                Funding Navigation
+              </span>
+              <h3 className="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                What Is EIDBI in Minnesota? A Complete Guide for Parents
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed mb-2">
+                Learn how Minnesota&apos;s EIDBI benefit works, who qualifies, what services it covers, and how to get started — explained in plain language for families.
+              </p>
+              <span className="text-primary text-sm font-semibold inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                Read the full guide
+                <Icon icon={arrowRightLinear} width={14} height={14} />
+              </span>
             </div>
-
-            <div className="relative z-10 bg-white rounded-[32px] md:rounded-[48px] p-8 md:p-12 lg:p-16 shadow-[0_20px_60px_rgba(200,100,10,0.3)] border border-white/60">
-              <div className="flex flex-col items-center text-center">
-                {/* Logo */}
-                <div className="mb-10 relative">
-                  <div className="absolute inset-0 bg-[#FB9A31]/10 blur-xl rounded-full scale-150" />
-                  <Image
-                    src="/logo-mark.svg"
-                    alt="Dakota Autism Center"
-                    width={60}
-                    height={68}
-                    className="relative h-16 w-auto opacity-90"
-                  />
-                </div>
-                
-                {/* Quote Text */}
-                <div 
-                  className="min-h-[160px] md:min-h-[140px] flex items-center justify-center w-full"
-                  onMouseEnter={() => setIsAutoPlaying(false)}
-                  onMouseLeave={() => setIsAutoPlaying(true)}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeTestimonial}
-                      initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      className="w-full"
-                    >
-                      <p className="text-xl md:text-3xl lg:text-4xl font-medium text-[#474044] leading-relaxed md:leading-snug font-primary">
-                        &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
-                      </p>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Author */}
-                <div className="mt-8 flex flex-col items-center">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeTestimonial}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="flex flex-col items-center"
-                    >
-                      <div className="flex gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <Icon
-                            key={i}
-                            icon="solar:star-bold"
-                            className="w-5 h-5 text-[#FB9A31]"
-                          />
-                        ))}
-                      </div>
-                      <p className="font-bold text-[#474044] text-lg md:text-xl font-primary">{testimonials[activeTestimonial].author}</p>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Navigation */}
-                <div 
-                  className="flex items-center gap-6 md:gap-8 mt-12"
-                  onMouseEnter={() => setIsAutoPlaying(false)}
-                  onMouseLeave={() => setIsAutoPlaying(true)}
-                >
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-                      setIsAutoPlaying(false);
-                    }} 
-                    className="w-12 h-12 rounded-full border-2 border-[#EBEBEB] flex items-center justify-center text-[#474044] hover:bg-[#FB9A31] hover:text-white hover:border-[#FB9A31] transition-colors duration-300 group cursor-pointer"
-                    aria-label="Previous testimonial"
-                  >
-                    <Icon icon="solar:arrow-left-linear" className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
-                  </motion.button>
-                  
-                  <div className="flex gap-2.5">
-                    {testimonials.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          setActiveTestimonial(idx);
-                          setIsAutoPlaying(false);
-                        }}
-                        className={cn(
-                          "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
-                          activeTestimonial === idx ? "bg-[#FB9A31] w-8" : "bg-[#EBEBEB] w-2.5 hover:bg-[#FB9A31]/50"
-                        )}
-                        aria-label={`Go to testimonial ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-                      setIsAutoPlaying(false);
-                    }} 
-                    className="w-12 h-12 rounded-full border-2 border-[#EBEBEB] flex items-center justify-center text-[#474044] hover:bg-[#FB9A31] hover:text-white hover:border-[#FB9A31] transition-colors duration-300 group cursor-pointer"
-                    aria-label="Next testimonial"
-                  >
-                    <Icon icon="solar:arrow-right-linear" className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          </Link>
         </div>
       </section>
 
-      {/* ────────────────── 6. Contact Form ────────────────── */}
+      {/* ────────────────── 7. Contact Form ────────────────── */}
       <ContactForm />
     </main>
   );

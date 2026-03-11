@@ -34,7 +34,16 @@ Retrieval date: 2026-03-10
 | --- | --- | --- | --- | --- | --- |
 | `/public/images/contact/hero-contact-parent-child.webp` | Hero section (contact page & all city pages) | https://unsplash.com/photos/mother-and-son-drawing-together-at-a-table-N3sB3w1HE1I | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
 
+## Blog
+
+Retrieval date: 2026-03-11
+
+| Local asset | Placement | Source page | Photographer | License | Attribution required |
+| --- | --- | --- | --- | --- | --- |
+| `/public/images/blog/eidbi-minnesota-guide.webp` | EIDBI Minnesota Guide blog post (hero + card) | https://www.pexels.com/photo/woman-in-white-shirt-playing-with-the-kids-3985037/ | Gustavo Fring | Pexels License: https://www.pexels.com/license/ | No (appreciated) |
+
 ## Notes
 
 - Unsplash license allows free use for commercial and non-commercial use without permission.
 - Unsplash terms still prohibit selling unmodified photos or compiling photos into a competing image service.
+- Pexels license allows free use for commercial and non-commercial use without permission or attribution.

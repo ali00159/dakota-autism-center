@@ -520,6 +520,62 @@ export default function EidbiContent() {
         items={eidbisFaqItems}
       />
 
+      {/* Related Blog Article */}
+      <section className="relative overflow-hidden border-b border-border-light bg-white">
+        <div className="pointer-events-none absolute -top-20 right-0 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 left-0 h-56 w-56 rounded-full bg-tertiary/10 blur-3xl" />
+
+        <div className="container-max relative py-14 md:py-16">
+          <div className="mb-8 md:mb-10 max-w-2xl">
+            <span className="badge badge-accent mb-3">Parent Resources</span>
+            <h2 className="text-dark mb-3">Keep reading with our featured EIDBI guide</h2>
+            <p className="text-text-secondary body-large mb-0">
+              If you want a deeper breakdown of eligibility, funding, and what the first steps look like, this guide is the best place to start.
+            </p>
+          </div>
+
+          <Link
+            href="/blog/what-is-eidbi-minnesota-parent-guide"
+            className="group grid gap-6 rounded-3xl border border-primary/20 bg-linear-to-br from-[#F6FCF9] via-white to-[#EEF6FF] p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-xl no-underline"
+          >
+            <div className="min-w-0">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="inline-flex rounded-full bg-[#E8F4F0] px-3 py-1 text-xs font-semibold text-primary">
+                  Funding Navigation
+                </span>
+                <span className="inline-flex rounded-full bg-[#F4EEFF] px-3 py-1 text-xs font-semibold text-[#6843A3]">
+                  Parent Guide
+                </span>
+              </div>
+
+              <h3 className="text-xl md:text-2xl font-bold leading-tight text-dark transition-colors group-hover:text-primary mb-3">
+                What Is EIDBI in Minnesota? A Complete Guide for Parents
+              </h3>
+
+              <p className="text-text-secondary text-base md:text-lg mb-5">
+                Our in-depth guide explains eligibility, services, the CMDE process, and how to get started in clear, plain language.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
+                <span className="inline-flex items-center gap-1.5">
+                  <Icon icon="solar:book-2-bold-duotone" className="h-4 w-4 text-primary" />
+                  Long-form resource
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Icon icon="solar:calendar-mark-bold-duotone" className="h-4 w-4 text-primary" />
+                  Updated for Minnesota families
+                </span>
+              </div>
+            </div>
+
+            <div className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-lg shadow-primary/20 transition-all duration-300 group-hover:bg-primary-dark group-hover:gap-3">
+              Read the guide
+              <Icon icon="solar:arrow-right-linear" className="h-5 w-5 shrink-0" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section relative overflow-hidden text-white text-center bg-primary">
 

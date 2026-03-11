@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { cities } from '@/data/cities';
+import { blogPosts } from './blog/blogPosts';
 
 const BASE_URL = 'https://dakotaautismcenter.com';
 
@@ -73,6 +74,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.dateModified),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
   const cityPages: MetadataRoute.Sitemap = cities.map((city) => ({
     url: `${BASE_URL}/${city.slug}`,
     lastModified: new Date(),
@@ -80,5 +88,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...cityPages];
+  return [...staticPages, ...blogPostPages, ...cityPages];
 }

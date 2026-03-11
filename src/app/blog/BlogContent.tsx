@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { blogCategories, blogPosts, type BlogCategory } from './blogPosts';
 
@@ -38,10 +39,9 @@ export default function BlogContent() {
               Meaningful ABA Guidance for Minnesota Families
             </h1>
             <p className="body-large text-text-secondary max-w-3xl mx-auto mb-0">
-              Our upcoming blog will share practical, evidence-informed articles on parent
-              training, school collaboration, early intervention planning, and Minnesota funding
-              pathways. We are building this library to help families make confident decisions
-              without overwhelm.
+              Practical, evidence-informed articles on parent training, school collaboration, early
+              intervention planning, and Minnesota funding pathways — built to help families make
+              confident decisions without overwhelm.
             </p>
           </div>
         </div>
@@ -114,22 +114,45 @@ export default function BlogContent() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredPosts.map((post) => (
-                <article
+                <Link
                   key={post.slug}
-                  className="rounded-2xl border border-border-light bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                  href={`/blog/${post.slug}`}
+                  className="group rounded-2xl border border-border-light bg-white overflow-hidden shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-primary/30 block no-underline"
                 >
-                  <span
-                    className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[post.category]}`}
-                  >
-                    {post.category}
-                  </span>
-                  <h3 className="mt-4 mb-3 text-xl font-bold text-dark">{post.title}</h3>
-                  <p className="mb-5 text-text-secondary text-sm leading-relaxed">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs font-semibold text-text-muted">
-                    <span>{post.readTime}</span>
-                    <span>{post.publishedAt}</span>
-                  </div>
-                </article>
+                  <article>
+                    {post.image && (
+                      <div className="relative w-full aspect-video overflow-hidden">
+                        <Image
+                          src={post.image.src}
+                          alt={post.image.alt}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[post.category]}`}
+                      >
+                        {post.category}
+                      </span>
+                      <h3 className="mt-4 mb-3 text-xl font-bold text-dark group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="mb-5 text-text-secondary text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-xs font-semibold text-text-muted">
+                        <span>{post.readTime}</span>
+                        <span className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                          Read article
+                          <Icon icon="solar:arrow-right-linear" className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
               ))}
             </div>
           )}
