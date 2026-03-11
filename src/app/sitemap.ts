@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
-      images: [withSiteUrl('/images/contact/hero-contact-parent-child.webp')],
+      images: [withSiteUrl('/images/contact/hero-contact-parent-child.jpg')],
     },
     {
       url: `${SITE_URL}/center-based-aba-therapy`,

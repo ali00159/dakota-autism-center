@@ -15,13 +15,13 @@ Retrieval date: 2026-03-09
 
 ## EIDBI Page
 
-Retrieval date: 2026-03-10
+Retrieval date: 2026-03-11
 
 | Local asset | Placement | Source page | Photographer | License | Attribution required |
 | --- | --- | --- | --- | --- | --- |
 | `/public/images/eidbi/hero-eidbi-therapy.webp` | Hero section | https://unsplash.com/photos/woman-and-child-building-with-colorful-blocks-sIPL0tFNvvQ | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
 | `/public/images/eidbi/what-is-eidbi.webp` | What is EIDBI? section | https://unsplash.com/photos/a-woman-reading-a-book-to-a-child-on-the-floor-J-HKiyRJ-SI | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
-| `/public/images/eidbi/eidbi-services-overview.webp` | Services Grid section | https://unsplash.com/photos/a-group-of-children-playing-with-toys-on-the-floor-1w20Cysy1cg | BBC Creative | Unsplash License: https://unsplash.com/license | No (appreciated) |
+| `/public/images/eidbi/eidbi-services-overview.webp` | Services Grid section + homepage hero | https://unsplash.com/photos/a-group-of-children-playing-with-toys-on-the-floor-1w20Cysy1cg | BBC Creative | Unsplash License: https://unsplash.com/license | No (appreciated) |
 | `/public/images/eidbi/why-choose-dakota.webp` | Why Choose Us section | https://unsplash.com/photos/father-and-son-building-with-colorful-blocks-together-jpoKVPuNCU4 | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
 | `/public/images/eidbi/family-first-call.webp` | Family Action Checklist aside | https://unsplash.com/photos/person-piling-blocks-KuCGlBXjH_o | La-Rel Easter | Unsplash License: https://unsplash.com/license | No (appreciated) |
 | `/public/images/eidbi/eidbi-family-support.webp` | CTA section | https://unsplash.com/photos/family-reading-a-book-together-on-a-plain-background-2SD8DfamuPA | Brooke Balentine | Unsplash License: https://unsplash.com/license | No (appreciated) |
@@ -32,7 +32,15 @@ Retrieval date: 2026-03-10
 
 | Local asset | Placement | Source page | Photographer | License | Attribution required |
 | --- | --- | --- | --- | --- | --- |
-| `/public/images/contact/hero-contact-parent-child.webp` | Hero section (contact page & all city pages) | https://unsplash.com/photos/mother-and-son-drawing-together-at-a-table-N3sB3w1HE1I | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
+| `/public/images/contact/hero-contact-parent-child.jpg` | Hero section (contact page & all city pages) | https://unsplash.com/photos/father-and-son-studying-together-at-a-desk-0eNgbGtsXd0 | Vitaly Gariev | Unsplash License: https://unsplash.com/license | No (appreciated) |
+
+## Home Page
+
+Retrieval date: 2026-03-11
+
+| Local asset | Placement | Source page | Photographer | License | Attribution required |
+| --- | --- | --- | --- | --- | --- |
+| `/public/images/home/hero-homepage-mother-child.jpg` | Hero section (homepage desktop + mobile) | User-provided upload | Unknown | Client-provided asset (usage permitted by project owner) | N/A |
 
 ## Blog
 

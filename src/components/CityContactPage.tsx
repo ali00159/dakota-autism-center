@@ -56,7 +56,7 @@ export default function CityContactPage({ city }: CityContactPageProps) {
       >
         <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[48%] z-0 h-full">
           <Image
-            src="/images/contact/hero-contact-parent-child.webp"
+            src="/images/contact/hero-contact-parent-child.jpg"
             alt={`Parent and child learning together — ABA therapy serving ${city.cityName}`}
             fill
             className="object-cover"
@@ -114,7 +114,7 @@ export default function CityContactPage({ city }: CityContactPageProps) {
 
         <div className="block lg:hidden relative -mx-(--space-lg,1.5rem) w-[calc(100%+var(--space-lg,1.5rem)*2)] h-[42vw] min-h-[260px]">
           <Image
-            src="/images/contact/hero-contact-parent-child.webp"
+            src="/images/contact/hero-contact-parent-child.jpg"
             alt={`Parent and child learning together — ABA therapy serving ${city.cityName}`}
             fill
             className="object-cover"

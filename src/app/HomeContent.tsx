@@ -209,14 +209,14 @@ export default function HomeContent() {
       >
         <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
           <Image
-            src="/hero-image.png"
-            alt="Therapist working with a child in a supportive environment"
+            src="/images/home/hero-homepage-mother-child.jpg"
+            alt="Mother and child building colorful blocks together during a therapy activity"
             fill
             className="object-cover"
             priority
             sizes="50vw"
+            unoptimized
           />
-          <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
         </motion.div>
 
         <div className="container-max relative z-10 h-full flex flex-col justify-end flex-1 py-12 lg:pb-16 lg:min-h-[calc(100vh-150px)]">
@@ -278,34 +278,47 @@ export default function HomeContent() {
 
               <div className="block lg:hidden relative -mx-(--space-lg) w-[calc(100%+var(--space-lg)*2)] h-[40vh] min-h-[280px] my-8">
                 <Image
-                  src="/hero-image.png"
-                  alt="Therapist working with a child in a supportive environment"
+                  src="/images/home/hero-homepage-mother-child.jpg"
+                  alt="Mother and child building colorful blocks together during a therapy activity"
                   fill
                   className="object-cover"
                   priority
                   sizes="100vw"
+                  unoptimized
                 />
-                <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center md:justify-start gap-8 lg:gap-16 stagger-4 border-t border-gray-100 pt-8 mt-4">
-                <div className="text-center md:text-left">
+              <div className="flex flex-col sm:flex-row sm:items-stretch justify-center md:justify-start gap-6 lg:gap-10 stagger-4 border-t border-gray-100 pt-8 mt-4">
+                <div className="w-full sm:flex-1 min-w-0 text-center md:text-left">
                   <p className="text-sm font-bold text-primary mb-4 uppercase tracking-wider flex items-center justify-center md:justify-start gap-2">
                     <Icon
                       icon={shieldCheckBold}
                       className="w-4 h-4"
                     />
-                    Top insurance accepted
+                    Areas we serve
                   </p>
-                  <div className="flex items-center gap-6 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-                    <span className="font-bold text-xl text-dark">aetna</span>
-                    <span className="font-bold text-xl text-dark">Cigna</span>
-                    <span className="font-bold text-xl text-dark">BCBS</span>
-                    <span className="font-bold text-xl text-dark">UHC</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {[
+                      { label: 'Minneapolis', dot: 'bg-[#115C47]', bg: 'bg-[#EAF5F1]' },
+                      { label: 'St. Paul', dot: 'bg-[#42AEEB]', bg: 'bg-[#ECF7FD]' },
+                      { label: 'Twin Cities Metro', dot: 'bg-[#FB9A31]', bg: 'bg-[#FEF3E8]' },
+                      { label: 'Nearby Minnesota Communities', dot: 'bg-[#EA3D6A]', bg: 'bg-[#FDEAF0]' },
+                    ].map((area) => (
+                      <span
+                        key={area.label}
+                        className={`inline-flex items-center justify-center md:justify-start gap-1.5 rounded-full border border-[#115C47]/12 px-2.5 py-1 text-[12px] font-semibold leading-tight text-[#2F2A2D] ${area.bg}`}
+                      >
+                        <span
+                          className={`h-2 w-2 rounded-full ${area.dot}`}
+                          aria-hidden="true"
+                        />
+                        {area.label}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <div className="text-center md:text-left border-l-0 sm:border-l border-gray-200 sm:pl-8">
+                <div className="w-full sm:flex-1 min-w-0 text-center md:text-left border-l-0 sm:border-l border-gray-200 sm:pl-6">
                   <p className="text-sm font-bold text-primary mb-4 uppercase tracking-wider flex items-center justify-center md:justify-start gap-2">
                     <Icon
                       icon={usersGroupRoundedBold}
