@@ -8,9 +8,21 @@ export default function SmoothScroll() {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
   const isFirstRender = useRef(true);
+  const shouldEnableForRoute =
+    pathname === '/' ||
+    pathname === '/contact-us' ||
+    pathname.startsWith('/aba-therapy-in-') ||
+    pathname.startsWith('/center-based-aba-therapy') ||
+    pathname.startsWith('/in-home-aba-therapy') ||
+    pathname.startsWith('/eidbi');
 
   // Effect 1: Create Lenis singleton on mount, destroy on unmount
   useEffect(() => {
+    if (!shouldEnableForRoute) return;
+
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotionQuery.matches) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -35,7 +47,7 @@ export default function SmoothScroll() {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [shouldEnableForRoute]);
 
   // Effect 2: Scroll to top on route change (skip initial render)
   useEffect(() => {
@@ -45,8 +57,10 @@ export default function SmoothScroll() {
     }
 
     window.scrollTo(0, 0);
-    lenisRef.current?.scrollTo(0, { immediate: true });
-  }, [pathname]);
+    if (shouldEnableForRoute) {
+      lenisRef.current?.scrollTo(0, { immediate: true });
+    }
+  }, [pathname, shouldEnableForRoute]);
 
   // Effect 3: Hash-link click handler (rebound on pathname so cross-page hash detection stays accurate)
   useEffect(() => {
@@ -67,14 +81,18 @@ export default function SmoothScroll() {
 
         if (element) {
           e.preventDefault();
-          lenisRef.current?.scrollTo(element);
+          if (shouldEnableForRoute) {
+            lenisRef.current?.scrollTo(element);
+          } else {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }
       }
     };
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [pathname]);
+  }, [pathname, shouldEnableForRoute]);
 
   return null;
 }

@@ -3,13 +3,12 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
 import RotatingText from '@/components/RotatingText';
-import TestimonialsSection from '@/components/TestimonialsSection';
 
 import phoneBold from '@iconify-icons/solar/phone-bold';
 import shieldCheckBold from '@iconify-icons/solar/shield-check-bold';
@@ -22,6 +21,9 @@ import homeSmileBoldDuotone from '@iconify-icons/solar/home-smile-bold-duotone';
 import usersGroupRoundedBoldDuotone from '@iconify-icons/solar/users-group-rounded-bold-duotone';
 import heartPulseBoldDuotone from '@iconify-icons/solar/heart-pulse-bold-duotone';
 import documentTextBoldDuotone from '@iconify-icons/solar/document-text-bold-duotone';
+
+const ContactForm = dynamic(() => import('@/components/ContactForm'));
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'));
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -215,7 +217,6 @@ export default function HomeContent() {
             className="object-cover"
             priority
             sizes="50vw"
-            unoptimized
           />
         </motion.div>
 
@@ -282,9 +283,8 @@ export default function HomeContent() {
                   alt="Mother and child building colorful blocks together during a therapy activity"
                   fill
                   className="object-cover"
-                  priority
+                  loading="eager"
                   sizes="100vw"
-                  unoptimized
                 />
               </div>
 
@@ -623,7 +623,7 @@ export default function HomeContent() {
             >
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full h-full min-h-[500px]">
                 <Image
-                  src="/homepage-about-us-image.jpeg"
+                  src="/images/home/homepage-about-us-image.jpg"
                   alt="Childhood moments at Dakota Autism Center"
                   fill
                   className="object-cover"

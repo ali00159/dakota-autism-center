@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { cities } from '@/data/cities';
+import { cityNavigationLinks } from '@/data/cityNavigation';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -213,7 +213,7 @@ export default function Navigation() {
                 <div className="mt-4 border-t border-border-light pt-4">
                   <p className="mb-3 px-4 text-xs font-bold uppercase tracking-wider text-text-muted">Areas We Serve</p>
                   <div className="flex flex-wrap gap-2 px-4">
-                    {cities.map((city) => (
+                    {cityNavigationLinks.map((city) => (
                       <Link
                         key={city.slug}
                         href={`/${city.slug}`}
@@ -345,7 +345,7 @@ export default function Navigation() {
                 Areas We Serve
               </div>
               <div className="flex flex-wrap gap-2 px-3">
-                {cities.map((city) => (
+                {cityNavigationLinks.map((city) => (
                   <Link
                     key={city.slug}
                     href={`/${city.slug}`}

@@ -321,7 +321,7 @@ export default function CenterBasedContent() {
                 alt="Therapist guiding children through a table activity in a structured learning setting"
                 fill
                 className="object-cover"
-                priority
+                loading="eager"
                 sizes="100vw"
               />
               <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />

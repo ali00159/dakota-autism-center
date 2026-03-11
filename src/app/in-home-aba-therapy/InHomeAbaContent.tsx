@@ -390,7 +390,7 @@ export default function InHomeAbaContent() {
                 alt="Therapist engaging with a young child through play-based learning in a warm, comfortable home setting"
                 fill
                 className="object-cover"
-                priority
+                loading="eager"
                 sizes="100vw"
               />
               <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />

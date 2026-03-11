@@ -203,7 +203,7 @@ export default function EidbiContent() {
                 alt="Caregiver and child engaged in a play-based developmental activity with colorful building blocks"
                 fill
                 className="object-cover"
-                priority
+                loading="eager"
                 sizes="100vw"
               />
               <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
