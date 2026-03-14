@@ -12,6 +12,8 @@ import {
   Sparkles,
   Stethoscope,
 } from 'lucide-react';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 
 const coreAutismFacts = [
@@ -150,7 +152,7 @@ export default function AboutAutismContent() {
     <main id="main-content" className="w-full bg-white">
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-12 md:py-14 lg:py-16">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
+          <ScrollReveal direction="up" duration={0.6} className="max-w-4xl mx-auto text-center">
             <span className="badge badge-info mb-4">Parent Learning Center</span>
             <h1 className="hero-headline text-dark mb-5">
               Understanding Autism:
@@ -170,29 +172,30 @@ export default function AboutAutismContent() {
             <p className="text-sm text-text-muted mt-6 mb-0">
               Educational content only. This is not medical advice and does not replace a clinical evaluation.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="section bg-white">
         <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {coreAutismFacts.map((item) => {
               const Icon = item.icon;
               return (
-                <article
-                  key={item.title}
-                  className="rounded-2xl border border-border-light bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <div className={`w-12 h-12 rounded-xl ${item.tone} flex items-center justify-center mb-4`}>
-                    <Icon className="w-6 h-6" aria-hidden="true" />
-                  </div>
-                  <h2 className="text-dark text-[26px] leading-[1.2] mb-3">{item.title}</h2>
-                  <p className="text-text-secondary mb-0 leading-relaxed">{item.description}</p>
-                </article>
+                <StaggerItem key={item.title}>
+                  <article
+                    className="rounded-2xl border border-border-light bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 h-full"
+                  >
+                    <div className={`w-12 h-12 rounded-xl ${item.tone} flex items-center justify-center mb-4`}>
+                      <Icon className="w-6 h-6" aria-hidden="true" />
+                    </div>
+                    <h2 className="text-dark text-[26px] leading-[1.2] mb-3">{item.title}</h2>
+                    <p className="text-text-secondary mb-0 leading-relaxed">{item.description}</p>
+                  </article>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -206,33 +209,35 @@ export default function AboutAutismContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {signsByStage.map((item, index) => (
-              <article key={item.stage} className="rounded-2xl bg-white border border-border-light p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="w-8 h-8 rounded-full bg-primary-light text-primary font-bold flex items-center justify-center">
-                    {index + 1}
-                  </span>
-                  <h3 className="text-xl text-dark mb-0">{item.stage}</h3>
-                </div>
-                <ul className="space-y-3 mb-0">
-                  {item.signs.map((sign) => (
-                    <li key={sign} className="flex items-start gap-2.5 text-text-secondary">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{sign}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              <StaggerItem key={item.stage}>
+                <article className="rounded-2xl bg-white border border-border-light p-6 shadow-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="w-8 h-8 rounded-full bg-primary-light text-primary font-bold flex items-center justify-center">
+                      {index + 1}
+                    </span>
+                    <h3 className="text-xl text-dark mb-0">{item.stage}</h3>
+                  </div>
+                  <ul className="space-y-3 mb-0">
+                    {item.signs.map((sign) => (
+                      <li key={sign} className="flex items-start gap-2.5 text-text-secondary">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{sign}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       <section id="diagnosis-path" className="section bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            <div className="lg:col-span-7 rounded-3xl border border-border-light bg-[#FCFDFC] p-7 md:p-9 shadow-sm">
+            <ScrollReveal direction="right" duration={0.6} className="lg:col-span-7 rounded-3xl border border-border-light bg-[#FCFDFC] p-7 md:p-9 shadow-sm">
               <div className="flex items-center gap-3 mb-5">
                 <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                   <ClipboardCheck className="w-6 h-6" aria-hidden="true" />
@@ -249,9 +254,9 @@ export default function AboutAutismContent() {
                   </li>
                 ))}
               </ol>
-            </div>
+            </ScrollReveal>
 
-            <aside className="lg:col-span-5 rounded-3xl border border-border-light bg-[#FEF3E8] p-7 md:p-9 shadow-sm">
+            <ScrollReveal direction="left" duration={0.6} className="lg:col-span-5 rounded-3xl border border-border-light bg-[#FEF3E8] p-7 md:p-9 shadow-sm">
               <span className="badge badge-secondary mb-3">Parent Reminder</span>
               <h3 className="text-dark mb-4">Bring this to your first evaluation visit</h3>
               <ul className="space-y-3 mb-6">
@@ -271,7 +276,7 @@ export default function AboutAutismContent() {
               <Link href="/eidbi" className="btn btn-primary w-full justify-center rounded-full">
                 Explore Minnesota EIDBI Details
               </Link>
-            </aside>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -283,14 +288,16 @@ export default function AboutAutismContent() {
             <h2 className="text-dark mb-5">What to prioritize in treatment planning</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {supportsWithEvidence.map((item) => (
-              <article key={item.support} className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
-                <h3 className="text-dark text-2xl mb-3">{item.support}</h3>
-                <p className="text-text-secondary leading-relaxed mb-0">{item.detail}</p>
-              </article>
+              <StaggerItem key={item.support}>
+                <article className="rounded-2xl border border-border-light bg-white p-6 shadow-sm h-full">
+                  <h3 className="text-dark text-2xl mb-3">{item.support}</h3>
+                  <p className="text-text-secondary leading-relaxed mb-0">{item.detail}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

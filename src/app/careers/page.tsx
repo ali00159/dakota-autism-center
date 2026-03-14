@@ -3,6 +3,8 @@ import { ArrowRight, BadgeCheck, BriefcaseBusiness, Users } from 'lucide-react';
 import CareersApplicationForm from '@/components/CareersApplicationForm';
 import JsonLd from '@/components/seo/JsonLd';
 import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/lib/seo';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 export const metadata: Metadata = {
   title: 'ABA Therapy Careers in Minnesota',
@@ -79,7 +81,7 @@ export default function CareersPage() {
 
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-14 md:py-18 lg:py-20">
-          <div className="mx-auto max-w-4xl text-center">
+          <ScrollReveal direction="up" duration={0.6} className="mx-auto max-w-4xl text-center">
             <div className="flex flex-col items-center">
               <span className="badge badge-secondary mb-5 inline-block">Careers</span>
               <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">
@@ -90,13 +92,13 @@ export default function CareersPage() {
                 learn how your strengths can support clinically excellent, family-centered care.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section id="careers-form" className="relative pb-12 md:pb-16">
         <div className="container-max -mt-8 md:-mt-12">
-          <div className="card-static rounded-3xl border border-border-light p-6 md:p-10">
+          <ScrollReveal direction="up" delay={0.2} duration={0.6} className="card-static rounded-3xl border border-border-light p-6 md:p-10">
             <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="mb-3 text-3xl font-semibold text-primary">Careers Application</h2>
@@ -112,7 +114,7 @@ export default function CareersPage() {
             </div>
 
             <CareersApplicationForm />
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -129,22 +131,24 @@ export default function CareersPage() {
             </div>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <StaggerContainer className="grid gap-6 lg:grid-cols-3">
             {highlights.map((item, index) => {
               const Icon = item.icon;
               const iconStyles = ['bg-secondary/20 text-secondary', 'bg-tertiary/20 text-tertiary', 'bg-accent/20 text-accent'];
 
               return (
-                <article key={item.title} className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
-                  <span className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full ${iconStyles[index]}`}>
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="mb-2 text-2xl font-semibold text-primary">{item.title}</h3>
-                  <p className="mb-0 text-text-secondary">{item.description}</p>
-                </article>
+                <StaggerItem key={item.title}>
+                  <article className="rounded-2xl border border-border-light bg-white p-6 shadow-sm h-full">
+                    <span className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full ${iconStyles[index]}`}>
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mb-2 text-2xl font-semibold text-primary">{item.title}</h3>
+                    <p className="mb-0 text-text-secondary">{item.description}</p>
+                  </article>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
     </main>

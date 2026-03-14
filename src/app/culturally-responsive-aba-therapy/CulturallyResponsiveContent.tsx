@@ -4,6 +4,8 @@ import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import FAQ from '@/components/FAQ';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 const differencePillars = [
   {
@@ -114,13 +116,7 @@ export default function CulturallyResponsiveContent() {
     <main id="main-content" className="w-full bg-white">
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-14 md:py-16 lg:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
-            className="max-w-4xl mx-auto text-center"
-          >
+          <ScrollReveal direction="up" duration={0.55} className="max-w-4xl mx-auto text-center">
             <span className="badge badge-primary mb-5">
               Culturally Responsive Care
             </span>
@@ -148,7 +144,7 @@ export default function CulturallyResponsiveContent() {
                 See The Difference
               </a>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -166,26 +162,27 @@ export default function CulturallyResponsiveContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {differencePillars.map((pillar) => (
-              <article
-                key={pillar.title}
-                className="rounded-2xl border border-border-light bg-white p-6 md:p-7 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div
-                  className={`w-12 h-12 rounded-xl ${pillar.tone} flex items-center justify-center mb-4`}
+              <StaggerItem key={pillar.title}>
+                <article
+                  className="rounded-2xl border border-border-light bg-white p-6 md:p-7 shadow-sm hover:shadow-md transition-shadow h-full"
                 >
-                  <Icon icon={pillar.icon} className="w-7 h-7" />
-                </div>
-                <h3 className="text-dark text-xl font-semibold mb-3">
-                  {pillar.title}
-                </h3>
-                <p className="text-text-secondary leading-relaxed mb-0">
-                  {pillar.detail}
-                </p>
-              </article>
+                  <div
+                    className={`w-12 h-12 rounded-xl ${pillar.tone} flex items-center justify-center mb-4`}
+                  >
+                    <Icon icon={pillar.icon} className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-dark text-xl font-semibold mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-0">
+                    {pillar.detail}
+                  </p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -205,36 +202,37 @@ export default function CulturallyResponsiveContent() {
                 design and coaching.
               </p>
 
-              <div className="space-y-4">
+              <StaggerContainer className="space-y-4">
                 {marketComparison.map((row) => (
-                  <article
-                    key={row.focus}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-2xl border border-border-light bg-white p-5"
-                  >
-                    <div>
-                      <p className="text-sm font-bold text-dark mb-1">
-                        {row.focus}
-                      </p>
-                    </div>
-                    <div className="rounded-xl bg-[#F5F5F5] p-4">
-                      <p className="text-xs uppercase tracking-wide text-text-muted font-semibold mb-2">
-                        Common market pattern
-                      </p>
-                      <p className="text-sm text-text-secondary mb-0">
-                        {row.commonPattern}
-                      </p>
-                    </div>
-                    <div className="rounded-xl bg-primary/10 p-4 border border-primary/15">
-                      <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">
-                        Dakota difference
-                      </p>
-                      <p className="text-sm text-dark mb-0">
-                        {row.dakotaDifference}
-                      </p>
-                    </div>
-                  </article>
+                  <StaggerItem key={row.focus}>
+                    <article
+                      className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-2xl border border-border-light bg-white p-5"
+                    >
+                      <div>
+                        <p className="text-sm font-bold text-dark mb-1">
+                          {row.focus}
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-[#F5F5F5] p-4">
+                        <p className="text-xs uppercase tracking-wide text-text-muted font-semibold mb-2">
+                          Common market pattern
+                        </p>
+                        <p className="text-sm text-text-secondary mb-0">
+                          {row.commonPattern}
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-primary/10 p-4 border border-primary/15">
+                        <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">
+                          Dakota difference
+                        </p>
+                        <p className="text-sm text-dark mb-0">
+                          {row.dakotaDifference}
+                        </p>
+                      </div>
+                    </article>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
 
             <aside className="lg:col-span-4 rounded-3xl border border-border-light bg-[#FEF3E8] p-6 md:p-8 shadow-sm">

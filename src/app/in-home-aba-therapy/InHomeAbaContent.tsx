@@ -1,11 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
+import { ParallaxImage } from '@/components/animations/ParallaxImage';
 
 const parentOutcomes = [
   {
@@ -335,31 +336,20 @@ const faqItems = [
 ];
 
 export default function InHomeAbaContent() {
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
-
-  const teamRef = useRef(null);
-  const { scrollYProgress: teamScrollYProgress } = useScroll({
-    target: teamRef,
-    offset: ['start end', 'end start'],
-  });
-  const teamY = useTransform(teamScrollYProgress, [0, 1], [40, -40]);
-
   return (
     <main id="main-content" className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
-          <Image
+        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
+          <ParallaxImage
             src="/images/in-home/hero-in-home-therapy.webp"
             alt="Therapist engaging with a young child through play-based learning in a warm, comfortable home setting"
-            fill
-            className="object-cover"
+            className="h-full w-full"
             priority
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </motion.div>
+        </div>
 
         <div className="container-max relative z-10 py-10 md:py-12 lg:py-14">
           <div className="w-full lg:w-1/2 lg:pr-12 animate-fade-in-up">
@@ -404,13 +394,7 @@ export default function InHomeAbaContent() {
       <section className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
         <div className="container-max relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative h-full"
-            >
+            <ScrollReveal direction="right" duration={0.6} className="relative h-full">
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full h-full min-h-[500px]">
                 <Image
                   src="/images/in-home/what-is-in-home-aba.webp"
@@ -420,15 +404,9 @@ export default function InHomeAbaContent() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-              className="flex flex-col items-start py-8 lg:py-12"
-            >
+            <ScrollReveal direction="up" delay={0.2} duration={0.6} className="flex flex-col items-start py-8 lg:py-12">
               <span className="badge badge-primary mb-8 shadow-sm">
                 What Is In-Home ABA?
               </span>
@@ -486,7 +464,7 @@ export default function InHomeAbaContent() {
                   </span>
                 </Link>
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -505,34 +483,35 @@ export default function InHomeAbaContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {parentOutcomes.map((outcome) => (
-              <article
-                key={outcome.skill}
-                className="relative bg-white rounded-2xl p-7 md:p-8 border border-border-light hover:shadow-lg transition-all duration-300 group overflow-hidden"
-              >
-                <div className={`absolute top-0 left-0 w-1.5 h-full ${outcome.accent} rounded-l-2xl`} />
-                
-                <div className="flex items-start gap-4 mb-5">
-                  <div className={`shrink-0 w-12 h-12 rounded-2xl ${outcome.accentLight} ${outcome.iconColor} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-                    <Icon icon={outcome.icon} className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-dark text-xl font-semibold mb-0 group-hover:text-primary transition-colors">{outcome.skill}</h3>
-                    <div className="flex items-baseline gap-2 mt-1">
-                      <span className={`text-2xl font-bold ${outcome.iconColor}`}>{outcome.stat}</span>
-                      <span className="text-xs text-text-muted">{outcome.statLabel}</span>
+              <StaggerItem key={outcome.skill}>
+                <article
+                  className="relative bg-white rounded-2xl p-7 md:p-8 border border-border-light hover:shadow-lg transition-all duration-300 group overflow-hidden h-full"
+                >
+                  <div className={`absolute top-0 left-0 w-1.5 h-full ${outcome.accent} rounded-l-2xl`} />
+                  
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className={`shrink-0 w-12 h-12 rounded-2xl ${outcome.accentLight} ${outcome.iconColor} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+                      <Icon icon={outcome.icon} className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-dark text-xl font-semibold mb-0 group-hover:text-primary transition-colors">{outcome.skill}</h3>
+                      <div className="flex items-baseline gap-2 mt-1">
+                        <span className={`text-2xl font-bold ${outcome.iconColor}`}>{outcome.stat}</span>
+                        <span className="text-xs text-text-muted">{outcome.statLabel}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <p className="text-text-secondary text-base leading-relaxed mb-0">
-                  <span className="font-semibold text-dark">{outcome.verb}</span>{' '}
-                  {outcome.outcome}
-                </p>
-              </article>
+                  <p className="text-text-secondary text-base leading-relaxed mb-0">
+                    <span className="font-semibold text-dark">{outcome.verb}</span>{' '}
+                    {outcome.outcome}
+                  </p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -550,13 +529,7 @@ export default function InHomeAbaContent() {
                 learning, and your involvement as a parent.
               </p>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]"
-            >
+            <ScrollReveal direction="up" duration={0.6} className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]">
               <Image
                 src="/images/in-home/session-overview.webp"
                 alt="A therapist and child working together on an activity in a home living room during an ABA session"
@@ -565,7 +538,7 @@ export default function InHomeAbaContent() {
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
-            </motion.div>
+            </ScrollReveal>
           </div>
 
           <div className="relative max-w-4xl mx-auto mb-20">
@@ -618,19 +591,21 @@ export default function InHomeAbaContent() {
               <p className="text-text-secondary">We focus on skills that make your daily life easier.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {realWorldImpact.map((item) => (
-                <div key={item.clinical} className="bg-white p-6 rounded-2xl border border-border-light text-center hover:-translate-y-1 transition-transform duration-300">
-                  <div className={`w-12 h-12 mx-auto rounded-xl ${item.bg} ${item.color} flex items-center justify-center mb-4`}>
-                    <Icon icon={item.icon} className="w-6 h-6" />
+                <StaggerItem key={item.clinical}>
+                  <div className="bg-white p-6 rounded-2xl border border-border-light text-center hover:-translate-y-1 transition-transform duration-300 h-full">
+                    <div className={`w-12 h-12 mx-auto rounded-xl ${item.bg} ${item.color} flex items-center justify-center mb-4`}>
+                      <Icon icon={item.icon} className="w-6 h-6" />
+                    </div>
+                    <p className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Clinical Goal</p>
+                    <h4 className="text-dark font-semibold mb-4 pb-4 border-b border-border-light">{item.clinical}</h4>
+                    <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Real World Result</p>
+                    <p className="text-text-secondary text-sm font-medium">{item.realWorld}</p>
                   </div>
-                  <p className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Clinical Goal</p>
-                  <h4 className="text-dark font-semibold mb-4 pb-4 border-b border-border-light">{item.clinical}</h4>
-                  <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Real World Result</p>
-                  <p className="text-text-secondary text-sm font-medium">{item.realWorld}</p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
 
         </div>
@@ -651,13 +626,7 @@ export default function InHomeAbaContent() {
               <Link href="/contact-us" className="btn btn-primary rounded-full px-8 inline-flex items-center gap-2">
                 Talk to a Specialist <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
               </Link>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                className="relative mt-8 rounded-3xl overflow-hidden border border-border-light/70 shadow-sm h-[220px] sm:h-[260px]"
-              >
+              <ScrollReveal direction="up" delay={0.2} duration={0.6} className="relative mt-8 rounded-3xl overflow-hidden border border-border-light/70 shadow-sm h-[220px] sm:h-[260px]">
                 <Image
                   src="/images/in-home/family-moment.webp"
                   alt="Therapist and child engaged in play-based learning with colorful building blocks during an ABA therapy session at home"
@@ -665,23 +634,25 @@ export default function InHomeAbaContent() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
-              </motion.div>
+              </ScrollReveal>
             </div>
 
             <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {idealCandidates.map((candidate) => (
-                  <article key={candidate.title} className="flex gap-4 items-start group p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300">
-                    <div className="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <Icon icon={candidate.icon} className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-dark text-base font-semibold mb-1.5 group-hover:text-primary transition-colors">{candidate.title}</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-0">{candidate.description}</p>
-                    </div>
-                  </article>
+                  <StaggerItem key={candidate.title}>
+                    <article className="flex gap-4 items-start group p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300 h-full">
+                      <div className="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        <Icon icon={candidate.icon} className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-dark text-base font-semibold mb-1.5 group-hover:text-primary transition-colors">{candidate.title}</h3>
+                        <p className="text-text-secondary text-sm leading-relaxed mb-0">{candidate.description}</p>
+                      </div>
+                    </article>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
           </div>
         </div>
@@ -733,7 +704,7 @@ export default function InHomeAbaContent() {
       </section>
 
       {/* Your Therapy Team */}
-      <section ref={teamRef} className="section bg-[#F7FBF9]">
+      <section className="section bg-[#F7FBF9]">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
@@ -773,14 +744,7 @@ export default function InHomeAbaContent() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <motion.div
-                style={{ y: teamY }}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="relative rounded-3xl overflow-hidden border border-border-light shadow-sm h-[220px] sm:h-[280px]"
-              >
+              <ScrollReveal direction="left" duration={0.6} className="relative rounded-3xl overflow-hidden border border-border-light shadow-sm h-[220px] sm:h-[280px]">
                 <Image
                   src="/images/in-home/therapy-team.webp"
                   alt="A BCBA and RBT therapy team collaborating to support a child during an in-home session"
@@ -788,24 +752,26 @@ export default function InHomeAbaContent() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 45vw"
                 />
-              </motion.div>
+              </ScrollReveal>
 
-              <div className="grid grid-cols-2 gap-4">
+              <StaggerContainer className="grid grid-cols-2 gap-4">
                 {[
                   { label: 'Background Checked', desc: 'Comprehensive screening for every team member', icon: 'solar:shield-check-bold-duotone', bg: 'bg-primary/10', color: 'text-primary' },
                   { label: 'Ongoing Training', desc: '40+ hours of initial training plus continuing education', icon: 'solar:book-2-bold-duotone', bg: 'bg-secondary/15', color: 'text-[#FB9A31]' },
                   { label: 'Weekly Supervision', desc: 'BCBA oversight ensures treatment fidelity', icon: 'solar:eye-bold-duotone', bg: 'bg-tertiary/15', color: 'text-tertiary' },
                   { label: 'Consistent Team', desc: 'The same therapist works with your child each session', icon: 'solar:heart-bold-duotone', bg: 'bg-accent/10', color: 'text-[#EA3D6A]' },
                 ].map((trust) => (
-                  <article key={trust.label} className="p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow group">
-                    <div className={`w-10 h-10 rounded-xl ${trust.bg} ${trust.color} flex items-center justify-center mb-3`}>
-                      <Icon icon={trust.icon} className="w-5 h-5" />
-                    </div>
-                    <h4 className="text-dark text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{trust.label}</h4>
-                    <p className="text-text-secondary text-xs leading-relaxed mb-0">{trust.desc}</p>
-                  </article>
+                  <StaggerItem key={trust.label}>
+                    <article className="p-5 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow group h-full">
+                      <div className={`w-10 h-10 rounded-xl ${trust.bg} ${trust.color} flex items-center justify-center mb-3`}>
+                        <Icon icon={trust.icon} className="w-5 h-5" />
+                      </div>
+                      <h4 className="text-dark text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{trust.label}</h4>
+                      <p className="text-text-secondary text-xs leading-relaxed mb-0">{trust.desc}</p>
+                    </article>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
           </div>
         </div>

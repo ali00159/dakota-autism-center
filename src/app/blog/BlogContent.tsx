@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { blogCategories, blogPosts, type BlogCategory } from './blogPosts';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 type BlogFilter = 'All' | BlogCategory;
 
@@ -33,7 +35,7 @@ export default function BlogContent() {
     <main id="main-content" className="w-full bg-white">
       <section className="border-b border-border-light bg-white">
         <div className="container-max py-12 md:py-16 lg:py-20">
-          <div className="max-w-4xl mx-auto text-center">
+          <ScrollReveal direction="up" duration={0.6} className="max-w-4xl mx-auto text-center">
             <span className="badge badge-primary mb-4">ABA Insights Hub</span>
             <h1 className="hero-headline text-dark mb-5">
               Meaningful ABA Guidance for Minnesota Families
@@ -43,7 +45,7 @@ export default function BlogContent() {
               intervention planning, and Minnesota funding pathways — built to help families make
               confident decisions without overwhelm.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -112,49 +114,52 @@ export default function BlogContent() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredPosts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group rounded-2xl border border-border-light bg-white overflow-hidden shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-primary/30 block no-underline"
-                >
-                  <article>
-                    {post.image && (
-                      <div className="relative w-full aspect-video overflow-hidden">
-                        <Image
-                          src={post.image.src}
-                          alt={post.image.alt}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                        />
+                <StaggerItem key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group rounded-2xl border border-border-light bg-white overflow-hidden shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-primary/30 block no-underline h-full"
+                  >
+                    <article className="h-full flex flex-col">
+                      {post.image && (
+                        <div className="relative w-full aspect-video overflow-hidden shrink-0">
+                          <Image
+                            src={post.image.src}
+                            alt={post.image.alt}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6 flex flex-col flex-1">
+                        <div className="mb-auto">
+                          <span
+                            className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[post.category]}`}
+                          >
+                            {post.category}
+                          </span>
+                          <h3 className="mt-4 mb-3 text-xl font-bold text-dark group-hover:text-primary transition-colors">
+                            {post.title}
+                          </h3>
+                          <p className="mb-5 text-text-secondary text-sm leading-relaxed">
+                            {post.excerpt}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-semibold text-text-muted mt-4">
+                          <span>{post.readTime}</span>
+                          <span className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                            Read article
+                            <Icon icon="solar:arrow-right-linear" className="w-3.5 h-3.5" />
+                          </span>
+                        </div>
                       </div>
-                    )}
-                    <div className="p-6">
-                      <span
-                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[post.category]}`}
-                      >
-                        {post.category}
-                      </span>
-                      <h3 className="mt-4 mb-3 text-xl font-bold text-dark group-hover:text-primary transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="mb-5 text-text-secondary text-sm leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-xs font-semibold text-text-muted">
-                        <span>{post.readTime}</span>
-                        <span className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                          Read article
-                          <Icon icon="solar:arrow-right-linear" className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
+                    </article>
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           )}
         </div>
       </section>

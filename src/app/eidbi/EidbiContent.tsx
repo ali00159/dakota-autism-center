@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
 import BlogSection from '@/components/BlogSection';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
+import { ParallaxImage } from '@/components/animations/ParallaxImage';
 
 const eidbiServices = [
   {
@@ -158,24 +160,20 @@ const eidbisFaqItems = [
 ];
 
 export default function EidbiContent() {
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
-
   return (
     <main id="main-content" className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
-          <Image
+        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
+          <ParallaxImage
             src="/images/eidbi/hero-eidbi-therapy.webp"
             alt="Caregiver and child engaged in a play-based developmental activity with colorful building blocks"
-            fill
-            className="object-cover"
+            className="h-full w-full"
             priority
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </motion.div>
+        </div>
 
         <div className="container-max relative z-10 py-10 md:py-12 lg:py-14">
           <div className="w-full lg:w-1/2 lg:pr-12 animate-fade-in-up">
@@ -220,13 +218,7 @@ export default function EidbiContent() {
       <section className="section bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative lg:sticky lg:top-28"
-            >
+            <ScrollReveal direction="right" duration={0.6} className="relative lg:sticky lg:top-28">
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full min-h-[420px]">
                 <Image
                   src="/images/eidbi/what-is-eidbi.webp"
@@ -236,15 +228,9 @@ export default function EidbiContent() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-              className="flex flex-col gap-8"
-            >
+            <ScrollReveal direction="up" delay={0.2} duration={0.6} className="flex flex-col gap-8">
               <div>
                 <span className="badge badge-secondary mb-4">About The Program</span>
                 <h2 className="text-dark mb-6">What is EIDBI?</h2>
@@ -295,7 +281,7 @@ export default function EidbiContent() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -311,13 +297,7 @@ export default function EidbiContent() {
                 As an enrolled EIDBI provider, Dakota Autism Center offers the full range of services covered under the benefit, delivered with our signature warm and relationship-focused approach.
               </p>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]"
-            >
+            <ScrollReveal direction="up" duration={0.6} className="relative rounded-3xl overflow-hidden shadow-lg border border-border-light h-[220px] sm:h-[280px]">
               <Image
                 src="/images/eidbi/eidbi-services-overview.webp"
                 alt="Children engaged in a group play activity with toys, building communication and social skills together"
@@ -326,26 +306,28 @@ export default function EidbiContent() {
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
-            </motion.div>
+            </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {eidbiServices.map((service) => (
-              <article key={service.title} className="bg-white rounded-2xl overflow-hidden border border-border-light shadow-sm hover:shadow-md transition-all duration-300 group">
-                <div className={`w-full ${service.bgClass} px-8 pt-6 pb-5`}>
-                  <div className={`w-14 h-14 rounded-xl bg-white/60 ${service.iconClass} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <Icon icon={service.icon} className="w-7 h-7" />
+              <StaggerItem key={service.title}>
+                <article className="bg-white rounded-2xl overflow-hidden border border-border-light shadow-sm hover:shadow-md transition-all duration-300 group h-full">
+                  <div className={`w-full ${service.bgClass} px-8 pt-6 pb-5`}>
+                    <div className={`w-14 h-14 rounded-xl bg-white/60 ${service.iconClass} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                      <Icon icon={service.icon} className="w-7 h-7" />
+                    </div>
                   </div>
-                </div>
-                <div className="px-8 pt-5 pb-8">
-                  <h3 className="text-xl font-bold text-dark mb-3">{service.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </article>
+                  <div className="px-8 pt-5 pb-8">
+                    <h3 className="text-xl font-bold text-dark mb-3">{service.title}</h3>
+                    <p className="text-text-secondary leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -363,20 +345,21 @@ export default function EidbiContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10 lg:mb-14">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10 lg:mb-14">
             {mnEidbiLandscape.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-2xl border border-border-light bg-white shadow-sm hover:shadow-md transition-all duration-300 px-6 py-7"
-              >
-                <div className={`w-12 h-12 rounded-xl ${item.tone} flex items-center justify-center mb-4`}>
-                  <Icon icon={item.icon} className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-dark mb-3">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-text-secondary mb-0">{item.detail}</p>
-              </article>
+              <StaggerItem key={item.title}>
+                <article
+                  className="rounded-2xl border border-border-light bg-white shadow-sm hover:shadow-md transition-all duration-300 px-6 py-7 h-full"
+                >
+                  <div className={`w-12 h-12 rounded-xl ${item.tone} flex items-center justify-center mb-4`}>
+                    <Icon icon={item.icon} className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold text-dark mb-3">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-text-secondary mb-0">{item.detail}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-8 rounded-3xl border border-border-light bg-[#FCFDFC] p-6 md:p-8 lg:p-10 shadow-sm">
@@ -393,26 +376,27 @@ export default function EidbiContent() {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <StaggerContainer className="space-y-4">
                 {providerComparison.map((row) => (
-                  <article
-                    key={row.focus}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-2xl border border-border-light bg-white p-5"
-                  >
-                    <div>
-                      <p className="text-sm font-bold text-dark mb-1">{row.focus}</p>
-                    </div>
-                    <div className="rounded-xl bg-[#F5F5F5] p-4">
-                      <p className="text-xs uppercase tracking-wide text-text-muted font-semibold mb-2">Common market pattern</p>
-                      <p className="text-sm text-text-secondary mb-0">{row.commonPattern}</p>
-                    </div>
-                    <div className="rounded-xl bg-primary/10 p-4 border border-primary/15">
-                      <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">Dakota approach</p>
-                      <p className="text-sm text-dark mb-0">{row.dakotaApproach}</p>
-                    </div>
-                  </article>
+                  <StaggerItem key={row.focus}>
+                    <article
+                      className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-2xl border border-border-light bg-white p-5"
+                    >
+                      <div>
+                        <p className="text-sm font-bold text-dark mb-1">{row.focus}</p>
+                      </div>
+                      <div className="rounded-xl bg-[#F5F5F5] p-4">
+                        <p className="text-xs uppercase tracking-wide text-text-muted font-semibold mb-2">Common market pattern</p>
+                        <p className="text-sm text-text-secondary mb-0">{row.commonPattern}</p>
+                      </div>
+                      <div className="rounded-xl bg-primary/10 p-4 border border-primary/15">
+                        <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">Dakota approach</p>
+                        <p className="text-sm text-dark mb-0">{row.dakotaApproach}</p>
+                      </div>
+                    </article>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
 
             <aside className="lg:col-span-4 rounded-3xl border border-border-light bg-[#FEF3E8] p-6 md:p-8 shadow-sm">
@@ -453,7 +437,7 @@ export default function EidbiContent() {
       <section className="section bg-white overflow-hidden">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative h-[400px] lg:h-[600px] rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl order-2 lg:order-1">
+            <ScrollReveal direction="left" duration={0.6} className="relative h-[400px] lg:h-[600px] rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl order-2 lg:order-1">
               <Image
                 src="/images/eidbi/why-choose-dakota.webp"
                 alt="A father and child building together with colorful blocks in a warm, naturalistic home environment"
@@ -471,9 +455,9 @@ export default function EidbiContent() {
                   &quot;We believe therapy should be something children look forward to, not just something they do.&quot;
                 </p>
               </div>
-            </div>
+            </ScrollReveal>
             
-            <div className="order-1 lg:order-2">
+            <ScrollReveal direction="up" delay={0.2} duration={0.6} className="order-1 lg:order-2">
               <span className="badge badge-accent mb-4">Why Choose Us</span>
               <h2 className="text-dark mb-6">More than just a provider</h2>
               <p className="body-large text-text-secondary mb-8">
@@ -509,7 +493,7 @@ export default function EidbiContent() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

@@ -10,7 +10,7 @@ Retrieval date: 2026-03-09
 | --- | --- | --- | --- | --- | --- |
 | `/public/images/center-based/hero-center-based.webp` | Hero section | https://unsplash.com/photos/children-drawing-with-a-teacher-at-a-table-9Fi8p2qOPNo | AMONWAT DUMKRUT | Unsplash License: https://unsplash.com/license | No (appreciated) |
 | `/public/images/center-based/inside-center-classroom.webp` | Inside Our Center section | https://unsplash.com/photos/teacher-guiding-children-drawing-at-a-table-kPkRpy6pIIg | Rewired Digital | Unsplash License: https://unsplash.com/license | No (appreciated) |
-| `/public/images/center-based/daily-rhythm-classroom.webp` | Daily Rhythm section | https://unsplash.com/photos/a-group-of-children-sitting-at-desks-in-a-classroom-OcDJhBm8Jnc | Haseeb Modi | Unsplash License: https://unsplash.com/license | No (appreciated) |
+| `/public/images/center-based/daily-rhythm-teacher-group.webp` | Daily Rhythm section | https://www.pexels.com/photo/woman-reading-a-book-to-the-children-8363771/ | RDNE Stock project | Pexels License: https://www.pexels.com/license/ | No |
 | `/public/images/center-based/outcomes-school-readiness.webp` | Who Thrives Here section | https://unsplash.com/photos/a-group-of-children-standing-in-front-of-a-bookshelf-Pw0vMMWnSWU | Annie Spratt | Unsplash License: https://unsplash.com/license | No (appreciated) |
 
 ## EIDBI Page

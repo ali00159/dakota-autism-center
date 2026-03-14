@@ -8,18 +8,9 @@ export default function SmoothScroll() {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
   const isFirstRender = useRef(true);
-  const shouldEnableForRoute =
-    pathname === '/' ||
-    pathname === '/contact-us' ||
-    pathname.startsWith('/aba-therapy-in-') ||
-    pathname.startsWith('/center-based-aba-therapy') ||
-    pathname.startsWith('/in-home-aba-therapy') ||
-    pathname.startsWith('/eidbi');
 
   // Effect 1: Create Lenis singleton on mount, destroy on unmount
   useEffect(() => {
-    if (!shouldEnableForRoute) return;
-
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reducedMotionQuery.matches) return;
 
@@ -47,22 +38,35 @@ export default function SmoothScroll() {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, [shouldEnableForRoute]);
+  }, []);
 
-  // Effect 2: Scroll to top on route change (skip initial render)
+  // Effect 2: Scroll to top on route change, or to hash target for cross-page hash links
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
 
-    window.scrollTo(0, 0);
-    if (shouldEnableForRoute) {
+    const hash = window.location.hash;
+    if (hash && hash !== '#') {
+      const scrollToHash = () => {
+        const element = document.querySelector(hash) as HTMLElement;
+        if (element) {
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(element);
+          } else {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      };
+      requestAnimationFrame(() => requestAnimationFrame(scrollToHash));
+    } else {
+      window.scrollTo(0, 0);
       lenisRef.current?.scrollTo(0, { immediate: true });
     }
-  }, [pathname, shouldEnableForRoute]);
+  }, [pathname]);
 
-  // Effect 3: Hash-link click handler (rebound on pathname so cross-page hash detection stays accurate)
+  // Effect 3: Hash-link click handler
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -81,8 +85,8 @@ export default function SmoothScroll() {
 
         if (element) {
           e.preventDefault();
-          if (shouldEnableForRoute) {
-            lenisRef.current?.scrollTo(element);
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(element);
           } else {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
@@ -92,7 +96,7 @@ export default function SmoothScroll() {
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [pathname, shouldEnableForRoute]);
+  }, [pathname]);
 
   return null;
 }

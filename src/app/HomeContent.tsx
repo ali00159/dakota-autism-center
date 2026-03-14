@@ -5,10 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Icon } from '@iconify/react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Compass, GitCompareArrows, CalendarCheck } from 'lucide-react';
 import RotatingText from '@/components/RotatingText';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
+import { ParallaxImage } from '@/components/animations/ParallaxImage';
 
 import phoneBold from '@iconify-icons/solar/phone-bold';
 import shieldCheckBold from '@iconify-icons/solar/shield-check-bold';
@@ -163,20 +166,6 @@ const services: ServiceItem[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-} as const;
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' as const },
-  },
-} as const;
-
 const principles = [
   { text: 'Natural Growth', color: '#115C47' },
   { text: 'Family Partnership', color: '#FB9A31' },
@@ -190,15 +179,6 @@ export default function HomeContent() {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0].id);
 
   const activeContent = tabs.find((tab) => tab.id === activeTab) || tabs[0];
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
-
-  const aboutRef = React.useRef(null);
-  const { scrollYProgress: aboutScrollYProgress } = useScroll({
-    target: aboutRef,
-    offset: ["start end", "end start"]
-  });
-  const aboutY = useTransform(aboutScrollYProgress, [0, 1], [50, -50]);
 
   return (
     <main id="main-content" className="w-full overflow-x-clip">
@@ -207,16 +187,15 @@ export default function HomeContent() {
         className="relative w-full min-h-[calc(100vh-150px)] bg-white overflow-hidden border-b border-border-light"
         aria-labelledby="hero-heading"
       >
-        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
-          <Image
+        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[50%] z-0 h-full">
+          <ParallaxImage
             src="/images/home/hero-homepage-mother-child.jpg"
             alt="Mother and child building colorful blocks together during a therapy activity"
-            fill
-            className="object-cover"
+            className="h-full w-full"
             priority
             sizes="50vw"
           />
-        </motion.div>
+        </div>
 
         <div className="container-max relative z-10 h-full flex flex-col justify-end flex-1 py-12 lg:pb-16 lg:min-h-[calc(100vh-150px)]">
           <div className="w-full lg:w-[50%] lg:pr-12 text-center md:text-left">
@@ -531,24 +510,17 @@ export default function HomeContent() {
           </div>
         </div>
 
-        <motion.div
+        <StaggerContainer
           className="container-max relative z-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-7"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
         >
           {services.map((service) => (
-            <motion.div
+            <StaggerItem
               key={service.id}
-              variants={cardVariants}
-              whileHover={{
-                y: -4,
-                boxShadow: '0 20px 40px rgba(17, 92, 71, 0.14)',
-              }}
-              transition={{ duration: 0.3, ease: 'easeOut' as const }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#115C47]/10 bg-white shadow-[0_10px_35px_rgba(27,35,31,0.06)] will-change-transform"
+              className="h-full"
             >
+              <div
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#115C47]/10 bg-white shadow-[0_10px_35px_rgba(27,35,31,0.06)] will-change-transform transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(17,92,71,0.14)]"
+              >
               <Link href={service.href} className="absolute inset-0 z-20" aria-label={`Learn more about ${service.title}`}>
                 <span className="sr-only">Learn more</span>
               </Link>
@@ -590,9 +562,10 @@ export default function HomeContent() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+              </div>
+            </StaggerItem>
           ))}
-        </motion.div>
+        </StaggerContainer>
 
         <div className="container-max text-center mt-10 lg:mt-14 relative z-10">
           <Link href="/contact-us" className="btn btn-large rounded-full border border-[#115C47]/20 bg-[#115C47] px-8 text-white shadow-lg shadow-[#115C47]/25 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C4535] hover:shadow-xl hover:shadow-[#115C47]/30">
@@ -608,17 +581,10 @@ export default function HomeContent() {
       </section>
 
       {/* ────────────────── 4. About Section ────────────────── */}
-      <section ref={aboutRef} className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
+      <section className="section py-20 md:py-32 lg:py-40 relative w-full overflow-hidden bg-white rounded-tl-[100px] rounded-br-[100px] md:rounded-tl-[160px] md:rounded-br-[160px]">
         <div className="container-max relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div
-              style={{ y: aboutY }}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative h-full"
-            >
+            <ScrollReveal direction="right" duration={0.6} className="relative h-full">
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl aspect-4/5 w-full h-full min-h-[500px]">
                 <Image
                   src="/images/home/homepage-about-us-image.jpg"
@@ -628,15 +594,9 @@ export default function HomeContent() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-              className="flex flex-col items-start py-8 lg:py-12"
-            >
+            <ScrollReveal direction="up" delay={0.2} duration={0.6} className="flex flex-col items-start py-8 lg:py-12">
               <span className="badge badge-primary mb-8 shadow-sm">
                 Our Philosophy
               </span>
@@ -688,7 +648,7 @@ export default function HomeContent() {
                   </span>
                 </Link>
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

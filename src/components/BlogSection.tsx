@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import { blogPosts, type BlogPost, type BlogCategory } from '@/app/blog/blogPosts';
 import arrowRightLinear from '@iconify-icons/solar/arrow-right-linear';
 import documentTextBoldDuotone from '@iconify-icons/solar/document-text-bold-duotone';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 const categoryStyles: Record<BlogCategory, { badge: string; iconBg: string; iconColor: string }> = {
   'Parent Guidance': { badge: 'bg-[#EEF8FF] text-[#2A6D9A]', iconBg: 'bg-[#EEF8FF]', iconColor: 'text-[#2A6D9A]' },
@@ -67,50 +68,51 @@ export default function BlogSection({
         </div>
 
         {/* Post cards */}
-        <div className="flex flex-col gap-4">
+        <StaggerContainer className="flex flex-col gap-4">
           {posts.map((post) => {
             const style = categoryStyles[post.category];
             return (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col md:flex-row items-start gap-6 rounded-2xl border border-border-light bg-white p-6 md:p-8 shadow-sm hover:shadow-md hover:border-primary/30 transition-all no-underline"
-              >
-                {post.image ? (
-                  <div className="relative w-full md:w-36 h-28 md:h-24 rounded-xl overflow-hidden shrink-0 group-hover:scale-[1.03] transition-transform">
-                    <Image
-                      src={post.image.src}
-                      alt={post.image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 144px"
-                    />
-                  </div>
-                ) : (
-                  <div className={`w-14 h-14 rounded-2xl ${style.iconBg} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
-                    <Icon icon={documentTextBoldDuotone} className={`w-7 h-7 ${style.iconColor}`} />
-                  </div>
-                )}
+              <StaggerItem key={post.slug}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col md:flex-row items-start gap-6 rounded-2xl border border-border-light bg-white p-6 md:p-8 shadow-sm hover:shadow-md hover:border-primary/30 transition-all no-underline"
+                >
+                  {post.image ? (
+                    <div className="relative w-full md:w-36 h-28 md:h-24 rounded-xl overflow-hidden shrink-0 group-hover:scale-[1.03] transition-transform">
+                      <Image
+                        src={post.image.src}
+                        alt={post.image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 144px"
+                      />
+                    </div>
+                  ) : (
+                    <div className={`w-14 h-14 rounded-2xl ${style.iconBg} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
+                      <Icon icon={documentTextBoldDuotone} className={`w-7 h-7 ${style.iconColor}`} />
+                    </div>
+                  )}
 
-                <div className="flex-1 min-w-0">
-                  <span className={`inline-flex rounded-full px-3 py-0.5 text-xs font-semibold ${style.badge} mb-2`}>
-                    {post.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-2">
-                    {post.excerpt}
-                  </p>
-                  <span className="text-primary text-sm font-semibold inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Read the full guide
-                    <Icon icon={arrowRightLinear} width={14} height={14} />
-                  </span>
-                </div>
-              </Link>
+                  <div className="flex-1 min-w-0">
+                    <span className={`inline-flex rounded-full px-3 py-0.5 text-xs font-semibold ${style.badge} mb-2`}>
+                      {post.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-2">
+                      {post.excerpt}
+                    </p>
+                    <span className="text-primary text-sm font-semibold inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Read the full guide
+                      <Icon icon={arrowRightLinear} width={14} height={14} />
+                    </span>
+                  </div>
+                </Link>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

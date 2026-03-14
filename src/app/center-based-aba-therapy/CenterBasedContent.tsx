@@ -1,11 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
+import { ParallaxImage } from '@/components/animations/ParallaxImage';
 
 const programHighlights = [
   {
@@ -267,30 +268,19 @@ const faqItems = [
 ];
 
 export default function CenterBasedContent() {
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 100]);
-
-  const insideCenterRef = useRef(null);
-  const { scrollYProgress: insideCenterScrollYProgress } = useScroll({
-    target: insideCenterRef,
-    offset: ['start end', 'end start'],
-  });
-  const insideCenterY = useTransform(insideCenterScrollYProgress, [0, 1], [50, -50]);
-
   return (
     <main id="main-content" className="w-full bg-white">
       <section className="relative border-b border-border-light overflow-hidden bg-white">
-        <motion.div style={{ y: heroY }} className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
-          <Image
+        <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2 z-0 h-full">
+          <ParallaxImage
             src="/images/center-based/hero-center-based.webp"
             alt="Therapist guiding children through a table activity in a structured learning setting"
-            fill
-            className="object-cover"
+            className="h-full w-full"
             priority
             sizes="50vw"
           />
           <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-        </motion.div>
+        </div>
 
         <div className="container-max relative z-10 py-10 md:py-12 lg:py-14">
           <div className="w-full lg:w-1/2 lg:pr-12 animate-fade-in-up">
@@ -341,19 +331,21 @@ export default function CenterBasedContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
             {programHighlights.map((item) => (
-              <article key={item.title} className="flex gap-5 items-start group">
-                <div className={`shrink-0 w-14 h-14 rounded-2xl ${item.bgClass} ${item.iconClass} flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                  <Icon icon={item.icon} className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-dark text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
-                  <p className="text-text-secondary text-base leading-relaxed">{item.description}</p>
-                </div>
-              </article>
+              <StaggerItem key={item.title}>
+                <article className="flex gap-5 items-start group h-full">
+                  <div className={`shrink-0 w-14 h-14 rounded-2xl ${item.bgClass} ${item.iconClass} flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                    <Icon icon={item.icon} className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-dark text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
+                    <p className="text-text-secondary text-base leading-relaxed">{item.description}</p>
+                  </div>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -382,8 +374,8 @@ export default function CenterBasedContent() {
               </ul>
               <div className="relative mt-8 rounded-3xl overflow-hidden border border-border-light shadow-sm h-[220px] sm:h-[260px]">
                 <Image
-                  src="/images/center-based/daily-rhythm-classroom.webp"
-                  alt="Children participating in a structured classroom routine with teacher support"
+                  src="/images/center-based/daily-rhythm-teacher-group.webp"
+                  alt="Teacher leading a structured group learning activity with children in a therapy center classroom"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -408,7 +400,7 @@ export default function CenterBasedContent() {
         </div>
       </section>
 
-      <section ref={insideCenterRef} id="learning-center" className="section bg-[#D4EAFC]/30">
+      <section id="learning-center" className="section bg-[#D4EAFC]/30">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div className="flex flex-col">
@@ -436,14 +428,7 @@ export default function CenterBasedContent() {
               </div>
             </div>
 
-            <motion.div
-              style={{ y: insideCenterY }}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative h-full lg:sticky lg:top-32"
-            >
+            <ScrollReveal direction="left" duration={0.6} className="relative h-full lg:sticky lg:top-32">
               <div className="relative rounded-tl-[80px] rounded-br-[80px] md:rounded-tl-[120px] md:rounded-br-[120px] overflow-hidden shadow-xl min-h-[500px] h-full">
                 <Image
                   src="/images/center-based/inside-center-classroom.webp"
@@ -453,7 +438,7 @@ export default function CenterBasedContent() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -512,22 +497,23 @@ export default function CenterBasedContent() {
             </div>
 
             <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6 content-start">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6 content-start">
                 {centerFitSignals.map((item) => (
-                  <article
-                    key={item.title}
-                    className="group p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300 h-full"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <Icon icon={item.icon} className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-dark text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-0">{item.description}</p>
-                  </article>
+                  <StaggerItem key={item.title}>
+                    <article
+                      className="group p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-all duration-300 h-full"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        <Icon icon={item.icon} className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-dark text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-0">{item.description}</p>
+                    </article>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
           </div>
         </div>
@@ -610,18 +596,20 @@ export default function CenterBasedContent() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {enrollmentSteps.map((step) => (
-                <article key={step.step} className="relative p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow">
-                  <span className={`inline-flex items-center justify-center w-11 h-11 rounded-xl ${step.bg} ${step.color} mb-4`}>
-                    <Icon icon={step.icon} className="w-6 h-6" />
-                  </span>
-                  <p className={`text-xs font-bold uppercase tracking-wider ${step.color} mb-2`}>Step {step.step}</p>
-                  <h3 className="text-dark text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-0">{step.description}</p>
-                </article>
+                <StaggerItem key={step.step}>
+                  <article className="relative p-6 rounded-2xl bg-white border border-border-light hover:shadow-md transition-shadow h-full">
+                    <span className={`inline-flex items-center justify-center w-11 h-11 rounded-xl ${step.bg} ${step.color} mb-4`}>
+                      <Icon icon={step.icon} className="w-6 h-6" />
+                    </span>
+                    <p className={`text-xs font-bold uppercase tracking-wider ${step.color} mb-2`}>Step {step.step}</p>
+                    <h3 className="text-dark text-lg font-semibold mb-2">{step.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-0">{step.description}</p>
+                  </article>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
       </section>

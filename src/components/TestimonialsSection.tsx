@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 import starBold from '@iconify-icons/solar/star-bold';
 import arrowLeftLinear from '@iconify-icons/solar/arrow-left-linear';
@@ -86,11 +87,9 @@ export default function TestimonialsSection() {
 
       <div className="container-max relative z-10 px-4 md:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+        <ScrollReveal
+          direction="up"
+          duration={0.6}
           className="text-center mb-4 lg:mb-6 flex flex-col items-center"
         >
           <div className="mb-3 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 shadow-inner">
@@ -99,13 +98,12 @@ export default function TestimonialsSection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-primary text-white leading-[1.1] tracking-tight max-w-2xl">
             Hear from the families growing with us
           </h2>
-        </motion.div>
+        </ScrollReveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        <ScrollReveal
+          direction="up"
+          delay={0.2}
+          duration={0.7}
           className="relative w-full max-w-5xl mx-auto"
         >
           {/* Decorative Quote Mark — inline SVG, no network fetch */}
@@ -225,7 +223,7 @@ export default function TestimonialsSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

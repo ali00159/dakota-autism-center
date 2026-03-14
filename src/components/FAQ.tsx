@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerReveal';
 
 export interface FAQItem {
   question: string;
@@ -31,7 +33,7 @@ export default function FAQ({
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-16 xl:gap-20 items-start">
 
           {/* Left — sticky panel */}
-          <div className="lg:sticky lg:top-28">
+          <ScrollReveal direction="right" duration={0.6} className="lg:sticky lg:top-28">
             {badge && (
               <span className="badge badge-info mb-6">{badge}</span>
             )}
@@ -69,21 +71,21 @@ export default function FAQ({
                 ))}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right — accordion */}
-          <div className="space-y-3">
+          <StaggerContainer className="space-y-3">
             {items.map((item, index) => {
               const isOpen = openIndex === index;
               return (
-                <div
-                  key={index}
-                  className={`rounded-2xl border overflow-hidden bg-white transition-all duration-200 ${
-                    isOpen
-                      ? 'border-tertiary/40 shadow-[0_4px_20px_rgba(66,174,235,0.08)]'
-                      : 'border-border-light hover:border-tertiary/25 hover:bg-[#FAFCFF]'
-                  }`}
-                >
+                <StaggerItem key={index}>
+                  <div
+                    className={`rounded-2xl border overflow-hidden bg-white transition-all duration-200 ${
+                      isOpen
+                        ? 'border-tertiary/40 shadow-[0_4px_20px_rgba(66,174,235,0.08)]'
+                        : 'border-border-light hover:border-tertiary/25 hover:bg-[#FAFCFF]'
+                    }`}
+                  >
                   <button
                     className="w-full flex items-start justify-between gap-4 p-5 md:p-6 text-left cursor-pointer"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
@@ -138,10 +140,11 @@ export default function FAQ({
                       </p>
                     </div>
                   </div>
-                </div>
+                  </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
 
         </div>
       </div>

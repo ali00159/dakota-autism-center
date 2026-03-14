@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin, Printer } from 'lucide-react';
 import { FooterLink } from '@/types';
 import { cities } from '@/data/cities';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -34,7 +35,7 @@ export default function Footer() {
     <footer className="bg-primary text-white pt-16 pb-8 mt-auto">
       <div className="container-max">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 border-b border-white/10 pb-10">
+        <ScrollReveal direction="up" duration={0.6} className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 border-b border-white/10 pb-10">
           
           {/* Brand Column */}
           <div className="lg:col-span-6 space-y-6">
@@ -118,7 +119,7 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Contact Details Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 pb-4">

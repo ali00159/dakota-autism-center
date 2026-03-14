@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { ShieldCheck, FileText, Users, HeartHandshake, MapPin } from 'lucide-react';
@@ -158,7 +160,7 @@ export default function InsuranceFundingContent() {
               Navigating autism therapy insurance and funding can feel overwhelming. This page gives Minnesota families a clear, culturally respectful roadmap for private insurance, EIDBI, and related funding options so you can move forward with confidence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us" className="btn-find-center w-full sm:w-auto bg-tertiary!">
+              <Link href="/contact-us#contact" className="btn-find-center w-full sm:w-auto bg-tertiary!">
                 Verify My Coverage
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
                   <Icon icon="solar:arrow-right-broken" className="w-5 h-5" />
@@ -358,7 +360,7 @@ export default function InsuranceFundingContent() {
             We help families understand benefits, reduce financial uncertainty, and begin culturally responsive ABA care with confidence.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 rounded-full bg-white py-2 pl-6 pr-2 text-lg font-semibold text-primary shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl">
+            <Link href="/contact-us#contact" className="inline-flex items-center justify-center gap-3 rounded-full bg-white py-2 pl-6 pr-2 text-lg font-semibold text-primary shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl">
               Schedule a Coverage Call
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
                 <Icon icon="solar:arrow-right-broken" className="h-6 w-6" />

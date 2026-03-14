@@ -4,6 +4,7 @@ import { useRef, useState, useTransition } from 'react';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { submitContact } from '@/app/actions/submitContact';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 function formatPhoneValue(raw: string) {
   const digits = raw.replace(/\D/g, '').slice(0, 10);
@@ -90,7 +91,7 @@ export default function ContactForm() {
 
       <div className="container-max relative z-10">
         <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-24">
-          <div className="w-full pt-8 lg:sticky lg:top-8 lg:self-start lg:w-5/12">
+          <ScrollReveal direction="right" duration={0.6} className="w-full pt-8 lg:sticky lg:top-8 lg:self-start lg:w-5/12">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
               <Icon icon="solar:chat-round-dots-bold" className="h-4 w-4" />
               <span>Get in Touch</span>
@@ -135,9 +136,9 @@ export default function ContactForm() {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="w-full lg:w-7/12">
+          <ScrollReveal direction="up" delay={0.2} duration={0.6} className="w-full lg:w-7/12">
             <div className="card relative border border-border-light bg-white p-8 shadow-xl md:p-10">
               <div className="absolute top-0 left-0 h-2 w-full rounded-t-lg bg-linear-to-r from-primary via-secondary to-tertiary" />
 
@@ -392,7 +393,7 @@ export default function ContactForm() {
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

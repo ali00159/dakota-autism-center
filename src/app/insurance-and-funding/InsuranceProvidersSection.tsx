@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import { Phone } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
 const fundingPaths = [
@@ -178,9 +179,9 @@ export default function InsuranceProvidersSection() {
             )[provider.category as 'commercial' | 'medicaid' | 'eidbi'];
 
             return (
-              <a
+              <Link
                 key={provider.id}
-                href="tel:6122845382"
+                href="/contact-us#contact"
                 className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100/80 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
               >
                 {/* Category accent strip */}
@@ -213,7 +214,7 @@ export default function InsuranceProvidersSection() {
                 {/* Footer CTA — always visible */}
                 <div className="mx-4 mb-4 flex items-center justify-between gap-2 rounded-xl px-4 py-2.5" style={{ backgroundColor: cfg.bg }}>
                   <div className="flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: cfg.color }} />
+                    <Icon icon="solar:shield-check-bold" className="w-3.5 h-3.5 shrink-0" style={{ color: cfg.color }} />
                     <span className="text-xs font-semibold" style={{ color: cfg.color }}>
                       Verify your benefits
                     </span>
@@ -229,7 +230,7 @@ export default function InsuranceProvidersSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -237,15 +238,15 @@ export default function InsuranceProvidersSection() {
         {/* CTA */}
         <div className="mt-10 text-center">
           <p className="text-[#6B6569] mb-4">
-            Not sure which path fits your family? A quick call is all it takes.
+            Not sure which path fits your family? Let us check your coverage.
           </p>
-          <a
-            href="tel:6122845382"
+          <Link
+            href="/contact-us#contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#115C47] text-white font-semibold rounded-full hover:bg-[#0E4A38] transition-all duration-300"
           >
-            <Phone className="w-4 h-4" />
-            Call to Verify Your Coverage
-          </a>
+            <Icon icon="solar:shield-check-bold" className="w-4 h-4" />
+            Verify Your Coverage
+          </Link>
         </div>
       </div>
     </section>
