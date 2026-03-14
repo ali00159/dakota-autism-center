@@ -15,15 +15,13 @@ import shieldCheckBold from '@iconify-icons/solar/shield-check-bold';
 import usersGroupRoundedBold from '@iconify-icons/solar/users-group-rounded-bold';
 import starBold from '@iconify-icons/solar/star-bold';
 import arrowRightBroken from '@iconify-icons/solar/arrow-right-broken';
-import arrowRightLinear from '@iconify-icons/solar/arrow-right-linear';
 import buildingsBoldDuotone from '@iconify-icons/solar/buildings-bold-duotone';
 import homeSmileBoldDuotone from '@iconify-icons/solar/home-smile-bold-duotone';
 import usersGroupRoundedBoldDuotone from '@iconify-icons/solar/users-group-rounded-bold-duotone';
 import heartPulseBoldDuotone from '@iconify-icons/solar/heart-pulse-bold-duotone';
-import documentTextBoldDuotone from '@iconify-icons/solar/document-text-bold-duotone';
-
 const ContactForm = dynamic(() => import('@/components/ContactForm'));
 const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'));
+const BlogSection = dynamic(() => import('@/components/BlogSection'));
 
 /* ───────────────────────────── Data ───────────────────────────── */
 
@@ -699,49 +697,7 @@ export default function HomeContent() {
       <TestimonialsSection />
 
       {/* ────────────────── 6. From Our Blog ────────────────── */}
-      <section className="section bg-[#F8FBFA] border-y border-border-light">
-        <div className="container-max">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-              <span className="badge badge-info mb-4">From Our Blog</span>
-              <h2 className="text-3xl md:text-4xl font-bold font-primary text-[#474044] leading-tight tracking-tight">
-                Helpful resources for families
-              </h2>
-            </div>
-            <Link
-              href="/blog"
-              className="text-primary font-semibold text-sm inline-flex items-center gap-1.5 hover:underline shrink-0"
-            >
-              View all articles
-              <Icon icon={arrowRightLinear} width={16} height={16} />
-            </Link>
-          </div>
-
-          <Link
-            href="/blog/what-is-eidbi-minnesota-parent-guide"
-            className="group flex flex-col md:flex-row items-start gap-6 rounded-2xl border border-border-light bg-white p-6 md:p-8 shadow-sm hover:shadow-md hover:border-primary/30 transition-all no-underline"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#F4EEFF] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-              <Icon icon={documentTextBoldDuotone} className="w-7 h-7 text-[#6843A3]" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <span className="inline-flex rounded-full px-3 py-0.5 text-xs font-semibold bg-[#F4EEFF] text-[#6843A3] mb-2">
-                Funding Navigation
-              </span>
-              <h3 className="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                What Is EIDBI in Minnesota? A Complete Guide for Parents
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed mb-2">
-                Learn how Minnesota&apos;s EIDBI benefit works, who qualifies, what services it covers, and how to get started — explained in plain language for families.
-              </p>
-              <span className="text-primary text-sm font-semibold inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                Read the full guide
-                <Icon icon={arrowRightLinear} width={14} height={14} />
-              </span>
-            </div>
-          </Link>
-        </div>
-      </section>
+      <BlogSection />
 
       {/* ────────────────── 7. Contact Form ────────────────── */}
       <ContactForm />

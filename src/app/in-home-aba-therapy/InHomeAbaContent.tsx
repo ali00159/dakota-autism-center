@@ -660,7 +660,7 @@ export default function InHomeAbaContent() {
               >
                 <Image
                   src="/images/in-home/family-moment.webp"
-                  alt="Parent watching their child engage with a therapist during a play-based learning activity at home"
+                  alt="Therapist and child engaged in play-based learning with colorful building blocks during an ABA therapy session at home"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"

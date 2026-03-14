@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FAQ from '@/components/FAQ';
+import BlogSection from '@/components/BlogSection';
 
 const eidbiServices = [
   {
@@ -84,8 +85,8 @@ const mnEidbiLandscape = [
     tone: 'bg-accent/10 text-accent',
   },
   {
-    title: 'Current Licensing Shift',
-    detail: 'Minnesota now requires provisional licensure for existing EIDBI agencies, with the current application deadline set for May 31, 2026.',
+    title: 'State-Licensed Oversight',
+    detail: 'Minnesota now requires all EIDBI agencies to hold a state license, with DHS-enforced background checks and health and safety protections for every child in care.',
     icon: 'solar:shield-check-bold-duotone',
     tone: 'bg-secondary/15 text-[#FB9A31]',
   },
@@ -151,8 +152,8 @@ const eidbisFaqItems = [
     answer: 'Yes. EIDBI is designed to be delivered across multiple settings — including your home, our center, your child\'s school, and community environments. The appropriate service settings are determined by your child\'s Individual Treatment Plan and what will best support skill generalization. We coordinate across these environments to ensure consistent goals and strategies wherever your child is learning.',
   },
   {
-    question: 'Are there any changes to the EIDBI program I should know about for 2025–2026?',
-    answer: 'Yes. Minnesota passed legislation in 2025 requiring all enrolled EIDBI agencies to obtain provisional licensure by May 31, 2026. Dakota Autism Center is actively navigating this process to ensure uninterrupted service for all families. Additionally, effective July 1, 2025, the Play Project and Early Social Interaction (ESI) modalities are no longer approved EIDBI treatment methods. We keep our treatment plans current with all DHS policy updates.',
+    question: 'How does Minnesota oversee the quality of EIDBI providers?',
+    answer: 'Minnesota now requires all EIDBI agencies to hold a state license issued by the Department of Human Services (DHS). Licensed agencies must pass background studies through NETStudy 2.0, meet health and safety standards, and are subject to DHS oversight including maltreatment investigations. Dakota Autism Center is a licensed EIDBI provider, and we welcome the accountability these standards bring to the families we serve.',
   },
 ];
 
@@ -520,61 +521,11 @@ export default function EidbiContent() {
         items={eidbisFaqItems}
       />
 
-      {/* Related Blog Article */}
-      <section className="relative overflow-hidden border-b border-border-light bg-white">
-        <div className="pointer-events-none absolute -top-20 right-0 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 left-0 h-56 w-56 rounded-full bg-tertiary/10 blur-3xl" />
-
-        <div className="container-max relative py-14 md:py-16">
-          <div className="mb-8 md:mb-10 max-w-2xl">
-            <span className="badge badge-accent mb-3">Parent Resources</span>
-            <h2 className="text-dark mb-3">Keep reading with our featured EIDBI guide</h2>
-            <p className="text-text-secondary body-large mb-0">
-              If you want a deeper breakdown of eligibility, funding, and what the first steps look like, this guide is the best place to start.
-            </p>
-          </div>
-
-          <Link
-            href="/blog/what-is-eidbi-minnesota-parent-guide"
-            className="group grid gap-6 rounded-3xl border border-primary/20 bg-linear-to-br from-[#F6FCF9] via-white to-[#EEF6FF] p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-xl no-underline"
-          >
-            <div className="min-w-0">
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="inline-flex rounded-full bg-[#E8F4F0] px-3 py-1 text-xs font-semibold text-primary">
-                  Funding Navigation
-                </span>
-                <span className="inline-flex rounded-full bg-[#F4EEFF] px-3 py-1 text-xs font-semibold text-[#6843A3]">
-                  Parent Guide
-                </span>
-              </div>
-
-              <h3 className="text-xl md:text-2xl font-bold leading-tight text-dark transition-colors group-hover:text-primary mb-3">
-                What Is EIDBI in Minnesota? A Complete Guide for Parents
-              </h3>
-
-              <p className="text-text-secondary text-base md:text-lg mb-5">
-                Our in-depth guide explains eligibility, services, the CMDE process, and how to get started in clear, plain language.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
-                <span className="inline-flex items-center gap-1.5">
-                  <Icon icon="solar:book-2-bold-duotone" className="h-4 w-4 text-primary" />
-                  Long-form resource
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Icon icon="solar:calendar-mark-bold-duotone" className="h-4 w-4 text-primary" />
-                  Updated for Minnesota families
-                </span>
-              </div>
-            </div>
-
-            <div className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-lg shadow-primary/20 transition-all duration-300 group-hover:bg-primary-dark group-hover:gap-3">
-              Read the guide
-              <Icon icon="solar:arrow-right-linear" className="h-5 w-5 shrink-0" />
-            </div>
-          </Link>
-        </div>
-      </section>
+      {/* Related Blog Articles */}
+      <BlogSection
+        badge="Parent Resources"
+        heading="Keep reading with our EIDBI guides"
+      />
 
       {/* CTA Section */}
       <section className="section relative overflow-hidden text-white text-center bg-primary">
